@@ -14,6 +14,7 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.WorldGenRegion;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import ru.tesmio.blocks.baseblock.BlockCustomModel;
@@ -28,6 +29,7 @@ public class Chain extends BlockCustomModel {
     }
     @Override
     public BlockState updatePostPlacement(BlockState s, Direction f, BlockState bs, IWorld w, BlockPos p, BlockPos facingPos) {
+        if(w instanceof WorldGenRegion) return s;
         return updateState((World) w,p,s);
     }
     @Override

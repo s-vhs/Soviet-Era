@@ -51,6 +51,7 @@ public class UndergroundLabsPieces {
 
     private static final Map<ResourceLocation, BlockPos> POOL = new HashMap<>();
 
+
     public static void putValueInMap() {
         POOL.put(linearFragment1, BlockPos.ZERO);
         POOL.put(tripleFragment, BlockPos.ZERO);
@@ -69,218 +70,325 @@ public class UndergroundLabsPieces {
     static int lenthFragment = 5;
     public static void addPieces(TemplateManager tm, BlockPos bPos, List<StructurePiece> listPieces) {
         finalBuildCorridors(tm, bPos, listPieces);
-        finalBuildStairs(tm, bPos, listPieces);
+  //      finalBuildStairs(tm, bPos, listPieces);
+  //      finalBuildRooms(tm, bPos, listPieces);
+    }
+
+    public static void finalBuildRooms(TemplateManager tm, BlockPos bPos, List<StructurePiece> listPieces) {
+        listPieces.add(new UndergroundLabsPieces.Piece(tm, concertHall, bPos, Rotation.NONE,Mirror.NONE, -20,-9));
     }
     public static void finalBuildStairs(TemplateManager tm, BlockPos bPos, List<StructurePiece> listPieces) {
-        listPieces.add(new UndergroundLabsPieces.Piece(tm, stairsDown, bPos, Rotation.NONE,Mirror.NONE, 8,0,4));
+        listPieces.add(new UndergroundLabsPieces.Piece(tm, stairsDown, bPos, Rotation.NONE,Mirror.NONE, 8,4));
         UndergroundLabsPieces.Piece lf = (UndergroundLabsPieces.Piece) listPieces.get(listPieces.size() - 1);
-        listPieces.add(new UndergroundLabsPieces.Piece(tm, stairsMid, bPos, Rotation.NONE,Mirror.NONE, 8,0,4));
-        listPieces.add(new UndergroundLabsPieces.Piece(tm, stairsTop, bPos, Rotation.NONE,Mirror.NONE, 8,0,-1));
-
-        listPieces.add(new UndergroundLabsPieces.Piece(tm, concertHall, bPos, Rotation.NONE,Mirror.NONE, -20,0,-9));
+        listPieces.add(new UndergroundLabsPieces.Piece(tm, stairsMid, bPos, Rotation.NONE,Mirror.NONE, 8,4));
+        listPieces.add(new UndergroundLabsPieces.Piece(tm, stairsTop, bPos, Rotation.NONE,Mirror.NONE, 8,-1));
     }
 
 
     public static void finalBuildCorridors(TemplateManager tm, BlockPos bPos, List<StructurePiece> listPieces) {
         ThreadLocalRandom tr = ThreadLocalRandom.current();
-        //init node
-        listPieces.add(new UndergroundLabsPieces.Piece(tm, quadFragment, bPos, Rotation.NONE,Mirror.NONE, 0,0,0));
-        //gen south wing labs
-        {
-            genCorridor(tm, bPos, listPieces, Direction.Axis.Z, 1,0,0,0);
-            int finishV = genCorridor(tm, bPos, listPieces, Direction.Axis.Z, 1,0,0,0);
-            int randomNode = tr.nextInt(0,3);
-            if(randomNode == 0) {
-                genQuadNode(tm, bPos, listPieces, Direction.SOUTH, finishV);
-                UndergroundLabsPieces.Piece lf = (UndergroundLabsPieces.Piece) listPieces.get(listPieces.size() - 1);
-                {
-                    genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.X, 1, 0, -3, -4);
-                    genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.X, -1, 0, -5, -4);
-                    genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.Z, 1, 0, -4, -3);
-                    //сделать дополнительные разветвления на еще один-два уровня
-                }
-            }
-            else if(randomNode == 1) {
-                genTripleNode(tm, bPos, listPieces, Direction.SOUTH, finishV, Rotation.CLOCKWISE_180,0,0);
-                UndergroundLabsPieces.Piece lf = (UndergroundLabsPieces.Piece) listPieces.get(listPieces.size() - 1);
-                {
-                    genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.X, 1,0,-3,-4);
-                    genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.X, -1,0,-5,-4);
-                }
-            }
-            else if(randomNode == 2) {
-                Rotation corRot = tr.nextBoolean() ? Rotation.CLOCKWISE_90 : Rotation.CLOCKWISE_180;
-                genCornerNode(tm, bPos, listPieces, Direction.SOUTH, finishV, corRot,-4,0);
-                UndergroundLabsPieces.Piece lf = (UndergroundLabsPieces.Piece) listPieces.get(listPieces.size() - 1);
-                {
-                    if (lf.getRotate() == Rotation.CLOCKWISE_90) {
-                        genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.X, -1, 0, -4, 0);
-                    }
-                    if (lf.getRotate() == Rotation.CLOCKWISE_180) {
-                        genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.X, 1, 0, -3, -4);
-                    }
-                }
-            }
-        }
+        if(tr.nextInt(8) < 4) {
+             genQuadNode(tm, bPos, listPieces, Direction.NORTH, BlockPos.ZERO);
+            genSouthWing(tm, bPos, listPieces);
+//    genNorthWing(tm, bPos, listPieces);
+//    genWestWing(tm, bPos, listPieces);
+//    genEastWing(tm, bPos, listPieces);
 
-        //gen north wing labs
-        {
 
-            genCorridor(tm, bPos, listPieces, Direction.Axis.Z, -1,0,0,0);
-            int finishV = genCorridor(tm, bPos, listPieces, Direction.Axis.Z, -1,0,0,0);
-            int randomNode = tr.nextInt(0,3);
-            if(randomNode == 0) {
-                genQuadNode(tm, bPos, listPieces, Direction.NORTH, finishV);
-                UndergroundLabsPieces.Piece lf = (UndergroundLabsPieces.Piece) listPieces.get(listPieces.size() - 1);
-                {
-                   genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.X, 1, 0, 0, 0);
-                    genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.X, -1, 0, 0, 0);
-                    genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.Z, -1, 0, 0, 0);
-
-                }
-            }
-            else if(randomNode == 1) {
-                genTripleNode(tm, bPos, listPieces, Direction.NORTH, finishV, Rotation.NONE,0,-4);
-                UndergroundLabsPieces.Piece lf = (UndergroundLabsPieces.Piece) listPieces.get(listPieces.size() - 1);
-                {
-                    genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.X, 1,0,0,0);
-                    genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.X, -1,0,0,0);
-                }
-            }
-            else if(randomNode == 2) {
-                Rotation corRot = tr.nextBoolean() ? Rotation.CLOCKWISE_90 : Rotation.CLOCKWISE_180;
-                genCornerNode(tm, bPos, listPieces, Direction.NORTH, finishV, corRot,0,0);
-                UndergroundLabsPieces.Piece lf = (UndergroundLabsPieces.Piece) listPieces.get(listPieces.size() - 1);
-                {
-                    if (lf.getRotate() == Rotation.CLOCKWISE_90) {
-                       genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.X, 1, 0, -3, 0);
-                    }
-                    if (lf.getRotate() == Rotation.CLOCKWISE_180) {
-                        genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.X, -1, 0, -4, -4);
-                    }
-                }
-            }
-        }
-
-        //gen west wing labs
-        {
-            genCorridor(tm, bPos, listPieces, Direction.Axis.X, -1,0,0,0);
-            int finishV = genCorridor(tm, bPos, listPieces, Direction.Axis.X, -1,0,0,0);
-            int randomNode = tr.nextInt(0,3);
-            if(randomNode == 0) {
-                genQuadNode(tm, bPos, listPieces, Direction.WEST, finishV);
-                UndergroundLabsPieces.Piece lf = (UndergroundLabsPieces.Piece) listPieces.get(listPieces.size() - 1);
-                {
-                  genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.Z, 1, 0, 0, 0);
-                   genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.Z, -1, 0, 0, 0);
-                   genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.X, -1, 0, 0, 0);
-
-                }
-            }
-               else if(randomNode == 1) {
-            genTripleNode(tm, bPos, listPieces, Direction.WEST, finishV, Rotation.CLOCKWISE_90,0,-4);
-            UndergroundLabsPieces.Piece lf = (UndergroundLabsPieces.Piece) listPieces.get(listPieces.size() - 1);
-            {
-                genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.Z, 1,0,-4,1);
-                genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.Z, -1,0,-4,-1);
-            }
-        }
-               else if(randomNode == 2) {
-            Rotation corRot = tr.nextBoolean() ? Rotation.COUNTERCLOCKWISE_90 : Rotation.CLOCKWISE_180;
-            genCornerNode(tm, bPos, listPieces, Direction.WEST, finishV, corRot,-5,0);
-            UndergroundLabsPieces.Piece lf = (UndergroundLabsPieces.Piece) listPieces.get(listPieces.size() - 1);
-            {
-                if (lf.getRotate() == Rotation.COUNTERCLOCKWISE_90) {
-                    genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.Z, 1,0,0,-3);
-                }
-                if (lf.getRotate() == Rotation.CLOCKWISE_180) {
-                    genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.Z, -1, 0, 0, -4);
-                }
-            }
-        }
-        }
-        genCorridor(tm, bPos, listPieces, Direction.Axis.X, 1,0,0,0);
-        //сделать крылья лабораторий во все стороны / добавить фрагменты с выходом на лестницы и к лифтам / построить фрагменты лестниц, вентшахт, лифтовых шахт
+}
     }
 
-
-
-    /**
-     * Method of generating straight corridors.
-     * @param tm Template Manager
-     * @param p Position Template
-     * @param l List of pieces
-     * @param ax Corridor generation axis
-     * @param dirCorrection Sets the direction of the corridor. May be 1 or -1
-     */
-    public static int genCorridor(TemplateManager tm, BlockPos p, List<StructurePiece> l, Direction.Axis ax, int dirCorrection, int yCorrection, int xCorrection, int zCorrection) {
+    public static BlockPos genCorridor(TemplateManager tm, BlockPos p, List<StructurePiece> l, Direction.Axis ax, int dirCorrection, int xCorrection, int zCorrection) {
         ThreadLocalRandom tr = ThreadLocalRandom.current();
-        int randLin = tr.nextInt(6,14);
-        int randRare = tr.nextInt(4);
-        ResourceLocation linear[] = new ResourceLocation[] {
-                linearFragment1,
-                linearFragment2,
-                linearFragment3,
-                linearFragment4
-        };
-        int finishPZ = 0;
-        int finishPX = 0;
-        if(ax == Direction.Axis.Z) {
-            for (int pZ = 4; pZ < randLin * lenthFragment; pZ += lenthFragment) {
-                l.add(new UndergroundLabsPieces.Piece(tm, linear[tr.nextInt(4)], p, Rotation.NONE, Mirror.NONE, xCorrection, yCorrection, zCorrection + pZ * dirCorrection));
-                finishPZ = zCorrection + pZ * dirCorrection;
+        int randLin = tr.nextInt(6, 14);
+        ResourceLocation[] linear = { linearFragment1, linearFragment2, linearFragment3, linearFragment4 };
+        int correction = (ax == Direction.Axis.Z) ? zCorrection : xCorrection;
+        Rotation rotation = (ax == Direction.Axis.X) ? Rotation.CLOCKWISE_90 : Rotation.NONE;
 
-            }
-            return finishPZ;
-        }
-        if(ax == Direction.Axis.X) {
-            for (int pX = 4; pX < randLin * lenthFragment; pX += lenthFragment) {
-                l.add(new UndergroundLabsPieces.Piece(tm, linear[tr.nextInt(4)], p, Rotation.CLOCKWISE_90, Mirror.NONE, xCorrection + 4 + pX * dirCorrection, yCorrection, zCorrection));
-                finishPX = xCorrection + 4 + pX * dirCorrection;
-
-            }
-
-            return finishPX;
-
-        }
-        return 0;
+        // Начальный вызов рекурсивного метода
+        return generateCorridorRecursive(tm, p, l, ax, dirCorrection, xCorrection, zCorrection, linear, rotation, correction, 4, randLin * lenthFragment);
     }
 
-    public static void genQuadNode(TemplateManager tm, BlockPos p, List<StructurePiece> l, Direction d, int finishValue) {
-        if(d == Direction.SOUTH) {
-            l.add(new UndergroundLabsPieces.Piece(tm, quadFragment, p, Rotation.CLOCKWISE_180, Mirror.NONE, 4, 0, 9 + finishValue));
+    private static BlockPos generateCorridorRecursive(TemplateManager tm, BlockPos p, List<StructurePiece> l, Direction.Axis ax, int dirCorrection, int xCorrection, int zCorrection, ResourceLocation[] linear, Rotation rotation, int correction, int currentPos, int maxPos) {
+        if (currentPos >= maxPos) {
+            // Возвращаем объект BlockPos с последней позицией
+            int finalX = (ax == Direction.Axis.X) ? correction + (currentPos - lenthFragment) * dirCorrection : p.getX();
+            int finalZ = (ax == Direction.Axis.Z) ? correction + (currentPos - lenthFragment) * dirCorrection : p.getZ();
+            return new BlockPos(finalX, p.getY(), finalZ);
         }
-        if(d == Direction.NORTH) {
-            l.add(new UndergroundLabsPieces.Piece(tm, quadFragment, p, Rotation.NONE, Mirror.NONE, 0, 0,  finishValue));
-        }
-        if(d == Direction.WEST) {
 
-            l.add(new UndergroundLabsPieces.Piece(tm, quadFragment, p, Rotation.NONE, Mirror.NONE, finishValue, 0,  0));
+        int pos = correction + currentPos * dirCorrection;
+        l.add(new UndergroundLabsPieces.Piece(tm, linear[ThreadLocalRandom.current().nextInt(linear.length)], p, rotation, Mirror.NONE, (ax == Direction.Axis.X) ? pos : xCorrection, (ax == Direction.Axis.Z) ? pos : zCorrection));
+
+        // Проверяем, не является ли текущая позиция последней
+        if (currentPos + lenthFragment >= maxPos) {
+            // Если да, возвращаем объект BlockPos с текущей позицией и завершаем рекурсию
+            return new BlockPos((ax == Direction.Axis.X) ? pos : p.getX(), p.getY(), (ax == Direction.Axis.Z) ? pos : p.getZ());
         }
-        if(d == Direction.EAST) {
-            l.add(new UndergroundLabsPieces.Piece(tm, quadFragment, p, Rotation.NONE, Mirror.NONE, finishValue, 0,  0));
+
+        // Рекурсивный вызов для следующего фрагмента
+        return generateCorridorRecursive(tm, p, l, ax, dirCorrection, xCorrection, zCorrection, linear, rotation, correction, currentPos + lenthFragment, maxPos);
+    }
+
+
+    public static void genSouthWing(TemplateManager tm, BlockPos bPos, List<StructurePiece> listPieces) {
+        BlockPos finishL0;// сюда записывается конечная координата коридора первого уровня
+        {
+            genCorridorSouth(tm, bPos, listPieces);//Генерация первого коридора на юг рандомной длины
+            finishL0 = genCorridorSouth(tm, bPos, listPieces);//получение конечной координаты сгенерированного коридора
+            genQuadNode(tm, bPos, listPieces, Direction.SOUTH, finishL0); //Генерация на конечной координате четырехвходной ноды
+
         }
     }
-    public static void genTripleNode(TemplateManager tm, BlockPos p, List<StructurePiece> l, Direction d, int finishValue, Rotation rot, int zCorrection, int xCorrection) {
-        if(d == Direction.SOUTH) {
-            l.add(new UndergroundLabsPieces.Piece(tm, tripleFragment, p, rot, Mirror.NONE, 4 + xCorrection, 0, 9 + finishValue + zCorrection));
+//    public static void genNorthWing(TemplateManager tm, BlockPos bPos, List<StructurePiece> listPieces) {
+//        int finishL0;// сюда записывается конечная координата коридора первого уровня
+//        {
+//            genCorridorNorth(tm, bPos, listPieces);//Генерация первого коридора на юг рандомной длины
+//            finishL0 = genCorridorNorth(tm, bPos, listPieces);//получение конечной координаты сгенерированного коридора
+//            genQuadNode(tm, bPos, listPieces, Direction.NORTH, finishL0); //Генерация на конечной координате четырехвходной ноды
+//        }
+//    }
+//    public static void genWestWing(TemplateManager tm, BlockPos bPos, List<StructurePiece> listPieces) {
+//        int finishL0;// сюда записывается конечная координата коридора первого уровня
+//        {
+//            genCorridorWest(tm, bPos, listPieces);//Генерация первого коридора на юг рандомной длины
+//            BlockPos finishPos = genCorridorWest(tm, bPos, listPieces);//получение конечной координаты сгенерированного коридора
+//            genQuadNode(tm, finishPos, listPieces, Direction.EAST); //Генерация на конечной координате четырехвходной ноды
+//        }
+//    }
+//    public static void genEastWing(TemplateManager tm, BlockPos bPos, List<StructurePiece> listPieces) {
+//        int finishL0;// сюда записывается конечная координата коридора первого уровня
+//        {
+//            genCorridorEast(tm, bPos, listPieces);//Генерация первого коридора на юг рандомной длины
+//            finishL0 = genCorridorEast(tm, bPos, listPieces);//получение конечной координаты сгенерированного коридора
+//            genQuadNode(tm, bPos, listPieces, Direction.WEST, finishL0); //Генерация на конечной координате четырехвходной ноды
+//        }
+//    }
+    public static void genQuadNode(TemplateManager tm, BlockPos p, List<StructurePiece> l, Direction d, BlockPos finishValue) {
+        Rotation rotation = Rotation.NONE;
+        Mirror mirror = Mirror.NONE;
+        int x = 0, z = 0;
+
+        switch (d) {
+            case SOUTH:
+            case NORTH:
+                z = finishValue.getZ();
+                break;
+            case WEST:
+            case EAST:
+                x = finishValue.getX();
+                break;
         }
-        if(d == Direction.NORTH) {
-            l.add(new UndergroundLabsPieces.Piece(tm, tripleFragment, p, rot, Mirror.NONE, 4 + xCorrection, 0, 9 + finishValue + zCorrection));
-        }
-        if(d == Direction.WEST) {
-            l.add(new UndergroundLabsPieces.Piece(tm, tripleFragmentMirrored, p, rot, Mirror.NONE, 4 + xCorrection + finishValue, 0,  zCorrection));
-        }
+        l.add(new UndergroundLabsPieces.Piece(tm, quadFragment, p, rotation, mirror, x, z));
     }
+//
+//            int randomNode = tr.nextInt(0, 3);
+//            if (randomNode == 0) {
+//                genQuadNode(tm, bPos, listPieces, Direction.SOUTH, finishL0);
+//                UndergroundLabsPieces.Piece lf = (UndergroundLabsPieces.Piece) listPieces.get(listPieces.size() - 1);
+//                {
+//                    genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.X, 1, 0, -3, -4);
+//                    genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.X, -1, 0, -5, -4);
+//                    genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.Z, 1, 0, -4, -3);
+//
+//                    //получение координат коридоров второго уровня
+//                    finishL11 = genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.X, 1, 0, -3, -4);
+//                    finishL12 = genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.X, -1, 0, -5, -4);
+//                    finishL13 = genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.Z, 1, 0, -4, -3);
+//                    genQuadNode(tm, bPos, listPieces, Direction.SOUTH, finishL11);
+//                    //   genQuadNode(tm, bPos, listPieces, Direction.SOUTH, finishL12);
+//                    //  genQuadNode(tm, bPos, listPieces, Direction.SOUTH, finishL13);
+//                }
+//            } else if (randomNode == 1) {
+//                genTripleNode(tm, bPos, listPieces, Direction.SOUTH, finishL0, Rotation.CLOCKWISE_180, 0, 0);
+//                UndergroundLabsPieces.Piece lf = (UndergroundLabsPieces.Piece) listPieces.get(listPieces.size() - 1);
+//                {
+//                    genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.X, 1, 0, -3, -4);
+//                    genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.X, -1, 0, -5, -4);
+//                }
+//            } else if (randomNode == 2) {
+//                Rotation corRot = tr.nextBoolean() ? Rotation.CLOCKWISE_90 : Rotation.CLOCKWISE_180;
+//                genCornerNode(tm, bPos, listPieces, Direction.SOUTH, finishL0, corRot, -4, 0);
+//                UndergroundLabsPieces.Piece lf = (UndergroundLabsPieces.Piece) listPieces.get(listPieces.size() - 1);
+//                {
+//                    if (lf.getRotate() == Rotation.CLOCKWISE_90) {
+//                        genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.X, -1, 0, -4, 0);
+//                    }
+//                    if (lf.getRotate() == Rotation.CLOCKWISE_180) {
+//                        genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.X, 1, 0, -3, -4);
+//                    }
+//                }
+//            }
+//        }
+//    }
+
+//        //gen north wing labs
+//        {
+//
+//            genCorridor(tm, bPos, listPieces, Direction.Axis.Z, -1,0,0,0);
+//            int finishV = genCorridor(tm, bPos, listPieces, Direction.Axis.Z, -1,0,0,0);
+//            int randomNode = tr.nextInt(0,3);
+//            if(randomNode == 0) {
+//                genQuadNode(tm, bPos, listPieces, Direction.NORTH, finishV);
+//                UndergroundLabsPieces.Piece lf = (UndergroundLabsPieces.Piece) listPieces.get(listPieces.size() - 1);
+//                {
+//                   genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.X, 1, 0, 0, 0);
+//                    genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.X, -1, 0, 0, 0);
+//                    genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.Z, -1, 0, 0, 0);
+//
+//                }
+//            }
+//            else if(randomNode == 1) {
+//                genTripleNode(tm, bPos, listPieces, Direction.NORTH, finishV, Rotation.NONE,0,-4);
+//                UndergroundLabsPieces.Piece lf = (UndergroundLabsPieces.Piece) listPieces.get(listPieces.size() - 1);
+//                {
+//                    genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.X, 1,0,0,0);
+//                    genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.X, -1,0,0,0);
+//                }
+//            }
+//            else if(randomNode == 2) {
+//                Rotation corRot = tr.nextBoolean() ? Rotation.CLOCKWISE_90 : Rotation.CLOCKWISE_180;
+//                genCornerNode(tm, bPos, listPieces, Direction.NORTH, finishV, corRot,0,0);
+//                UndergroundLabsPieces.Piece lf = (UndergroundLabsPieces.Piece) listPieces.get(listPieces.size() - 1);
+//                {
+//                    if (lf.getRotate() == Rotation.CLOCKWISE_90) {
+//                       genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.X, 1, 0, -3, 0);
+//                    }
+//                    if (lf.getRotate() == Rotation.CLOCKWISE_180) {
+//                        genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.X, -1, 0, -4, -4);
+//                    }
+//                }
+//            }
+//        }
+//
+//        //gen west wing labs
+//        {
+//            genCorridor(tm, bPos, listPieces, Direction.Axis.X, -1,0,0,0);
+//            int finishV = genCorridor(tm, bPos, listPieces, Direction.Axis.X, -1,0,0,0);
+//            int randomNode = tr.nextInt(0,3);
+//            if(randomNode == 0) {
+//                genQuadNode(tm, bPos, listPieces, Direction.WEST, finishV);
+//                UndergroundLabsPieces.Piece lf = (UndergroundLabsPieces.Piece) listPieces.get(listPieces.size() - 1);
+//                {
+//                  genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.Z, 1, 0, 0, 0);
+//                   genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.Z, -1, 0, 0, 0);
+//                   genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.X, -1, 0, 0, 0);
+//
+//                }
+//            }
+//               else if(randomNode == 1) {
+//            genTripleNode(tm, bPos, listPieces, Direction.WEST, finishV, Rotation.CLOCKWISE_90,0,-4);
+//            UndergroundLabsPieces.Piece lf = (UndergroundLabsPieces.Piece) listPieces.get(listPieces.size() - 1);
+//            {
+//                genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.Z, 1,0,-4,1);
+//                genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.Z, -1,0,-4,-1);
+//            }
+//        }
+//               else if(randomNode == 2) {
+//            Rotation corRot = tr.nextBoolean() ? Rotation.COUNTERCLOCKWISE_90 : Rotation.CLOCKWISE_180;
+//            genCornerNode(tm, bPos, listPieces, Direction.WEST, finishV, corRot,-5,0);
+//            UndergroundLabsPieces.Piece lf = (UndergroundLabsPieces.Piece) listPieces.get(listPieces.size() - 1);
+//            {
+//                if (lf.getRotate() == Rotation.COUNTERCLOCKWISE_90) {
+//                    genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.Z, 1,0,0,-3);
+//                }
+//                if (lf.getRotate() == Rotation.CLOCKWISE_180) {
+//                    genCorridor(tm, lf.getTemplatePosition(), listPieces, Direction.Axis.Z, -1, 0, 0, -4);
+//                }
+//            }
+//        }
+//        }
+//        genCorridor(tm, bPos, listPieces, Direction.Axis.X, 1,0,0,0);
+//        //сделать крылья лабораторий во все стороны / добавить фрагменты с выходом на лестницы и к лифтам / построить фрагменты лестниц, вентшахт, лифтовых шахт
+//    }
+
+
+
+
+
+
+//    public static int genCorridor(TemplateManager tm, BlockPos p, List<StructurePiece> l, Direction.Axis ax, int dirCorrection, int xCorrection, int zCorrection) {
+//        ThreadLocalRandom tr = ThreadLocalRandom.current();
+//        int randLin = tr.nextInt(6, 14);
+//        ResourceLocation[] linear = { linearFragment1, linearFragment2, linearFragment3, linearFragment4 };
+//        int correction = (ax == Direction.Axis.Z) ? zCorrection : xCorrection;
+//        Rotation rotation = (ax == Direction.Axis.X) ? Rotation.CLOCKWISE_90 : Rotation.NONE;
+//
+//        // Начальный вызов рекурсивного метода
+//        return generateCorridorRecursive(tm, p, l, ax, dirCorrection, xCorrection, zCorrection, linear, rotation, correction, 4, randLin * lenthFragment);
+//    }
+//
+//    private static int generateCorridorRecursive(TemplateManager tm, BlockPos p, List<StructurePiece> l, Direction.Axis ax, int dirCorrection, int xCorrection, int zCorrection, ResourceLocation[] linear, Rotation rotation, int correction, int currentPos, int maxPos) {
+//        if (currentPos >= maxPos) {
+//            // Возвращаем последнюю позицию, если достигнута максимальная позиция
+//            return correction + (currentPos - lenthFragment) * dirCorrection;
+//        }
+//
+//        int pos = correction + currentPos * dirCorrection;
+//        l.add(new UndergroundLabsPieces.Piece(tm, linear[ThreadLocalRandom.current().nextInt(linear.length)], p, rotation, Mirror.NONE, (ax == Direction.Axis.X) ? pos : xCorrection, (ax == Direction.Axis.Z) ? pos : zCorrection));
+//
+//        // Проверяем, не является ли текущая позиция последней
+//        if (currentPos + lenthFragment >= maxPos) {
+//            // Если да, возвращаем текущую позицию и завершаем рекурсию
+//            return pos;
+//        }
+//
+//        // Рекурсивный вызов для следующего фрагмента
+//        return generateCorridorRecursive(tm, p, l, ax, dirCorrection, xCorrection, zCorrection, linear, rotation, correction, currentPos + lenthFragment, maxPos);
+//    }
+//    public static int genCorridor(TemplateManager tm, BlockPos p, List<StructurePiece> l, Direction.Axis ax, int dirCorrection, int xCorrection, int zCorrection) {
+//        ThreadLocalRandom tr = ThreadLocalRandom.current();
+//        int randLin = tr.nextInt(6, 14);
+//        ResourceLocation[] linear = { linearFragment1, linearFragment2, linearFragment3, linearFragment4 };
+//        int finishPos = 0;
+//        int correction = (ax == Direction.Axis.Z) ? zCorrection : xCorrection;
+//        Rotation rotation = (ax == Direction.Axis.X) ? Rotation.CLOCKWISE_90 : Rotation.NONE;
+//        int pos;
+//        for (int i = 4; i < randLin * lenthFragment; i += lenthFragment) {
+//            pos = correction + i * dirCorrection;
+//            l.add(new UndergroundLabsPieces.Piece(tm, linear[tr.nextInt(linear.length)], p, rotation, Mirror.NONE, (ax == Direction.Axis.X) ? pos : xCorrection, (ax == Direction.Axis.Z) ? pos : zCorrection));
+//
+//            finishPos = pos;
+//            break;
+//        }
+//        return finishPos;
+//    }
+    public static BlockPos genCorridorSouth(TemplateManager tm, BlockPos bPos, List<StructurePiece> listPieces) {
+        return genCorridor(tm, bPos, listPieces, Direction.Axis.Z, 1, 0,  0);
+    }
+    public static BlockPos genCorridorNorth(TemplateManager tm, BlockPos bPos, List<StructurePiece> listPieces) {
+        return genCorridor(tm, bPos, listPieces, Direction.Axis.Z, -1, 0,  0);
+    }
+    public static BlockPos genCorridorWest(TemplateManager tm, BlockPos bPos, List<StructurePiece> listPieces) {
+        return genCorridor(tm, bPos, listPieces, Direction.Axis.X, -1,4,0);
+    }
+    public static BlockPos genCorridorEast(TemplateManager tm, BlockPos bPos, List<StructurePiece> listPieces) {
+        return genCorridor(tm, bPos, listPieces, Direction.Axis.X, 1,4,0);
+    }
+    public static void genInitNode(TemplateManager tm, BlockPos p, List<StructurePiece> l){
+        l.add(new UndergroundLabsPieces.Piece(tm, quadFragment, p, Rotation.NONE, Mirror.NONE, 0, 0));
+    }
+
+//    public static void genTripleNode(TemplateManager tm, BlockPos p, List<StructurePiece> l, Direction d, int finishValue, Rotation rot, int zCorrection, int xCorrection) {
+//        if(d == Direction.SOUTH) {
+//            l.add(new UndergroundLabsPieces.Piece(tm, tripleFragment, p, rot, Mirror.NONE, 4 + xCorrection, 0, 9 + finishValue + zCorrection));
+//        }
+//        if(d == Direction.NORTH) {
+//            l.add(new UndergroundLabsPieces.Piece(tm, tripleFragment, p, rot, Mirror.NONE, 4 + xCorrection, 0, 9 + finishValue + zCorrection));
+//        }
+//        if(d == Direction.WEST) {
+//            l.add(new UndergroundLabsPieces.Piece(tm, tripleFragmentMirrored, p, rot, Mirror.NONE, 4 + xCorrection + finishValue, 0,  zCorrection));
+//        }
+//    }
     public static void genCornerNode(TemplateManager tm, BlockPos p, List<StructurePiece> l, Direction d, int finishValue, Rotation rot, int zCorrection, int xCorrection) {
         if(d == Direction.SOUTH) {
-            l.add(new UndergroundLabsPieces.Piece(tm, cornerFragment, p, rot, Mirror.NONE, 4 + xCorrection, 0, 9 + finishValue + zCorrection));
+            l.add(new UndergroundLabsPieces.Piece(tm, cornerFragment, p, rot, Mirror.NONE, 4 + xCorrection, 9 + finishValue + zCorrection));
         }
         if(d == Direction.NORTH) {
-            l.add(new UndergroundLabsPieces.Piece(tm, cornerFragmentMirrored, p, rot, Mirror.NONE, 4 + xCorrection, 0, 9 + finishValue + zCorrection));
+            l.add(new UndergroundLabsPieces.Piece(tm, cornerFragmentMirrored, p, rot, Mirror.NONE, 4 + xCorrection, 9 + finishValue + zCorrection));
         }
         if(d == Direction.WEST) {
-            l.add(new UndergroundLabsPieces.Piece(tm, cornerFragment, p, rot, Mirror.NONE, 4 + finishValue + xCorrection, 0, 9 + zCorrection));
+            l.add(new UndergroundLabsPieces.Piece(tm, cornerFragment, p, rot, Mirror.NONE, 4 + finishValue + xCorrection, 9 + zCorrection));
         }
     }
 
@@ -291,20 +399,17 @@ public class UndergroundLabsPieces {
         private final Rotation rot;
         private final Mirror mir;
 
-        private int xCorrection,yCorrection,zCorrection;
+        private int xCorrection,zCorrection;
 
-        public Piece(TemplateManager tm, ResourceLocation rs, BlockPos bp, Rotation rot, Mirror mir, int xCorrection, int yCorrection, int zCorrection) {
+        public Piece(TemplateManager tm, ResourceLocation rs, BlockPos bp, Rotation rot, Mirror mir, int xCorrection, int zCorrection) {
             super(UG_LABS_PIECES, 0);
             putValueInMap();
             this.location = rs;
             this.rot = rot;
-
             this.mir = mir;
-            BlockPos blockpos = POOL.get(rs);
-            this.templatePosition = bp.add(blockpos.getX() + xCorrection, blockpos.getY() + yCorrection, blockpos.getZ() + zCorrection);
+            this.templatePosition = bp.add(xCorrection, 0, zCorrection);
             this.zCorrection = zCorrection;
             this.xCorrection = xCorrection;
-            this.yCorrection = yCorrection;
             this.tempMngSetup(tm);
         }
 

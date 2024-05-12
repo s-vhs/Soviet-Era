@@ -521,8 +521,10 @@ bbc20281a21e329a49508d13ca5554dfe5cb9107 assets/soviet/models/item/innerdeco/lam
 f3f7b1a19ebb1c4391adf17ec44a4b5681b01574 assets/soviet/models/item/innerdeco/lead_wall.json
 1ac162aaa599abe63e56ae86bd551ce597cca83b assets/soviet/models/item/innerdeco/pipes/home_pipes.json
 8faff84bddf5c48cb6229eb42725891e5c37ef5a assets/soviet/models/item/innerdeco/pipes/home_pipes_battery.json
+46abec3cfc3d53fe112a981800366e4c97c7cd6c assets/soviet/models/item/innerdeco/pipes/vent_grid.json
 9f8e9f4e8d6b86c6ffba089c7253d92964d7049f assets/soviet/models/item/innerdeco/pipes/ventpipe.json
 d9222e9ab658324ef00be368a8f20b841036a191 assets/soviet/models/item/innerdeco/pipes/ventpipe_base.json
+392630be4df37ed2b01247c95f373da72e6bb906 assets/soviet/models/item/innerdeco/pipes/ventpipe_filter.json
 116f2c91c143a9ad8037cbae5ea3cc1b67a18831 assets/soviet/models/item/innerdeco/radiator.json
 b2f0591b8c7b2724c1a29076e08d84b0d8a52601 assets/soviet/models/item/innerdeco/rest_filter.json
 64be0e07a2aab0e0a713ef43f02d6fa4514c62b8 assets/soviet/models/item/innerdeco/rusty_bars.json

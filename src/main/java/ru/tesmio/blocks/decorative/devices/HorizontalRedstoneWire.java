@@ -22,6 +22,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.WorldGenRegion;
 import ru.tesmio.blocks.baseblock.BlockCustomModel;
 import ru.tesmio.enums.EnumPlace;
 import ru.tesmio.utils.VoxelShapeUtil;
@@ -93,6 +94,7 @@ public class HorizontalRedstoneWire extends BlockCustomModel {
     }
     @Override
     public BlockState updatePostPlacement(BlockState s, Direction f, BlockState bs, IWorld w, BlockPos p, BlockPos facingPos) {
+        if(w instanceof WorldGenRegion) return s;
         return updateState((World)w,p,s);
     }
 

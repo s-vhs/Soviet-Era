@@ -37,6 +37,7 @@ public class RegStructures {
      */
     public static <F extends Structure<?>> void setupMapSpacingAndLand(F structure, StructureSeparationSettings structureSeparationSettings, boolean transformSurroundingLand) {
         //добавьте наши структуры на карту в классе Structure
+
         Structure.NAME_STRUCTURE_BIMAP.put(structure.getRegistryName().toString(), structure);
 
         /*

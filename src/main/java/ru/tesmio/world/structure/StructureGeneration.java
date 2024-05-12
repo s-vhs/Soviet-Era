@@ -11,17 +11,19 @@ import ru.tesmio.reg.RegStructures;
 
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Supplier;
 
 public class StructureGeneration {
     public static void generateStructures(final BiomeLoadingEvent event) {
         RegistryKey<Biome> key = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, event.getName());
         Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(key);
-
+        ThreadLocalRandom tr = ThreadLocalRandom.current();
       //  if(types.contains(BiomeDictionary.Type.PLAINS)) {
             List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
-
+       //  if(tr.nextInt(0,6) == 4) {
             structures.add(() -> RegStructures.PROCEDURAL_LABORATORY.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
+      // }
      //   }
     }
 }

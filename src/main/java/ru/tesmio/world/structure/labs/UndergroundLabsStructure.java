@@ -44,9 +44,12 @@ public class UndergroundLabsStructure extends Structure<NoFeatureConfig> {
         public void generatePieces(DynamicRegistries drm, ChunkGenerator cg, TemplateManager tm, int chunkX, int chunkZ, Biome b, NoFeatureConfig cfg) {
             int x = chunkX * 16;
             int z = chunkZ * 16;
-            BlockPos blockpos = new BlockPos(x, 90, z);
-            UndergroundLabsPieces.addPieces(tm, blockpos, this.components);
+            BlockPos blockpos = new BlockPos(x, 190, z);
+            NewLabs.addPieces(tm, blockpos, this.components);
             this.recalculateStructureSize();
         }
+
+
     }
+
 }

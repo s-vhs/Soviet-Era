@@ -91,7 +91,8 @@ public class VentPipe extends BlockCustomModel {
         boolean flag4 = connector == RegBlocks.VENT_PIPE_BASE.get();
         boolean flag5 = connector == RegBlocks.CIRCLE_FILTER.get();
         boolean flag6 = connector == RegBlocks.REST_FILTER.get();
-        return flag1 || flag2 || flag3|| flag4 || flag5|| flag6;
+        boolean flag7 = connector == RegBlocks.VENT_PIPE_FILTER.get();
+        return flag1 || flag2 || flag3|| flag4 || flag5|| flag6 || flag7;
     }
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(DEFAULT, NORTH, EAST, WEST, SOUTH, UP, DOWN, WATERLOGGED);
