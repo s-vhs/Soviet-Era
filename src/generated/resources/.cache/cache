@@ -128,6 +128,7 @@ e76b630fe1037ff41b4dec2c132dd44f2d8ba7c8 assets/soviet/blockstates/structural/co
 c2fc48eccb7e1fa829b758f86dbded8809e8246a assets/soviet/blockstates/structural/panel_concrete_yellow.json
 068306114d249b03217d14fac43513cf387a8817 assets/soviet/blockstates/structural/panel_tile.json
 50d90e30fd951a08eb2b72a66900c63816992bd1 assets/soviet/blockstates/structural/parquet_block.json
+a5f52da9d91121fb2bff953593299d55fc29a219 assets/soviet/blockstates/structural/rusty_block.json
 feaa3561153df2d14872471abd6075fa55d68542 assets/soviet/blockstates/structural/trim_metal_1.json
 724d7612e303d314d34ddf1c5a041577e1fe95af assets/soviet/blockstates/structural/trim_metal_2.json
 0d21878d3581bf343c61dc61667466f2d18ebed3 assets/soviet/blockstates/structural/trim_stone_1.json
@@ -304,6 +305,7 @@ df8cf1d498e8d55f15cd7890c0b3934b82fca7ea assets/soviet/models/block/structural/c
 52a628dc911040694d5ca3c653de99b92f3d6ada assets/soviet/models/block/structural/panel_concrete_yellow.json
 582a8561eef78e31801b58067becb9380c5c3b17 assets/soviet/models/block/structural/panel_tile.json
 afcd7871582890878ab5ab597df5f00e21e53232 assets/soviet/models/block/structural/parquet_block.json
+f467803a28b73aa3f2ad5904131252a564bc96b8 assets/soviet/models/block/structural/rusty_block.json
 b11ad807656c42b0471e128995a0687664ba4e68 assets/soviet/models/block/structural/trim_metal_1.json
 32340962b4e0ae9003cddfaa39050b775cc9418a assets/soviet/models/block/structural/trim_metal_2.json
 b7961473d8ae798b72df9ec212f105fa77348337 assets/soviet/models/block/structural/trim_stone_1.json
@@ -314,6 +316,10 @@ d967ef2d69042cc6c0eeaa1fe2af0c62bf09055e assets/soviet/models/block/structural/t
 41201f2e563856712d5ebb71fba2b4c07cf3eca6 assets/soviet/models/block/structural/trim_tile_1_br.json
 280c3ef10b708ab0b4f92cb1161f41a825ecd6fa assets/soviet/models/block/structural/trim_tile_blue.json
 7a54f57d2b5ac09f94c7d1e271f53c4c11a9cffa assets/soviet/models/block/structural/trim_tile_red.json
+4946f6219f482812b799cb5b84cd5e6239314a8b assets/soviet/models/item/adc_boots.json
+166f853fa54da615a2d57984dd8b8ef247621a79 assets/soviet/models/item/adc_gasmask.json
+f3b94aff88f3c22b2cca9a6289a5e165f849fb0b assets/soviet/models/item/adc_jacket.json
+f979978c506bd7757d0e6bd5bbd654dfb508b296 assets/soviet/models/item/adc_legs.json
 a9bb655e3ea34a40e0a1ad08b67f2c9db0c01f60 assets/soviet/models/item/aluminum_dust.json
 f830b6e689e8974679d9fbe466ca43394daadc2c assets/soviet/models/item/aluminum_ingot.json
 7b72d806c9282d6b311b114e864da669a67c9829 assets/soviet/models/item/aluminum_scrap.json
@@ -486,6 +492,7 @@ e15193f1206ed63e3a63acb031cae9920816ac2c assets/soviet/models/item/innerdeco/dev
 63c42a898eb58f209e3f12ab561041e48a75bf69 assets/soviet/models/item/innerdeco/furniture/bio_power_socket.json
 1ee371435dd03c482e7154a1de9f9a0f2c4cc2a2 assets/soviet/models/item/innerdeco/furniture/bio_tumbler.json
 a318865ebcae5266bdf32cc7567df3b54ffc9942 assets/soviet/models/item/innerdeco/furniture/dsp_chair.json
+bcbd735f50ec08601d53791e81a9ad782b942790 assets/soviet/models/item/innerdeco/furniture/dsp_panel.json
 13217e00f7fe68f40fb9ae90ee72d2df54b996f8 assets/soviet/models/item/innerdeco/furniture/dsp_table.json
 c94330d138047f14560eae3e6eb0555f8017f726 assets/soviet/models/item/innerdeco/furniture/dsp_table_non_cloth.json
 af9383646356b04f9dbf9319d1ed6edb6172cf97 assets/soviet/models/item/innerdeco/furniture/dsp_tumb.json
@@ -519,6 +526,7 @@ f991d1ad566de6defae5783cf3d9dbe301bb31e5 assets/soviet/models/item/innerdeco/lam
 59657158289050b9b2ca4aab94c7574c427b3f7b assets/soviet/models/item/innerdeco/lamp/red_lamp.json
 bbc20281a21e329a49508d13ca5554dfe5cb9107 assets/soviet/models/item/innerdeco/lamp/street_lamp.json
 f3f7b1a19ebb1c4391adf17ec44a4b5681b01574 assets/soviet/models/item/innerdeco/lead_wall.json
+c04a2c699ad92e5ede84af87d7fb01051cfac1dc assets/soviet/models/item/innerdeco/metro_rail.json
 1ac162aaa599abe63e56ae86bd551ce597cca83b assets/soviet/models/item/innerdeco/pipes/home_pipes.json
 8faff84bddf5c48cb6229eb42725891e5c37ef5a assets/soviet/models/item/innerdeco/pipes/home_pipes_battery.json
 46abec3cfc3d53fe112a981800366e4c97c7cd6c assets/soviet/models/item/innerdeco/pipes/vent_grid.json
@@ -757,6 +765,7 @@ c4b9ef53e34cf7318c895e4d76d9010d1aed8643 assets/soviet/models/item/structural/pa
 5458f951600fc10616d83e9e948d5f3b443833d7 assets/soviet/models/item/structural/panel_tile_corner.json
 a4800a398e8e35c06f4372b7d7eea66413d9b610 assets/soviet/models/item/structural/panel_tile_side.json
 331243e4b079d01d1988e7bf2de9bb86cfb065a9 assets/soviet/models/item/structural/parquet_block.json
+cb437856e6655b5f5de4f1ad4b593dd780b55f42 assets/soviet/models/item/structural/rusty_block.json
 95642faea9344e105d2cd256895260bc401f2877 assets/soviet/models/item/structural/trim_metal_1.json
 78c99c15b1f8fcb58f1a7ae2b525a546d58c7e28 assets/soviet/models/item/structural/trim_metal_2.json
 089f76241d1b647afdfb9e544a58c4f850aa4087 assets/soviet/models/item/structural/trim_stone_1.json
@@ -767,6 +776,7 @@ a4800a398e8e35c06f4372b7d7eea66413d9b610 assets/soviet/models/item/structural/pa
 73013c16f4d9c40805d65be5ad52af5557578c6a assets/soviet/models/item/structural/trim_tile_1_br.json
 09604f7a6d11b412b99e388a5cbfb55a8388d0fc assets/soviet/models/item/structural/trim_tile_blue.json
 b3e7bfa38af4a7f2c4bc9eaaa880045fb2a85b93 assets/soviet/models/item/structural/trim_tile_red.json
+7180f4293dfd559b8402cf656de142d1ec31e84e assets/soviet/models/item/toxic_water_bucket.json
 2ddb2f9678af11d3b184c28801138a2721e46657 assets/soviet/models/item/variant_item.json
 2e7994e422657dc47eea7de9cddd134cc7b153bb assets/soviet/models/item/wire_cutters.json
 2ade147f87cfc56a54a7378613f8648eb1e281e3 assets/soviet/models/item/wood_scrap.json

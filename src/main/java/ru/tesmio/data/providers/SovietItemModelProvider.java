@@ -9,6 +9,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.fml.RegistryObject;
 import ru.tesmio.core.Core;
 import ru.tesmio.reg.RegBlocks;
+import ru.tesmio.reg.RegFluids;
 import ru.tesmio.reg.RegItems;
 
 
@@ -32,9 +33,13 @@ public class SovietItemModelProvider extends ItemModelProvider {
     }
     private void builderItemBlock() {
         for(RegistryObject<Block> b2 : RegBlocks.BLOCKS.getEntries()) {
+            if(!(b2.get() == RegFluids.TOXIC_WATER_BLOCK.get()))
             getBuilder("item/" + b2.get().getRegistryName().toString().substring(7)).parent(getExistingFile(modLoc("block/" + b2.get().getRegistryName().toString().substring(7))));
         }
         for(RegistryObject<Block> b2 : RegBlocks.BLOCKS_CUSTOM_MODELS.getEntries()) {
+            if(b2.get() == RegBlocks.RASTY_FRAME.get()) {
+                continue;
+            }
             getBuilder("item/" + b2.get().getRegistryName().toString().substring(7)).parent(getExistingFile(modLoc("block/" + b2.get().getRegistryName().toString().substring(7))));
         }
         for(RegistryObject<Block> b2 : RegBlocks.BLOCKS_CUSTOM_MODELS_COLORED.getEntries()) {

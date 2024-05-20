@@ -1,5 +1,6 @@
 package ru.tesmio.reg;
 
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.Ingredient;
@@ -10,6 +11,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import ru.tesmio.core.Core;
 import ru.tesmio.items.*;
+import ru.tesmio.items.protection_suit.Suit;
 
 import javax.annotation.Nullable;
 import java.util.function.Supplier;
@@ -19,6 +21,7 @@ public class RegItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Core.MODID);
     public static final DeferredRegister<Item> ITEMS_2 = DeferredRegister.create(ForgeRegistries.ITEMS, Core.MODID);
 
+    public static RegistryObject<Item> TOXIC_WATER_BUCKET;
 
     public static RegistryObject<Item> LINO, ARMATURE, ARMATURES,QUAD_TILE,BIG_TILE,REST_TILE,SMALL_TILE,CERAMIC_DUST,SILICON_INGOT,MORTAR,PESTLE,SIEVE,LEAD_DUST,SMALL_LEAD_DUST,
     LEADCERAMIC_DUST,LEAD_INGOT ;
@@ -41,7 +44,17 @@ public class RegItems {
     public static RegistryObject<Item> PLATINUM_PICKAXE, PLATINUM_AXE, PLATINUM_SHOVEL, PLATINUM_SWORD, PLATINUM_HOE;
     public static RegistryObject<Item> PLATOL_PICKAXE, PLATOL_AXE, PLATOL_SHOVEL, PLATOL_SWORD, PLATOL_HOE;
     public static RegistryObject<Item>  ALUMINUM_DUST, PALLADIUM_DUST, PALLADIUM_INGOT, ALUMINUM_INGOT, COPPER_INGOT, COPPER_DUST, SILVER_INGOT, SILVER_DUST, GOLD_DUST, DIAMOND_DUST, NETHERITE_DUST, PLATINUM_INGOT, PLATINUM_DUST, PLATOL_DUST, PLATOL_INGOT;
+
+    public static RegistryObject<Item> SUIT_GAS_MASK, SUIT_JACKET, SUIT_LEGS, SUIT_BOOTS;
+
     public static void init() {
+        //suit
+        SUIT_GAS_MASK = registerItem("adc_gasmask", () -> new Suit(ArmorMaterial.DIAMOND, EquipmentSlotType.HEAD, (new Item.Properties()).group(Core.ItemGroups.TAB_ITEMS)));
+        SUIT_JACKET = registerItem("adc_jacket", () -> new Suit(ArmorMaterial.DIAMOND, EquipmentSlotType.CHEST, (new Item.Properties()).group(Core.ItemGroups.TAB_ITEMS)));
+        SUIT_LEGS = registerItem("adc_legs", () -> new Suit(ArmorMaterial.DIAMOND, EquipmentSlotType.LEGS, (new Item.Properties()).group(Core.ItemGroups.TAB_ITEMS)));
+        SUIT_BOOTS = registerItem("adc_boots", () -> new Suit(ArmorMaterial.DIAMOND, EquipmentSlotType.FEET, (new Item.Properties()).group(Core.ItemGroups.TAB_ITEMS)));
+
+
         //other items
         QUAD_TILE = registerItem("quad_tile", () -> new Item(new Item.Properties().group(Core.ItemGroups.TAB_ITEMS)));
         BIG_TILE = registerItem("big_tile", () -> new Item(new Item.Properties().group(Core.ItemGroups.TAB_ITEMS)));
@@ -50,6 +63,10 @@ public class RegItems {
         LINO = registerItem("lino", () -> new Item(new Item.Properties().group(Core.ItemGroups.TAB_ITEMS)));
         FLUOLAMP = registerItem("fluolamp", () -> new Item(new Item.Properties().group(Core.ItemGroups.TAB_ITEMS)));
         FUEL_CANISTER = registerItem("fuel_canister", () -> new ItemInfo(new Item.Properties().group(Core.ItemGroups.TAB_ITEMS).maxStackSize(1), "info.fuel_canister"));
+
+        TOXIC_WATER_BUCKET = registerItem("toxic_water_bucket",
+                () -> new BucketItem(() -> RegFluids.TOXIC_WATER.get(),
+                        new Item.Properties().maxStackSize(1).group(Core.ItemGroups.TAB_ITEMS)));
 
         LEAD_SCRAP = registerItem("lead_scrap", () -> new ItemInfo(new Item.Properties().group(Core.ItemGroups.TAB_ITEMS), "info.restore"));
 

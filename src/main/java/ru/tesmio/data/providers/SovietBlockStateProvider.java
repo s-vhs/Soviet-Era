@@ -20,6 +20,7 @@ import ru.tesmio.blocks.decorative.slabs.BaseSlab;
 import ru.tesmio.blocks.decorative.stairs.BaseStairs;
 import ru.tesmio.core.Core;
 import ru.tesmio.reg.RegBlocks;
+import ru.tesmio.reg.RegFluids;
 
 public class SovietBlockStateProvider extends BlockStateProvider {
     public SovietBlockStateProvider(DataGenerator gen, ExistingFileHelper exFileHelper) {
@@ -59,7 +60,7 @@ public class SovietBlockStateProvider extends BlockStateProvider {
     public void variantBuilderAll() {
         for (RegistryObject<Block> b2 : RegBlocks.BLOCKS.getEntries()) {
             String name = b2.get().getRegistryName().toString();
-            if (!(b2.get() instanceof BaseStairs) && !(b2.get() instanceof BaseSlab))
+            if (!(b2.get() instanceof BaseStairs) && !(b2.get() instanceof BaseSlab) && !(b2.get() == RegFluids.TOXIC_WATER_BLOCK.get()))
                 getVariantBuilder(b2.get()).forAllStates(state -> ConfiguredModel.builder().modelFile(builder("block/" + name.substring(7), modLoc("block/" + name.substring(7)))).build());
 
         }

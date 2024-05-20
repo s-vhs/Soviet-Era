@@ -584,5 +584,19 @@
   "info.switch_redstone_wire": "§7Для соединения настенных и горизонтальных кабелей",
   "info.horiz_redstone_wire": "§7Устанавливается на пол и потолок",
   "info.redstone_wire": "§7Устанавливается на стены",
-  "block.soviet.innerdeco.furniture.tumbler": "Переключатель"
+  "block.soviet.innerdeco.furniture.tumbler": "Переключатель",
+  "block.soviet.innerdeco.devices.phys.digital_ms_base": "Электронный микроскоп",
+  "block.soviet.innerdeco.devices.phys.digital_ms_control": "Контроллер микроскопа",
+  "block.soviet.innerdeco.devices.phys.digital_ms_calcblock": "Вычислительный блок",
+  "block.soviet.innerdeco.pipes.ventpipe_filter": "Производственный фильтр",
+  "block.soviet.innerdeco.pipes.vent_grid": "Вентиляционная решетка",
+  "block.soviet.rasty_frames": "§3Ржавый каркас",
+  "info.rasty_frame": "§3Креативный предмет. §7Принимает на каждую сторону текстуру любого твердого блока",
+  "item.soviet.toxic_water_bucket": "Ведро болотной воды",
+"item.soviet.adc_gasmask": "Противогаз",
+"item.soviet.adc_boots": "Бахилы защитного костюма",
+"item.soviet.adc_jacket": "Куртка защитного костюма",
+"item.soviet.adc_legs": "Чулки защитного костюма",
+"block.soviet.innerdeco.metro_rail": "Рельсы метро",
+"block.soviet.innerdeco.furniture.dsp_panel": "Декоративная панель из ДСП"
 }

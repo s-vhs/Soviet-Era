@@ -15,13 +15,11 @@ import ru.tesmio.blocks.storage.dsp_tump.DspTumbScreen;
 import ru.tesmio.blocks.storage.kitchen_table.KitchenTableScreen;
 import ru.tesmio.blocks.storage.safe.ScreenSafe;
 import ru.tesmio.entity.renderer.EntitySittableBlockRender;
-import ru.tesmio.reg.RegBlocks;
-import ru.tesmio.reg.RegContainers;
-import ru.tesmio.reg.RegEntitys;
-import ru.tesmio.reg.RegTileEntitys;
+import ru.tesmio.reg.*;
 
 public class ClientProxy {
     public static void init() {
+
         registerScreenFactories();
         registerEntityRenderers();
         registerTileEntityRenderers();
@@ -62,6 +60,10 @@ public class ClientProxy {
         RenderTypeLookup.setRenderLayer(RegBlocks.BLOCK_MOULD.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(RegBlocks.ELECTRICAL_PANEL.get(), RenderType.getTranslucent());
         RenderTypeLookup.setRenderLayer(RegBlocks.BIO_STILLAGE.get(), RenderType.getTranslucent());
+
+        RenderTypeLookup.setRenderLayer(RegFluids.TOXIC_WATER_BLOCK.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(RegFluids.TOXIC_WATER_FLOWING.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(RegFluids.TOXIC_WATER.get(), RenderType.getTranslucent());
     }
     private static void registerScreenFactories() {
         ScreenManager.registerFactory(RegContainers.DIESEL_CONTAINER.get(), DieselGeneratorScreen::new);
@@ -79,4 +81,6 @@ public class ClientProxy {
     private static void registerEntityRenderers() {
         RenderingRegistry.registerEntityRenderingHandler(RegEntitys.SEAT.get(), EntitySittableBlockRender::new);
     }
+
+
 }
