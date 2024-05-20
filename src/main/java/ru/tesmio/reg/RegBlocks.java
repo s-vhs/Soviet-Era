@@ -42,6 +42,7 @@ import ru.tesmio.blocks.diesel_generator.DieselGenerator;
 import ru.tesmio.blocks.diesel_generator.DieselTank;
 import ru.tesmio.blocks.doors.*;
 import ru.tesmio.blocks.fences.*;
+import ru.tesmio.blocks.rasty_frame.RastyFrameBlock;
 import ru.tesmio.blocks.storage.desc_drawers.LinearTableDrawers;
 import ru.tesmio.blocks.storage.dsp_tump.DspTumbBlock;
 import ru.tesmio.blocks.storage.kitchen_table.KitchenTable;
@@ -81,7 +82,7 @@ public class RegBlocks {
     public static RegistryObject<Block> CONCRETE_RAILING_GRAY, CONCRETE_RAILING_WHITE, CONCRETE_RAILING_RED, CONCRETE_RAILING_BEIGE, CONCRETE_RAILING_BEIGE2, CONCRETE_RAILING_YELLOW, CONCRETE_RAILING_BLUE, CONCRETE_RAILING_GREEN, CONCRETE_RAILING_ORANGE;
     public static RegistryObject<Block> CERAMIC_GLASS_BLUE, CERAMIC_GLASS_GREEN, CERAMIC_GLASS_BROWN;
     public static RegistryObject<Block> CRUSHER, AFFINAGE_FACTORY, ENERGY_GENERATOR, DIESEL_E_GENERATOR, DIESEL_TANK;
-    public static RegistryObject<Block> TRIM_TILE_1,TRIM_TILE_1_BR, TRIM_STONE_1, TRIM_STONE_2, TRIM_STONE_3, TRIM_STONE_4, PARQUET_BLOCK, TRIM_TILE_RED, TRIM_TILE_BLUE, CONCRETE_PLATE, CONTAINMENT_BLOCK, TRIM_METAL_1, TRIM_METAL_2, LEADCERAMIC_TILE;
+    public static RegistryObject<Block> TRIM_TILE_1,TRIM_TILE_1_BR, TRIM_STONE_1, TRIM_STONE_2, TRIM_STONE_3, TRIM_STONE_4, PARQUET_BLOCK, TRIM_TILE_RED, TRIM_TILE_BLUE, CONCRETE_PLATE, CONTAINMENT_BLOCK, TRIM_METAL_1, TRIM_METAL_2, RUSTYMETAL_BLOCK, LEADCERAMIC_TILE;
     public static RegistryObject<Block> TUBING_HORIZONTAL, TUBING_VERTICAL;
     public static RegistryObject<Block> CONTROL_PANEL_UP, CONTROL_PANEL_DOWN;
     public static RegistryObject<Block> FLUORESCENT_LAMP, BROKEN_FLUORESCENT_LAMP,FLUORESCENT_LAMP2, BROKEN_FLUORESCENT_LAMP2,FLUORESCENT_LAMP3, BROKEN_FLUORESCENT_LAMP3,INC_LAMP,RED_LAMP;
@@ -104,7 +105,7 @@ public class RegBlocks {
     public static RegistryObject<Block> BIOLAB_TABLE, BIOLAB_TABLE2, BIOLAB_TABLE3, BIOLAB_TABLE4,BIOLAB_TABLE_CASE, CHEMLAB_TABLE, CHEMLAB_TABLE_CASE, STILLAGE, PINK_CHAIR, PURPLE_TABLE, PURPLE_CHAIR;
     public static RegistryObject<Block> ALUM_FRAMES, ALUM_FRAMES_EMPTY, ALUM_WINDOW, ALUM_WINDOW_EMPTY, MODERN_WINDOW, MODERN_WINDOW_EMPTY, MODERN_WINDOW_LEAF, MODERN_WINDOW_LEAF_EMPTY
             , WOOD_WINDOW, WOOD_WINDOW_EMPTY, WOOD_WINDOW_LEAF, WOOD_WINDOW_LEAF_EMPTY, FACTORY_WINDOW, FACTORY_WINDOW_EMPTY;
-    public static RegistryObject<Block> IRON_BED, ex_po, SAFE, DSP_TUMB, BATH_TUBE, LAB_SINK, KITCHEN_SINK, ELECTRO_STOVE,KITCHEN_TABLE, SMALL_SINK, TOILET, SINK, BARB_WIRE,CONTACT_WIRE_OUTER,CONTACT_WIRE_INNER;
+    public static RegistryObject<Block> IRON_BED, ex_po, SAFE, DSP_TUMB, DSP_PANEL, BATH_TUBE, LAB_SINK, KITCHEN_SINK, ELECTRO_STOVE,KITCHEN_TABLE, SMALL_SINK, TOILET, SINK, BARB_WIRE,CONTACT_WIRE_OUTER,CONTACT_WIRE_INNER;
 
     public static RegistryObject<Block> DRY_CAB,MAGNET_MIXER, MIXER, LAB_STOVE ,SLATE, BIO_STILLAGE, CHAIN,LEAD_WALL, THIN_LEAD_WALL, CIRCLE_FILTER, HALF_CIRCLE_GRID, DIAGONAL_GRID, FULL_DIAGONAL_GRID, FULL_DIAGONAL_GRID_INVERT, REST_FILTER
     ,WINDPROOF_BETON_GRAY ,WINDPROOF_BETON_GREEN ,WINDPROOF_BETON_RED ,WINDPROOF_BETON_ORANGE ,WINDPROOF_BETON_YELLOW ,WINDPROOF_BETON_BLUE ,WINDPROOF_BETON_BEIGE ,WINDPROOF_BETON_BEIGE2 ,WINDPROOF_BETON_WHITE;
@@ -119,6 +120,8 @@ public class RegBlocks {
     public static RegistryObject<Block> STANDART_SIGNAL_GEN, PULT, E_CONVERTER, E_TESTER, SOUND_POWER_AMPLIFIER, COULOMETRIC_INTEGRATOR,WAVEMETER,COULOMETRIC_INTEGRATOR2, WELDING_MACHINE;
 
     public static RegistryObject<Block> BLOCK_MOULD,BLOCK_MOSS_FULL,BLOCK_MOSS;
+    public static RegistryObject<Block> METRO_RAIL;
+    public static RegistryObject<Block> RASTY_FRAME;
     public static void init() {
         Symbols.addSymbols();
         Symbols.addSymbolsName();
@@ -128,6 +131,7 @@ public class RegBlocks {
            registerBlockWithModel("outerdeco/symbols/" + Symbols.SYMBOLS_NAME.get(iter), () -> new SymbolBlock(getP(Material.IRON, 0.4f,0.6f, null, 1, SoundType.METAL, false, true), 1F), Core.ItemGroups.TAB_SYMBOLS);
         }
 
+        RASTY_FRAME = registerBlockWithModel("rasty_frames", () -> new RastyFrameBlock(getP(Material.IRON, 0.4f,0.6f, null, 1, SoundType.METAL, false, true)), Core.ItemGroups.TAB_OUTER_DECO);
 
         //windows
         AbstractBlock.Properties WINDOW_PROPERTIES = getP(Material.IRON, 0.6f,1.6f,ToolType.PICKAXE, 0, SoundType.GLASS, true, true);
@@ -259,6 +263,7 @@ public class RegBlocks {
         //innerdeco
         TUBING_HORIZONTAL = registerBlockWithModel("innerdeco/tubing_horizontal", () -> new BlockRotatedAxisCustomModel(0.6F), Core.ItemGroups.TAB_INNER_DECO);
         TUBING_VERTICAL = registerBlockWithModel("innerdeco/tubing_vertical", () -> new BlockRotatedAxisCustomModel(0.6F), Core.ItemGroups.TAB_INNER_DECO);
+        METRO_RAIL = registerBlockWithModel("innerdeco/metro_rail", () -> new MetroRail(0.6F), Core.ItemGroups.TAB_INNER_DECO);
 
         RUSTY_HANDHOLD = registerBlockWithModel("innerdeco/handhold/rusty_handhold", () -> new RustyHandhold(getP(Material.IRON, 0.7f,1.8f, ToolType.PICKAXE, 1, SoundType.METAL, true, true), 1F), Core.ItemGroups.TAB_INNER_DECO);
         BALCONY_HANDHOLD = registerBlockWithModel("innerdeco/handhold/balcony_handhold", () -> new ThinHandhold(getP(Material.IRON, 0.7f,1.8f, ToolType.PICKAXE, 1, SoundType.METAL, true, true), 1F), Core.ItemGroups.TAB_OUTER_DECO);
@@ -286,7 +291,8 @@ public class RegBlocks {
         CIRCLE_FILTER = registerBlockWithModel("innerdeco/circle_filter", () -> new VentFilter(getP(Material.IRON, 0.6f,1f,ToolType.PICKAXE, 0, SoundType.METAL, false, true)), Core.ItemGroups.TAB_INNER_DECO);
         REST_FILTER = registerBlockWithModel("innerdeco/rest_filter", () -> new VentFilterRest(getP(Material.IRON, 0.6f,1f,ToolType.PICKAXE, 0, SoundType.METAL, false, true)), Core.ItemGroups.TAB_INNER_DECO);
         IRON_BED = registerOnlyCustomBlock("innerdeco/furniture/iron_bed", () -> new IronBed(getP(Material.IRON, 1.1f,2.1f, ToolType.PICKAXE, 1, SoundType.METAL, true, true)), Core.ItemGroups.TAB_INNER_DECO);
-        BATH_TUBE = registerOnlyCustomBlock("innerdeco/furniture/bath_tube", () -> new BathTube(getP(Material.ROCK, 0.8f,0.5f, ToolType.PICKAXE, 1, SoundType.GLASS, false, true)), Core.ItemGroups.TAB_INNER_DECO);
+        BATH_TUBE = registerOnlyCustomBlock("innerdeco/furniture/bath_tube", () -> new BathTube(getP(Material.IRON, 0.8f,0.5f, ToolType.PICKAXE, 1, SoundType.GLASS, false, true)), Core.ItemGroups.TAB_INNER_DECO);
+        DSP_PANEL = registerBlockWithModel("innerdeco/furniture/dsp_panel", () -> new DSPPanel(getP(Material.WOOD, 0.8f,0.5f, ToolType.AXE, 1, SoundType.WOOD, false, true), 1F), Core.ItemGroups.TAB_INNER_DECO);
 
         //outerdeco
         HALF_CIRCLE_GRID = registerBlockWithModel("outerdeco/streetdeco/half_circle_grid", () -> new WindowGrid(getP(Material.IRON, 1.6f,3f,ToolType.PICKAXE, 1, SoundType.METAL, true, true), 1), Core.ItemGroups.TAB_OUTER_DECO);
@@ -365,7 +371,7 @@ public class RegBlocks {
         DIESEL_E_GENERATOR = registerBlockWithModel("mech/diesel_electro_generator", () -> new DieselElectroGenerator(AbstractBlock.Properties.create(Material.IRON).setRequiresTool().hardnessAndResistance(3f,8f).notSolid()), Core.ItemGroups.TAB_INNER_DECO);
 
 
-        AbstractBlock.Properties TRIM_STONE_PROPERTIES = getP(Material.ROCK, 5.5f,15f,ToolType.PICKAXE, 2, SoundType.STONE, true, true);
+        AbstractBlock.Properties TRIM_STONE_PROPERTIES = getP(Material.ROCK, 5.5f,15f,ToolType.PICKAXE, 2, SoundType.STONE, true, false);
         //trim_stone
         TRIM_TILE_1 = registerBlock("structural/trim_tile_1", () -> new TilledBlock(),Core.ItemGroups.TAB_MAIN);
         TRIM_TILE_1_BR = registerBlock("structural/trim_tile_1_br", () -> new TilledBlock(),Core.ItemGroups.TAB_MAIN);
@@ -381,6 +387,7 @@ public class RegBlocks {
         TRIM_METAL_1 = registerBlock("structural/trim_metal_1", () -> new MetalBlock(),Core.ItemGroups.TAB_MAIN);
         TRIM_METAL_2 = registerBlock("structural/trim_metal_2", () -> new MetalBlock(),Core.ItemGroups.TAB_MAIN);
         LEADCERAMIC_TILE = registerBlock("structural/leadceramic_tile", () -> new TilledBlock(),Core.ItemGroups.TAB_MAIN);
+        RUSTYMETAL_BLOCK = registerBlock("structural/rusty_block", () -> new MetalBlock(),Core.ItemGroups.TAB_MAIN);
 
 
         AbstractBlock.Properties WINDPROOF_PROPERTIES = getP(Material.ROCK, 2,1,ToolType.PICKAXE, 2, SoundType.STONE, true, true);
@@ -426,6 +433,7 @@ public class RegBlocks {
         IRON_BEAM_CONCRETE = registerBlockWithModel("structural/iron_beam_concrete", () -> new BlockRotatedAxisCustomModel(AbstractBlock.Properties.create(Material.IRON).setRequiresTool().hardnessAndResistance(3f,8f).notSolid(), 0.5F), Core.ItemGroups.TAB_MAIN);
         IRON_BEAM = registerBlockWithModel("structural/iron_beam", () -> new BlockRotatedAxisCustomModel(AbstractBlock.Properties.create(Material.IRON).setRequiresTool().hardnessAndResistance(3f,8f).notSolid(), 0.5F), Core.ItemGroups.TAB_MAIN);
         IRON_BEAM_THIN = registerBlockWithModel("structural/iron_beam_thin", () -> new BlockRotatedAxisCustomModel(AbstractBlock.Properties.create(Material.IRON).setRequiresTool().hardnessAndResistance(3f,8f).notSolid(), 0.5F), Core.ItemGroups.TAB_MAIN);
+
         //concrete
         CONCRETE_ORANGE = registerBlock("concrete/concrete_orange", () -> new FerroconcreteBlock("info.orange"),Core.ItemGroups.TAB_MAIN);
         CONCRETE_BLUE = registerBlock("concrete/concrete_blue", () -> new FerroconcreteBlock("info.blue"),Core.ItemGroups.TAB_MAIN);

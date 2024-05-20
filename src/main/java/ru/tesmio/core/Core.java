@@ -10,6 +10,7 @@ import net.minecraftforge.fml.event.lifecycle.*;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import ru.tesmio.reg.*;
+import ru.tesmio.utils.BlockSavingHelper;
 
 @Mod(Core.MODID)
 public class Core {
@@ -26,6 +27,8 @@ public class Core {
         RegItems.register(eventBus);
         RegRecipeSerializers.RECIPE_SERIALIZERS.register(eventBus);
         RegBlocks.register(eventBus);
+        RegFluids.register(eventBus);
+        MinecraftForge.EVENT_BUS.register(new RegScreen());
         RegEntitys.ENTITY_TYPES.register(eventBus);
         RegContainers.CONTAINER_TYPES.register(eventBus);
         RegTileEntitys.TILE_ENTITY_TYPES.register(eventBus);
@@ -80,7 +83,9 @@ public class Core {
     }
     private void enqueueIMC(final InterModEnqueueEvent event) {}
 
-    private void processIMC(final InterModProcessEvent event) {}
+    private void processIMC(final InterModProcessEvent event) {
+        BlockSavingHelper.createValidBlockList();
+    }
     private void onDataSetup(GatherDataEvent event) {}
     @SubscribeEvent
     public void onServerStarting(FMLServerStartingEvent event) {
