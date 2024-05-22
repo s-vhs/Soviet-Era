@@ -16,7 +16,6 @@ import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-
 import java.util.Objects;
 
 import static ru.tesmio.reg.RegTileEntitys.FRAMEBLOCK_TILE;
@@ -25,14 +24,14 @@ public class RastyFrameTile extends TileEntity {
     public RastyFrameTile() {
         super(FRAMEBLOCK_TILE.get());
     }
-    public static final ModelProperty<Integer> TEXTURE = new ModelProperty<>();
+
     public static final ModelProperty<BlockState> UP_CONTAINS = new ModelProperty<>();
     public static final ModelProperty<BlockState> DOWN_CONTAINS = new ModelProperty<>();
     public static final ModelProperty<BlockState> NORTH_CONTAINS = new ModelProperty<>();
     public static final ModelProperty<BlockState> SOUTH_CONTAINS = new ModelProperty<>();
     public static final ModelProperty<BlockState> WEST_CONTAINS = new ModelProperty<>();
     public static final ModelProperty<BlockState> EAST_CONTAINS = new ModelProperty<>();
-    private Integer texture;
+
     private BlockState up;
     private BlockState down;
     private BlockState north;
@@ -40,14 +39,13 @@ public class RastyFrameTile extends TileEntity {
     private BlockState west;
     private BlockState east;
 
-    public Integer getTexture() {return texture;}
+
     public BlockState getUpContains() {return up;}
     public BlockState getDownContains() {return down;}
     public BlockState getNorthContains() {return north;}
     public BlockState getSouthContains() {return south;}
     public BlockState getWestContains() {return west;}
     public BlockState getEastContains() {return east;}
-    public void setTexture(Integer i) { this.texture = i; markDirty(); world.notifyBlockUpdate(pos, getBlockState(), getBlockState(), Constants.BlockFlags.BLOCK_UPDATE + Constants.BlockFlags.NOTIFY_NEIGHBORS);}
     public void setUpContains(BlockState s) { this.up = s; markDirty(); world.notifyBlockUpdate(pos, getBlockState(), getBlockState(), Constants.BlockFlags.BLOCK_UPDATE + Constants.BlockFlags.NOTIFY_NEIGHBORS);}
     public void setDownContains(BlockState s) { this.down = s; markDirty(); world.notifyBlockUpdate(pos, getBlockState(), getBlockState(), Constants.BlockFlags.BLOCK_UPDATE + Constants.BlockFlags.NOTIFY_NEIGHBORS);}
     public void setNorthContains(BlockState s) { this.north = s; markDirty(); world.notifyBlockUpdate(pos, getBlockState(), getBlockState(), Constants.BlockFlags.BLOCK_UPDATE + Constants.BlockFlags.NOTIFY_NEIGHBORS);}
@@ -56,7 +54,6 @@ public class RastyFrameTile extends TileEntity {
     public void setEastContains(BlockState s) { this.east = s; markDirty(); world.notifyBlockUpdate(pos, getBlockState(), getBlockState(), Constants.BlockFlags.BLOCK_UPDATE + Constants.BlockFlags.NOTIFY_NEIGHBORS);}
 
     public void clear() {
-        this.setTexture(0);
         this.setDownContains(null);
         this.setUpContains(null);
         this.setNorthContains(null);
@@ -68,9 +65,7 @@ public class RastyFrameTile extends TileEntity {
     @Override
     public CompoundNBT getUpdateTag() {
         CompoundNBT tag = super.getUpdateTag();
-        if(texture != null) {
-            tag.put("texture", writeInteger(texture));
-        }
+
         if(up != null) {
             tag.put("up", NBTUtil.writeBlockState(up));
         }
@@ -101,7 +96,7 @@ public class RastyFrameTile extends TileEntity {
     public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
         Integer i;
         BlockState up,down,north,east,west, south;
-        i = this.texture;
+
         up = this.up;
         down = this.down;
         north = this.north;
@@ -109,13 +104,7 @@ public class RastyFrameTile extends TileEntity {
         west = this.west;
         east = this.east;
         CompoundNBT tag = pkt.getNbtCompound();
-        if (tag.contains("texture")) {
-            this.texture = readInteger(tag.getCompound("texture"));
-            if (!Objects.equals(i, this.texture)) {
-                ModelDataManager.requestModelDataRefresh(this);
-                world.notifyBlockUpdate(pos, getBlockState(), getBlockState(), Constants.BlockFlags.BLOCK_UPDATE + Constants.BlockFlags.NOTIFY_NEIGHBORS);
-            }
-        }
+
         if (tag.contains("up")) {
             this.up = NBTUtil.readBlockState(tag.getCompound("up"));
             if (!Objects.equals(up, this.up)) {
@@ -163,7 +152,6 @@ public class RastyFrameTile extends TileEntity {
     @Override
     public IModelData getModelData() {
         return new ModelDataMap.Builder()
-                .withInitial(TEXTURE, texture)
                 .withInitial(UP_CONTAINS, up)
                 .withInitial(DOWN_CONTAINS, down)
                 .withInitial(NORTH_CONTAINS, north)
@@ -176,9 +164,7 @@ public class RastyFrameTile extends TileEntity {
     @Override
     public void read(BlockState state, CompoundNBT tag) {
         super.read(state, tag);
-        if (tag.contains("texture")) {
-            texture = readInteger(tag.getCompound("texture"));
-        }
+
         if (tag.contains("up")) {
             up = NBTUtil.readBlockState(tag.getCompound("up"));
         }
@@ -201,46 +187,33 @@ public class RastyFrameTile extends TileEntity {
 
     @Override
     public CompoundNBT write(CompoundNBT tag) {
-        if (texture != null) {
-            tag.put("texture", writeInteger(texture));
-        }
+
         if (up != null) {
             tag.put("up", NBTUtil.writeBlockState(up));
+
         }
         if (down != null) {
             tag.put("down", NBTUtil.writeBlockState(down));
+
         }
         if (north != null) {
             tag.put("north", NBTUtil.writeBlockState(north));
+
         }
         if (south != null) {
             tag.put("south", NBTUtil.writeBlockState(south));
+
         }
         if (west != null) {
             tag.put("west", NBTUtil.writeBlockState(west));
+
         }
         if (east != null) {
             tag.put("east", NBTUtil.writeBlockState(east));
+
         }
         return super.write(tag);
 
-    }
-    private static CompoundNBT writeInteger(Integer tag) {
-        CompoundNBT compoundnbt = new CompoundNBT();
-        compoundnbt.putString("number", tag.toString());
-        return compoundnbt;
-    }
 
-    private static Integer readInteger(CompoundNBT tag) {
-        if (!tag.contains("number", 8)) {
-            return 0;
-        } else {
-            try {
-                return Integer.parseInt(tag.getString("number"));
-            } catch (NumberFormatException e) {
-                LOGGER.error("Not a valid Number Format: "+tag.getString("number"));
-                return 0;
-            }
-        }
     }
 }

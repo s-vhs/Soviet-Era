@@ -25,7 +25,7 @@ public class WindowGrid extends BlockRotatedAllSideCM {
     @Override
     public ItemStack[] getItemsDrop(PlayerEntity pl) {
         return new ItemStack[] {
-                new ItemStack(RegItems.ARMATURES.get(), tr.nextInt(1)),
+                new ItemStack(RegItems.ARMATURES.get(), 1),
         };
     }
 
@@ -33,11 +33,11 @@ public class WindowGrid extends BlockRotatedAllSideCM {
     public boolean isCustomDrop() {
         return true;
     }
-
+    final VoxelShape SHAPE = Block.makeCuboidShape(15.5D, 0D, 0D, 16D, 16D, 16D);
+    final VoxelShape SHAPE_DOWN = Block.makeCuboidShape(0D, 0D, 0D, 16D, 0.5D, 16D);
+    final VoxelShape SHAPE_UP = Block.makeCuboidShape(0D, 15.5D, 0D, 16D, 16D, 16D);
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        VoxelShape SHAPE = Block.makeCuboidShape(15.5D, 0D, 0D, 16D, 16D, 16D);
-        VoxelShape SHAPE_DOWN = Block.makeCuboidShape(0D, 0D, 0D, 16D, 0.5D, 16D);
-        VoxelShape SHAPE_UP = Block.makeCuboidShape(0D, 15.5D, 0D, 16D, 16D, 16D);
+
         switch (state.get(FACING)) {
             case EAST:
                 return SHAPE;

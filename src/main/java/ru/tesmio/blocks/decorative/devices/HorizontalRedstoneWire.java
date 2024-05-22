@@ -4,6 +4,7 @@ import com.google.common.collect.Sets;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
@@ -25,6 +26,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.WorldGenRegion;
 import ru.tesmio.blocks.baseblock.BlockCustomModel;
 import ru.tesmio.enums.EnumPlace;
+import ru.tesmio.reg.RegItems;
 import ru.tesmio.utils.VoxelShapeUtil;
 
 import javax.annotation.Nullable;
@@ -46,6 +48,12 @@ public class HorizontalRedstoneWire extends BlockCustomModel {
         this.setDefaultState(this.stateContainer.getBaseState().with(POWER, 0).with(PLACEMENT, EnumPlace.FLOOR)
                 .with(NORTH, false).with(SOUTH, false).with(WEST, false).with(EAST, false).with(POWER, 0));
 
+    }
+    @Override
+    public ItemStack[] getItemsDrop(PlayerEntity pl) {
+        return new ItemStack[] {
+                new ItemStack(RegItems.COPPER_SCRAP.get(), tr.nextInt(2,4))
+        };
     }
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(POWER, PLACEMENT,NORTH,SOUTH,WEST, EAST,WATERLOGGED);

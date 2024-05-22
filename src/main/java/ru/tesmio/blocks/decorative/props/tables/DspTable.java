@@ -28,7 +28,7 @@ public class DspTable extends LinearTable {
         };
     }
     Map<String, VoxelShape> SHAPE_MAP = new HashMap<>();
-    VoxelShape SHAPES[] = new VoxelShape[]{
+    final VoxelShape SHAPES[] = new VoxelShape[]{
             Block.makeCuboidShape(0, 15, 0, 16, 16, 16),
             Block.makeCuboidShape(1, 2, 0.5, 15, 15, 2),
             Block.makeCuboidShape(1, 2, 14, 15, 15, 15.5),

@@ -15,6 +15,7 @@ import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BedPart;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.stats.Stats;
 import net.minecraft.tileentity.BedTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
@@ -38,13 +39,47 @@ public class BlockBed extends BedBlock  {
         super(DyeColor.BLACK, properties);
         this.setDefaultState(this.stateContainer.getBaseState().with(PART, BedPart.FOOT).with(OCCUPIED, Boolean.valueOf(false)).with(WATERLOGGED, Boolean.valueOf(false)));
     }
-    public void harvestBlock(World worldIn, PlayerEntity player, BlockPos pos, BlockState state, @Nullable TileEntity te, ItemStack stack) {
-        spawnDrops(state, worldIn, pos, te, player, stack);
-    }
+
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(HORIZONTAL_FACING, PART, OCCUPIED, WATERLOGGED);
     }
+    @Override
+    public void harvestBlock(World w, PlayerEntity pl, BlockPos p, BlockState s, @Nullable TileEntity te, ItemStack st) {
+        if(isCustomDrop()) {
+            if (!w.isRemote) {
+                if (!pl.isCreative()) {
+                    getDropsWithBlock(w, p, pl);
+                    getAdditionDrops(w, p, getStackAddDrop(pl));
+                }
+            }
+        }
+        pl.addStat(Stats.BLOCK_MINED.get(this));
+        pl.addExhaustion(0.005F);
+        spawnDrops(s, w, p, te, pl, st);
+    }
+    public boolean isCustomDrop() {
+        return true;
+    }
 
+    public ItemStack getStackAddDrop(PlayerEntity pl) {
+        return ItemStack.EMPTY;
+    }
+    @Nullable
+    public void getAdditionDrops(World w, BlockPos p, ItemStack is) {
+        spawnAsEntity(w, p, is);
+    }
+
+    public ItemStack[] getItemsDrop(PlayerEntity pl) {
+        return new ItemStack[] {
+                ItemStack.EMPTY
+        };
+    }
+
+    protected void getDropsWithBlock(World w, BlockPos p,PlayerEntity pl) {
+        for(ItemStack is : getItemsDrop(pl)) {
+            spawnAsEntity(w, p, is);
+        }
+    }
     private static Direction getDirectionToOther(BedPart part, Direction direction) {
         return part == BedPart.FOOT ? direction : direction.getOpposite();
     }

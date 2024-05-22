@@ -25,7 +25,7 @@ public class Autoclave extends BlockSideDevice {
         FluidState fluidstate = context.getWorld().getFluidState(context.getPos());
         return this.getDefaultState().with(FACING, context.getPlacementHorizontalFacing()).with(WATERLOGGED, Boolean.valueOf(fluidstate.getFluid() == Fluids.WATER));
     }
-    VoxelShape[] BOXS = new VoxelShape[]{
+    final VoxelShape[] BOXS = new VoxelShape[]{
             Block.makeCuboidShape(0,0,0,16,1,16),
             Block.makeCuboidShape(0,3,5,16,13,11),
             Block.makeCuboidShape(1,3,3,15,13,13),

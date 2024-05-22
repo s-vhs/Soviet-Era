@@ -8,6 +8,7 @@ import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.stats.Stats;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Mirror;
@@ -47,14 +48,17 @@ public class BlockSide extends BaseBlock {
 
     @Override
     public void harvestBlock(World w, PlayerEntity pl, BlockPos p, BlockState s, @Nullable TileEntity te, ItemStack st) {
+        if(isCustomDrop()) {
         if (!w.isRemote) {
             if (!pl.isCreative()) {
-                if(isCustomDrop()) {
-                    getDropsWithBlock(w, p, pl);
-                }
-                getAdditionDrops(w,p,getStackAddDrop(pl));
+                getDropsWithBlock(w, p, pl);
+                getAdditionDrops(w, p, getStackAddDrop(pl));
             }
         }
+        }
+        pl.addStat(Stats.BLOCK_MINED.get(this));
+        pl.addExhaustion(0.005F);
+        spawnDrops(s, w, p, te, pl, st);
     }
     public ItemStack getStackAddDrop(PlayerEntity pl) {
         return ItemStack.EMPTY;

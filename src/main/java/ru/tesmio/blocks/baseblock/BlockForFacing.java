@@ -7,6 +7,7 @@ import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.stats.Stats;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.IStringSerializable;
@@ -36,12 +37,21 @@ public class BlockForFacing extends BaseBlock {
     }
     @Override
     public void harvestBlock(World w, PlayerEntity pl, BlockPos p, BlockState s, @Nullable TileEntity te, ItemStack st) {
-        if (!w.isRemote) {
-            if (!pl.isCreative()) {
-                getDropsWithBlock(w, p, pl);
-                getAdditionDrops(w,p,getStackAddDrop(pl));
+        if(this.disableJSONDrop()) {
+            if (!w.isRemote) {
+                if (!pl.isCreative()) {
+                    getDropsWithBlock(w, p, pl);
+                    getAdditionDrops(w,p,getStackAddDrop(pl));
+                }
             }
+        } else {
+            pl.addStat(Stats.BLOCK_MINED.get(this));
+            pl.addExhaustion(0.005F);
+            spawnDrops(s, w, p, te, pl, st);
         }
+    }
+    public boolean disableJSONDrop() {
+        return true;
     }
     public ItemStack getStackAddDrop(PlayerEntity pl) {
         return ItemStack.EMPTY;

@@ -7,9 +7,10 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.properties.DoorHingeSide;
 import net.minecraft.state.properties.DoubleBlockHalf;
-import net.minecraft.stats.Stats;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Direction;
+import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -21,9 +22,9 @@ import ru.tesmio.reg.RegItems;
 import ru.tesmio.reg.RegSounds;
 import ru.tesmio.utils.VoxelShapeUtil;
 
-import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class ContainmentDoor extends LockedDoor implements IWaterLoggable {
 
@@ -35,7 +36,9 @@ public class ContainmentDoor extends LockedDoor implements IWaterLoggable {
 
     }
 
-
+    public boolean isCustomDrop() {
+        return true;
+    }
     public void putMapVoxelShape() {
         VoxelShape SHAPES[] = new VoxelShape[] {
                 Block.makeCuboidShape(0D, 0D, 12D, 16D, 16D, 16D),
@@ -59,10 +62,13 @@ public class ContainmentDoor extends LockedDoor implements IWaterLoggable {
         SHAPE_MAP.put("open_door_left_lower", SHAPES[7]);
         SHAPE_MAP.put("open_door_left_upper", SHAPES[8]);
     }
-    public void harvestBlock(World worldIn, PlayerEntity player, BlockPos pos, BlockState state, @Nullable TileEntity te, ItemStack stack) {
-        player.addStat(Stats.BLOCK_MINED.get(this));
-        player.addExhaustion(0.005F);
-        spawnDrops(state, worldIn, pos, te, player, stack);
+    ThreadLocalRandom tr = ThreadLocalRandom.current();
+    public ItemStack[] getItemsDrop(PlayerEntity pl) {
+        return new ItemStack[] {
+                new ItemStack(RegItems.COPPER_SCRAP.get(), tr.nextInt(2)),
+                new ItemStack(RegItems.ARMATURES.get(), tr.nextInt(5)),
+                new ItemStack(RegItems.RUSTY_SCRAP.get(), tr.nextInt(13)),
+        };
     }
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand h, BlockRayTraceResult hit) {
         {

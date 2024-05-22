@@ -101,40 +101,44 @@ public class StreetLightpost extends BlockSideCustomModel {
         }
         return 0;
     }
-
+    final VoxelShape[] SHPS = new VoxelShape[] {
+            Block.makeCuboidShape(5D, 0D, 5D, 11D, 16D, 11D),
+            Block.makeCuboidShape(5D, 0D, 5D, 11D, 13D, 14D),
+            Block.makeCuboidShape(4D, 0D, 4D, 12D, 16D, 12D),
+            Block.makeCuboidShape(3D, 0D, 3D, 13D, 10D, 13D)
+    };
     public VoxelShape getShape(BlockState s, IBlockReader w, BlockPos p, ISelectionContext c) {
         switch (s.get(FACING)) {
             case WEST:
                 if(s.get(PART) == EnumPart.DOWN) {
                     if (s.getBlock() == RegBlocks.STREET_LIGHTPOST2.get()) {
-                        return VoxelShapes.or(Block.makeCuboidShape(5D, 0D, 5D, 11D, 16D, 11D),
-                                VoxelShapeUtil.shapeRotCCW90(Block.makeCuboidShape(5D, 0D, 5D, 11D, 13D, 14D)));
+                        return VoxelShapes.or(SHPS[0], VoxelShapeUtil.shapeRotCCW90(SHPS[1]));
                     }
                 }
             case EAST:
                 if(s.get(PART) == EnumPart.DOWN) {
                     if (s.getBlock() == RegBlocks.STREET_LIGHTPOST2.get()) {
-                        return VoxelShapes.or(Block.makeCuboidShape(5D, 0D, 5D, 11D, 16D, 11D),
-                                VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(5D, 0D, 5D, 11D, 13D, 14D)));
+                        return VoxelShapes.or(SHPS[0],
+                                VoxelShapeUtil.shapeRotCW90(SHPS[1]));
                     }
                 }
             case NORTH:
                 if(s.get(PART) == EnumPart.DOWN) {
                     if (s.getBlock() == RegBlocks.STREET_LIGHTPOST2.get()) {
-                        return VoxelShapes.or(Block.makeCuboidShape(5D, 0D, 5D, 11D, 16D, 11D),
-                                VoxelShapeUtil.shapeRot180(Block.makeCuboidShape(5D, 0D, 5D, 11D, 13D, 14D)));
+                        return VoxelShapes.or(SHPS[0],
+                                VoxelShapeUtil.shapeRot180(SHPS[1]));
                     }
                 }
             case SOUTH:
                 if(s.get(PART) == EnumPart.DOWN) {
                     if(s.getBlock() == RegBlocks.STREET_LIGHTPOST2.get()) {
-                        return VoxelShapes.or(Block.makeCuboidShape(5D, 0D, 5D, 11D, 16D, 11D),
-                                Block.makeCuboidShape(5D, 0D, 5D, 11D, 13D, 14D));
+                        return VoxelShapes.or(SHPS[0],
+                                SHPS[1]);
                     }
-                    return VoxelShapes.or(Block.makeCuboidShape(4D, 0D, 4D, 12D, 16D, 12D),
-                            Block.makeCuboidShape(3D, 0D, 3D, 13D, 10D, 13D));
+                    return VoxelShapes.or(SHPS[2],SHPS[3]
+                            );
                 }
-            return Block.makeCuboidShape(5D, 0D, 5D, 11D, 16D, 11D);
+            return SHPS[0];
         }
         return VoxelShapes.fullCube();
     }

@@ -23,16 +23,17 @@ public class PurpleChair extends SittableBlock {
                 new ItemStack(RegItems.WOOD_SCRAP.get(), tr.nextInt(1,3)),
         };
     }
+    final VoxelShape SHP = Block.makeCuboidShape(1,0,0,15,9,15.25);
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         switch (state.get(FACING)) {
             case EAST:
-                return VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(1,0,0,15,9,15.25));
+                return VoxelShapeUtil.shapeRotCW90(SHP);
             case WEST:
-                return VoxelShapeUtil.shapeRotCCW90(Block.makeCuboidShape(1,0,0,15,9,15.25));
+                return VoxelShapeUtil.shapeRotCCW90(SHP);
             case NORTH:
-                return VoxelShapeUtil.shapeRot180(Block.makeCuboidShape(1,0,0,15,9,15.25));
+                return VoxelShapeUtil.shapeRot180(SHP);
             case SOUTH:
-                return Block.makeCuboidShape(1,0,0,15,9,15.25);
+                return SHP;
         }
         return VoxelShapes.fullCube();
     }

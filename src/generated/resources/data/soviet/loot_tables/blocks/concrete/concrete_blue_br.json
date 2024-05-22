@@ -3,7 +3,11 @@
   "pools": [
     {
       "name": "concrete/concrete_blue_br",
-      "rolls": 2,
+      "rolls": {
+        "min": 0.0,
+        "max": 4.0,
+        "type": "minecraft:uniform"
+      },
       "entries": [
         {
           "type": "minecraft:item",

@@ -28,11 +28,7 @@ public class HomePipes extends BlockCornerCustomModel {
         };
     }
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        VoxelShape BOXS[] = new VoxelShape[] {
-                Block.makeCuboidShape(0D, 0D, 0D, 3D, 16D, 16D),
-                Block.makeCuboidShape(13D, 0D, 0D, 16D, 16D, 16D),
-                Block.makeCuboidShape(0D, 0D, 0D, 16D, 16D, 3D),
-                Block.makeCuboidShape(0D, 0D, 13D, 16D, 16D, 16D)};
+
         switch (state.get(FACING)) {
             case EAST:
                 if(state.get(ENUM_CONNECT) == EnumConnent.CORNER_LEFT) return VoxelShapes.or(BOXS[0],BOXS[3]);

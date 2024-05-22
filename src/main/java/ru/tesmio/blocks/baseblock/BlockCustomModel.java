@@ -1,10 +1,7 @@
 package ru.tesmio.blocks.baseblock;
 
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.BooleanProperty;
@@ -19,7 +16,6 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.ToolType;
 
 import javax.annotation.Nullable;
 
@@ -37,15 +33,7 @@ public class BlockCustomModel extends  BaseBlock {
         super(properties);
         this.shadingInside = 1F;
     }
-    public BlockCustomModel(VoxelShape s, float shadingInside) {
-        super(AbstractBlock.Properties.create(Material.IRON)
-                .setRequiresTool()
-                .hardnessAndResistance(0.1f,0.1f)
-                .notSolid()
-                .harvestTool(ToolType.PICKAXE)
-                .sound(SoundType.METAL));
 
-    }
     @Override
     public void harvestBlock(World w, PlayerEntity pl, BlockPos p, BlockState s, @Nullable TileEntity te, ItemStack st) {
         if (!w.isRemote) {

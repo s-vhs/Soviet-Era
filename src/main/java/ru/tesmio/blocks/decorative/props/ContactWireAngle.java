@@ -36,8 +36,9 @@ public class ContactWireAngle extends BlockSideCustomModel {
     public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         return this.getShape(state, worldIn, pos, context);
     }
+    final VoxelShape SHP = Block.makeCuboidShape(0,11,0,16,12,16);
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        return Block.makeCuboidShape(0,11,0,16,12,16);
+        return SHP;
     }
     public void onEntityCollision(BlockState s, World w, BlockPos p, Entity e) {
         if(!w.isRemote()) {

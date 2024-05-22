@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -16,6 +17,8 @@ import net.minecraft.world.World;
 import ru.tesmio.blocks.decorative.lamp.base.BlockRotLamp;
 import ru.tesmio.reg.RegBlocks;
 import ru.tesmio.reg.RegItems;
+
+import java.util.concurrent.ThreadLocalRandom;
 
 public class BrokenFluoLamp2 extends BlockRotLamp {
     final VoxelShape BOXS[] = new VoxelShape[] {Block.makeCuboidShape(16D, 0D, 11D, 0D, 2D, 5D),
@@ -30,7 +33,14 @@ public class BrokenFluoLamp2 extends BlockRotLamp {
     public BrokenFluoLamp2(Properties builder) {
         super(builder);
     }
-
+    @Override
+    public ItemStack[] getItemsDrop(PlayerEntity pl) {
+        ThreadLocalRandom tr = ThreadLocalRandom.current();
+        return new ItemStack[] {
+                new ItemStack(RegItems.COPPER_SCRAP.get(), tr.nextInt(1)),
+                new ItemStack(RegItems.ALUMINUM_SCRAP.get(), tr.nextInt(1)),
+        };
+    }
     @Override
     public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         return this.getShape(state, worldIn, pos, context);

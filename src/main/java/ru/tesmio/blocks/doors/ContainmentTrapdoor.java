@@ -19,10 +19,12 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import ru.tesmio.reg.RegItems;
 import ru.tesmio.reg.RegSounds;
 import ru.tesmio.utils.VoxelShapeUtil;
 
 import javax.annotation.Nullable;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class ContainmentTrapdoor extends TrapDoorBlock {
     protected static final VoxelShape EAST_OPEN_AABB = VoxelShapes.create(0.0D, 0.0D, 0.0D, 0.1875D, 1.0D, 1.0D);
@@ -42,33 +44,69 @@ public class ContainmentTrapdoor extends TrapDoorBlock {
             return ActionResultType.SUCCESS;
 
     }
+
+    protected void getDropsWithBlock(World w, BlockPos p,PlayerEntity pl) {
+        for(ItemStack is : getItemsDrop(pl)) {
+            spawnAsEntity(w, p, is);
+        }
+    }
+    @Override
+    public void harvestBlock(World w, PlayerEntity pl, BlockPos p, BlockState s, @Nullable TileEntity te, ItemStack st) {
+        if(isCustomDrop()) {
+            if (!w.isRemote) {
+                if (!pl.isCreative()) {
+                    getDropsWithBlock(w, p, pl);
+                    getAdditionDrops(w, p, getStackAddDrop(pl));
+                }
+            }
+        }
+        pl.addStat(Stats.BLOCK_MINED.get(this));
+        pl.addExhaustion(0.005F);
+        spawnDrops(s, w, p, te, pl, st);
+    }
+    public boolean isCustomDrop() {
+        return true;
+    }
+
+    public ItemStack getStackAddDrop(PlayerEntity pl) {
+        return ItemStack.EMPTY;
+    }
+    @Nullable
+    public void getAdditionDrops(World w, BlockPos p, ItemStack is) {
+        spawnAsEntity(w, p, is);
+    }
+
     @Override
     public boolean isLadder(BlockState state, net.minecraft.world.IWorldReader world, BlockPos pos, net.minecraft.entity.LivingEntity entity) {
         return true;
     }
-    public void harvestBlock(World worldIn, PlayerEntity player, BlockPos pos, BlockState state, @Nullable TileEntity te, ItemStack stack) {
-        player.addStat(Stats.BLOCK_MINED.get(this));
-        player.addExhaustion(0.005F);
-        spawnDrops(state, worldIn, pos, te, player, stack);
+    ThreadLocalRandom tr = ThreadLocalRandom.current();
+    public ItemStack[] getItemsDrop(PlayerEntity pl) {
+        return new ItemStack[] {
+                new ItemStack(RegItems.COPPER_SCRAP.get(), tr.nextInt(1)),
+                new ItemStack(RegItems.ARMATURES.get(), tr.nextInt(3)),
+                new ItemStack(RegItems.RUSTY_SCRAP.get(), tr.nextInt(6)),
+        };
     }
+    final  VoxelShape FRAME[] = new VoxelShape[] {
+            Block.makeCuboidShape(0,0,0,0.5,3,16),
+            Block.makeCuboidShape(15.5,0,0,16,3,16),
+            Block.makeCuboidShape(0,0,0,16,3,0.5),
+            Block.makeCuboidShape(0,0,15.5,16,3,16),
+
+            Block.makeCuboidShape(0.5,0,13,15.5,16,16)
+    };
+    final VoxelShape FRAME_TOP[] = new VoxelShape[] {
+            Block.makeCuboidShape(0,13,0,0.5,16,16),
+            Block.makeCuboidShape(15.5,13,0,16,16,16),
+            Block.makeCuboidShape(0,13,0,16,16,0.5),
+            Block.makeCuboidShape(0,13,15.5,16,16,16),
+
+            Block.makeCuboidShape(0.5,0,13,15.5,16,16)
+    };
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         VoxelShape SHP,SHP2;
-        VoxelShape FRAME[] = new VoxelShape[] {
-                Block.makeCuboidShape(0,0,0,0.5,3,16),
-                Block.makeCuboidShape(15.5,0,0,16,3,16),
-                Block.makeCuboidShape(0,0,0,16,3,0.5),
-                Block.makeCuboidShape(0,0,15.5,16,3,16),
 
-                Block.makeCuboidShape(0.5,0,13,15.5,16,16)
-        };
-        VoxelShape FRAME_TOP[] = new VoxelShape[] {
-                Block.makeCuboidShape(0,13,0,0.5,16,16),
-                Block.makeCuboidShape(15.5,13,0,16,16,16),
-                Block.makeCuboidShape(0,13,0,16,16,0.5),
-                Block.makeCuboidShape(0,13,15.5,16,16,16),
-
-                Block.makeCuboidShape(0.5,0,13,15.5,16,16)
-        };
         if ((state.get(OPEN)).booleanValue())
         {
             if (state.get(HALF) == Half.BOTTOM) {

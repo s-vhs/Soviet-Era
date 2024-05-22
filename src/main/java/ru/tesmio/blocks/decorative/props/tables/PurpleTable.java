@@ -18,7 +18,7 @@ import java.util.Map;
 
 public class PurpleTable extends LinearTable {
     Map<String, VoxelShape> SHAPE_MAP = new HashMap<>();
-    VoxelShape SHAPES[] = new VoxelShape[] {
+    final VoxelShape SHAPES[] = new VoxelShape[] {
             Block.makeCuboidShape(0,14,0,16,15.75,16),
             Block.makeCuboidShape(1,2,1,3,15.75,15),
             Block.makeCuboidShape(1,0,2,3,2,4),
@@ -34,7 +34,7 @@ public class PurpleTable extends LinearTable {
     @Override
     public ItemStack[] getItemsDrop(PlayerEntity pl) {
         return new ItemStack[] {
-                new ItemStack(RegItems.WOOD_SCRAP.get(), tr.nextInt(1,3)),
+                new ItemStack(RegItems.WOOD_SCRAP.get(), tr.nextInt(3,6)),
         };
     }
     public void putMapVoxelShape() {

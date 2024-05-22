@@ -27,7 +27,7 @@ public class Cryocapsule extends BlockSideDevice {
         FluidState fluidstate = context.getWorld().getFluidState(context.getPos());
         return this.getDefaultState().with(FACING, context.getPlacementHorizontalFacing()).with(WATERLOGGED, Boolean.valueOf(fluidstate.getFluid() == Fluids.WATER));
     }
-    VoxelShape[] BOXS = new VoxelShape[]{
+    final VoxelShape[] BOXS = new VoxelShape[]{
             Block.makeCuboidShape(3,0,1,14.75,16,15),
             Block.makeCuboidShape(3.5,2,0,15.5,14,16),
     };

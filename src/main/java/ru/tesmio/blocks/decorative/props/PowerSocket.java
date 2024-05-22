@@ -28,8 +28,9 @@ public class PowerSocket extends BlockSideDevice {
                 new ItemStack(RegItems.WOOD_SCRAP.get(), 1)
         };
     }
+    final VoxelShape SHP = VoxelShapes.create(0.377D, 0.377D, 1D, 0.623D, 0.623D, 0.956D);
     @Override
     public VoxelShape getFacingShape(BlockState s) {
-        return VoxelShapes.create(0.377D, 0.377D, 1D, 0.623D, 0.623D, 0.956D);
+        return SHP;
     }
 }

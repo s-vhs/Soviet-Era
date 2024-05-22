@@ -20,6 +20,7 @@ import net.minecraft.world.gen.feature.template.BlockIgnoreStructureProcessor;
 import net.minecraft.world.gen.feature.template.PlacementSettings;
 import net.minecraft.world.gen.feature.template.Template;
 import net.minecraft.world.gen.feature.template.TemplateManager;
+import ru.tesmio.core.Config;
 
 import java.util.HashMap;
 import java.util.List;
@@ -126,7 +127,7 @@ public class NewLabs {
                 this.templatePosition = this.templatePosition.add(0, i-193, 0);
                 flag = super.func_230383_a_(sr, sm, cg, r, mbb, cp, bp);
             } else {
-                this.templatePosition = this.templatePosition.add(0, -170, 0); // y = -170 / -40 test
+                this.templatePosition = this.templatePosition.add(0, Config.heightGenLabs.get(), 0); // y = -170 / -40 test
                 flag = super.func_230383_a_(sr, sm, cg, r, mbb, cp, bp);
             }
 

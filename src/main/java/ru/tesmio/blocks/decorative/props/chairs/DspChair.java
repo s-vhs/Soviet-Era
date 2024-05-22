@@ -37,7 +37,7 @@ public class DspChair extends SittableBlock {
     public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         return this.getShape(state, worldIn, pos, context);
     }
-    VoxelShape[] BOXS = new VoxelShape[]{
+   final VoxelShape[] BOXS = new VoxelShape[]{
             Block.makeCuboidShape(2,8,2,14,9,14),
             Block.makeCuboidShape(3,0,3,13,8,13)
     };

@@ -131,4 +131,5 @@ public class BlockRotatedLamp extends BlockForFacing {
         }
         return s.with(LIT_VALUE, 0);
     }
+
 }

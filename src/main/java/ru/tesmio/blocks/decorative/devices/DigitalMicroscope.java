@@ -2,7 +2,9 @@ package ru.tesmio.blocks.decorative.devices;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
@@ -10,6 +12,7 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import ru.tesmio.blocks.decorative.devices.base.BlockSideDevice;
 import ru.tesmio.reg.RegBlocks;
+import ru.tesmio.reg.RegItems;
 import ru.tesmio.utils.VoxelShapeUtil;
 
 public class DigitalMicroscope extends BlockSideDevice {
@@ -27,6 +30,32 @@ public class DigitalMicroscope extends BlockSideDevice {
     };
     public DigitalMicroscope(Properties properties, float shadingInside) {
         super(properties, shadingInside);
+    }
+    @Override
+    public ItemStack[] getItemsDrop(PlayerEntity pl) {
+        if(this == RegBlocks.DIG_MICROSCOPE.get()) {
+            return new ItemStack[] {
+                    new ItemStack(RegItems.ALUMINUM_SCRAP.get(), tr.nextInt(2,7)),
+                    new ItemStack(RegItems.COPPER_SCRAP.get(), tr.nextInt(3,9)),
+                    new ItemStack(RegBlocks.PLATE_GOLDEN_JACKS.get(), tr.nextInt(3,4)),
+                    new ItemStack(RegBlocks.NETHERITE_CIRCUIT.get(), tr.nextInt(1,2)),
+            };
+        }
+        if(this == RegBlocks.DIG_MICROSCOPE_CONTROL.get() ) {
+            return new ItemStack[]{new ItemStack(RegItems.ALUMINUM_SCRAP.get(), tr.nextInt(2, 7)),
+                    new ItemStack(RegItems.COPPER_SCRAP.get(), tr.nextInt(3, 9)),
+                    new ItemStack(RegBlocks.GOLD_CIRCUIT.get(), tr.nextInt(1, 3)),
+                    new ItemStack(RegBlocks.DIAMOND_CIRCUIT.get(), tr.nextInt(0, 2))
+        };
+        }
+
+            return new ItemStack[]{new ItemStack(RegItems.ALUMINUM_SCRAP.get(), tr.nextInt(2, 7)),
+                    new ItemStack(RegItems.COPPER_SCRAP.get(), tr.nextInt(3, 9)),
+                    new ItemStack(RegBlocks.GOLD_CIRCUIT.get(), tr.nextInt(4, 6)),
+                    new ItemStack(RegBlocks.DIAMOND_CIRCUIT.get(), tr.nextInt(2, 4)),
+                    new ItemStack(RegBlocks.PLATE_PLATINUM_JACKS.get(), tr.nextInt(2, 4))
+            };
+
     }
     public BlockState getStateForPlacement(BlockItemUseContext context) {
 
@@ -71,7 +100,7 @@ public class DigitalMicroscope extends BlockSideDevice {
                 case EAST:
                       return VoxelShapeUtil.shapeRotCCW90(getFacingShape(s));
                 case WEST:
-                      return VoxelShapeUtil.shapeRotCW90(getFacingShape(s));
+                      return VoxelShapeUtil.shapeRotCW90(VoxelShapeUtil.shapeRot180(getFacingShape(s)));
             }
 
         return VoxelShapes.fullCube();

@@ -27,18 +27,17 @@ public class SmallSink extends BlockSideDevice {
                 new ItemStack(RegItems.CERAMIC_SHARD.get(), tr.nextInt(1,2))
         };
     }
+    final VoxelShape SHP = Block.makeCuboidShape(3,10,0,13,15,10);
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         switch (state.get(FACING)) {
             case EAST:
-                return VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(3,10,0,13,15,10));
+                return VoxelShapeUtil.shapeRotCW90(SHP);
             case WEST:
-                return VoxelShapeUtil.shapeRotCCW90(Block.makeCuboidShape(3,10,0,13,15,10));
+                return VoxelShapeUtil.shapeRotCCW90(SHP);
             case NORTH:
-                return VoxelShapeUtil.shapeRot180(Block.makeCuboidShape(3,10,0,13,15,10));
+                return VoxelShapeUtil.shapeRot180(SHP);
             case SOUTH:
-                return VoxelShapes.or(
-                        Block.makeCuboidShape(3,10,0,13,15,10)
-                );
+                return VoxelShapes.or(SHP);
         }
         return VoxelShapes.fullCube();
     }

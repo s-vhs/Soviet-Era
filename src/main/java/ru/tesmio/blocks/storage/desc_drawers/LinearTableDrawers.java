@@ -31,7 +31,7 @@ public class LinearTableDrawers extends LinearTable {
     @Override
     public ItemStack[] getItemsDrop(PlayerEntity pl) {
         return new ItemStack[] {
-                new ItemStack(RegItems.WOOD_SCRAP.get(), tr.nextInt(2,4)),
+                new ItemStack(RegItems.ALUMINUM_SCRAP.get(), tr.nextInt(2,4)),
         };
     }
     @Override

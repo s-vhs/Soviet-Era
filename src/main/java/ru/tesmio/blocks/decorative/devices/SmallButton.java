@@ -77,15 +77,16 @@ public class SmallButton extends BlockForFacingDevice {
         }
         return 0;
     }
+    final VoxelShape[] SHAPES = new VoxelShape[] {
+            VoxelShapes.create(0.3725D, 0.3725D, 0.9D, 0.6275D, 0.6275D, 1D),
+            VoxelShapes.create(0.3725D, 0.3725D, 0D, 0.6275D, 0.6275D, 0.1D),
+            VoxelShapes.create(0.1D, 0.3725D, 0.3725D, 0D, 0.6275D, 0.6275D),
+            VoxelShapes.create(0.9D, 0.3725D, 0.3725D, 1D, 0.6275D, 0.6275D),
+            VoxelShapes.create(0.3725D, 0D, 0.3725D, 0.6275D, 0.1D, 0.6275D),
+            VoxelShapes.create(0.3725D, 0.9D, 0.3725D, 0.6275D, 1D, 0.6275D)
+    };
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        VoxelShape[] SHAPES = new VoxelShape[] {
-                VoxelShapes.create(0.3725D, 0.3725D, 0.9D, 0.6275D, 0.6275D, 1D),
-                VoxelShapes.create(0.3725D, 0.3725D, 0D, 0.6275D, 0.6275D, 0.1D),
-                VoxelShapes.create(0.1D, 0.3725D, 0.3725D, 0D, 0.6275D, 0.6275D),
-                VoxelShapes.create(0.9D, 0.3725D, 0.3725D, 1D, 0.6275D, 0.6275D),
-                VoxelShapes.create(0.3725D, 0D, 0.3725D, 0.6275D, 0.1D, 0.6275D),
-                VoxelShapes.create(0.3725D, 0.9D, 0.3725D, 0.6275D, 1D, 0.6275D)
-        };
+
         switch (state.get(FACING)) {
             case SOUTH:
                 return SHAPES[0];

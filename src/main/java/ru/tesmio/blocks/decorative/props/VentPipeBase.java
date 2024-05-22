@@ -15,8 +15,9 @@ public class VentPipeBase extends BlockCustomModel {
     public VentPipeBase(Properties properties) {
         super(properties);
     }
+    final VoxelShape SHP = Block.makeCuboidShape(0,0,0,16,16,16);
     public VoxelShape getShape(BlockState s, IBlockReader w, BlockPos p, ISelectionContext c) {
-        return Block.makeCuboidShape(0,0,0,16,16,16);
+        return SHP;
     }
     @Override
     public ItemStack[] getItemsDrop(PlayerEntity pl) {

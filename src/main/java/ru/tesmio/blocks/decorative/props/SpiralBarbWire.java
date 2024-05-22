@@ -20,7 +20,9 @@ public class SpiralBarbWire extends BlockSideCustomModel {
     public SpiralBarbWire(Properties properties, float shadingInside) {
         super(properties, shadingInside);
     }
-
+    public boolean isCustomDrop() {
+        return true;
+    }
     public void onEntityCollision(BlockState s, World w, BlockPos p, Entity e) {
         e.attackEntityFrom(DamageSource.CACTUS, 3);
         e.setMotionMultiplier(s, new Vector3d(0.25D, (double) 0.05F, 0.25D));
@@ -28,15 +30,16 @@ public class SpiralBarbWire extends BlockSideCustomModel {
     @Override
     public ItemStack[] getItemsDrop(PlayerEntity pl) {
         return new ItemStack[] {
-                new ItemStack(RegItems.RUSTY_SCRAP.get(), tr.nextInt(1)),
+                new ItemStack(RegItems.RUSTY_SCRAP.get(), 2),
         };
     }
     @Override
     public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         return this.getShape(state, worldIn, pos, context);
     }
+    final VoxelShape BOX = Block.makeCuboidShape(2, 0, 0, 14, 11, 16);
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        VoxelShape BOX = Block.makeCuboidShape(2, 0, 0, 14, 11, 16);
+
         switch (state.get(FACING)) {
             case SOUTH:
             case NORTH:

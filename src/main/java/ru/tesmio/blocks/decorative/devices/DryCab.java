@@ -40,23 +40,24 @@ public class DryCab extends BlockSideDevice {
                 new ItemStack(RegBlocks.GOLD_CIRCUIT.get(), tr.nextInt(1))
         };
     }
+    final VoxelShape SHPS[] = new VoxelShape[] {
+            Block.makeCuboidShape(5, 2, 1, 11, 16, 15),
+            Block.makeCuboidShape(4, 3, 1, 12, 15, 15),
+            Block.makeCuboidShape(3, 4, 1, 13, 14, 15),
+            Block.makeCuboidShape(2, 5, 1, 14, 13, 15),
+            Block.makeCuboidShape(1, 6, 1, 15, 12, 15),
+            Block.makeCuboidShape(1, 0, 2, 15, 2, 14),
+            Block.makeCuboidShape(2, 0, 2, 14, 3, 14),
+            Block.makeCuboidShape(3, 0, 2, 13, 5, 14),
+
+            Block.makeCuboidShape(5, 3, 0, 11, 15, 16),
+            Block.makeCuboidShape(4, 4, 0, 12, 14, 16),
+            Block.makeCuboidShape(3, 5, 0, 13, 13, 16),
+            Block.makeCuboidShape(2, 6, 0, 14, 12, 16),
+    };
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
 
-        VoxelShape SHPS[] = new VoxelShape[] {
-                Block.makeCuboidShape(5, 2, 1, 11, 16, 15),
-                Block.makeCuboidShape(4, 3, 1, 12, 15, 15),
-                Block.makeCuboidShape(3, 4, 1, 13, 14, 15),
-                Block.makeCuboidShape(2, 5, 1, 14, 13, 15),
-                Block.makeCuboidShape(1, 6, 1, 15, 12, 15),
-                Block.makeCuboidShape(1, 0, 2, 15, 2, 14),
-                Block.makeCuboidShape(2, 0, 2, 14, 3, 14),
-                Block.makeCuboidShape(3, 0, 2, 13, 5, 14),
 
-                Block.makeCuboidShape(5, 3, 0, 11, 15, 16),
-                Block.makeCuboidShape(4, 4, 0, 12, 14, 16),
-                Block.makeCuboidShape(3, 5, 0, 13, 13, 16),
-                Block.makeCuboidShape(2, 6, 0, 14, 12, 16),
-        };
         switch (state.get(FACING)) {
             case NORTH:
             case SOUTH:

@@ -93,50 +93,39 @@ public class RastyFrameBlock extends BaseBlock {
                     switch(d) {
                         case NORTH:
                             if (!state.get(CONTAINS_BLOCK_NORTH)) {
-                                RastyFrameTile fTE = (RastyFrameTile) tileEntity;
-                                    fTE.clear();
                                     world.setBlockState(pos, state.with(CONTAINS_BLOCK_NORTH, Boolean.TRUE), 2);
-                                    fTE.setNorthContains(handBlockState);
+                                fTEG.setNorthContains(handBlockState);
                             }
                             break;
                         case SOUTH:
                             if (!state.get(CONTAINS_BLOCK_SOUTH)) {
-                                RastyFrameTile fTE = (RastyFrameTile) tileEntity;
-                                fTE.clear();
                                 world.setBlockState(pos, state.with(CONTAINS_BLOCK_SOUTH, Boolean.TRUE), 2);
-                                fTE.setSouthContains(handBlockState);
+                                fTEG.setSouthContains(handBlockState);
                             }
                             break;
                         case EAST:
                             if (!state.get(CONTAINS_BLOCK_EAST)) {
-                                RastyFrameTile fTE = (RastyFrameTile) tileEntity;
-                                fTE.clear();
+
                                 world.setBlockState(pos, state.with(CONTAINS_BLOCK_EAST, Boolean.TRUE), 2);
-                                fTE.setEastContains(handBlockState);
+                                fTEG.setEastContains(handBlockState);
                             }
                             break;
                         case WEST:
                             if (!state.get(CONTAINS_BLOCK_WEST)) {
-                                RastyFrameTile fTE = (RastyFrameTile) tileEntity;
-                                fTE.clear();
                                 world.setBlockState(pos, state.with(CONTAINS_BLOCK_WEST, Boolean.TRUE), 2);
-                                fTE.setWestContains(handBlockState);
+                                fTEG.setWestContains(handBlockState);
                             }
                             break;
                         case UP:
                             if (!state.get(CONTAINS_BLOCK_TOP)) {
-                                RastyFrameTile fTE = (RastyFrameTile) tileEntity;
-                                fTE.clear();
                                 world.setBlockState(pos, state.with(CONTAINS_BLOCK_TOP, Boolean.TRUE), 2);
-                                fTE.setUpContains(handBlockState);
+                                fTEG.setUpContains(handBlockState);
                             }
                             break;
                         case DOWN:
                             if (!state.get(CONTAINS_BLOCK_BOTTOM)) {
-                                RastyFrameTile fTE = (RastyFrameTile) tileEntity;
-                                fTE.clear();
                                 world.setBlockState(pos, state.with(CONTAINS_BLOCK_BOTTOM, Boolean.TRUE), 2);
-                                fTE.setDownContains(handBlockState);
+                                fTEG.setDownContains(handBlockState);
                             }
                             break;
                     }

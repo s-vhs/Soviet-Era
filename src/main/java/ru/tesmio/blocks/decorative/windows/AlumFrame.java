@@ -7,6 +7,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
@@ -21,7 +22,10 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import ru.tesmio.blocks.baseblock.BlockSideConnectUpDown;
 import ru.tesmio.reg.RegBlocks;
+import ru.tesmio.reg.RegItems;
 import ru.tesmio.utils.VoxelShapeUtil;
+
+import java.util.concurrent.ThreadLocalRandom;
 
 /*
 Добавить партиклы при разбитии
@@ -51,6 +55,14 @@ public class AlumFrame extends BlockSideConnectUpDown {
                 }
             }
         }
+    }
+    ThreadLocalRandom r = ThreadLocalRandom.current();
+    @Override
+    public ItemStack[] getItemsDrop(PlayerEntity pl) {
+        ItemStack is = new ItemStack(RegItems.ALUMINUM_SCRAP.get() ,r.nextInt(2,4));
+        return new ItemStack[] {
+                is
+        };
     }
     @Override
     public ActionResultType onBlockActivated(BlockState s, World w, BlockPos p, PlayerEntity pl, Hand hand, BlockRayTraceResult hit) {

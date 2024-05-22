@@ -20,9 +20,13 @@ public class IncLamp extends BlockRotatedLamp {
         this.setDefaultState(this.stateContainer.getBaseState().with(FACING, EnumOrientation.NORTH).with(LIT_VALUE, 0));
     }
 
+
     @Override
     public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         return this.getShape(state, worldIn, pos, context);
+    }
+    public boolean disableJSONDrop() {
+        return true;
     }
     @Override
     public ItemStack[] getItemsDrop(PlayerEntity pl) {
@@ -32,15 +36,16 @@ public class IncLamp extends BlockRotatedLamp {
                 new ItemStack(RegItems.ALUMINUM_SCRAP.get(), tr.nextInt(1)),
         };
     }
+    final   VoxelShape[] SHAPES = new VoxelShape[] {
+            VoxelShapes.create(0.31D, 0.31D, 0.55D, 0.69D, 0.69D, 1D),
+            VoxelShapes.create(0.31D, 0.31D, 0D, 0.69D, 0.69D, 0.45D),
+            VoxelShapes.create(0.45D, 0.31D, 0.31D, 0D, 0.69D, 0.69D),
+            VoxelShapes.create(0.55D, 0.31D, 0.31D, 1D, 0.69D, 0.69D),
+            VoxelShapes.create(0.31D, 0D, 0.31D, 0.69D, 0.45D, 0.69D),
+            VoxelShapes.create(0.31D, 0.55D, 0.31D, 0.69D, 1D, 0.69D)
+    };
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        VoxelShape[] SHAPES = new VoxelShape[] {
-                VoxelShapes.create(0.31D, 0.31D, 0.55D, 0.69D, 0.69D, 1D),
-                VoxelShapes.create(0.31D, 0.31D, 0D, 0.69D, 0.69D, 0.45D),
-                VoxelShapes.create(0.45D, 0.31D, 0.31D, 0D, 0.69D, 0.69D),
-                VoxelShapes.create(0.55D, 0.31D, 0.31D, 1D, 0.69D, 0.69D),
-                VoxelShapes.create(0.31D, 0D, 0.31D, 0.69D, 0.45D, 0.69D),
-                VoxelShapes.create(0.31D, 0.55D, 0.31D, 0.69D, 1D, 0.69D)
-        };
+
         switch (state.get(FACING)) {
             case SOUTH:
                 return SHAPES[0];

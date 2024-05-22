@@ -2,6 +2,8 @@ package ru.tesmio.blocks.decorative.props;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.state.properties.BedPart;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -9,10 +11,11 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import ru.tesmio.blocks.baseblock.BlockBed;
+import ru.tesmio.reg.RegItems;
 import ru.tesmio.utils.VoxelShapeUtil;
 
 public class BathTube extends BlockBed {
-    VoxelShape[] SHAPES = new VoxelShape[]{
+    final VoxelShape[] SHAPES = new VoxelShape[]{
             Block.makeCuboidShape(1.0D, 3.0D, 2.0D, 16.0D, 5.0D, 14.0D),
             Block.makeCuboidShape(0.0D, 5.0D, 2.0D, 1.0D, 12.0D, 14.0D),
             Block.makeCuboidShape(1.0D, 5.0D, 1.0D, 16.0D, 12.0D, 2.0D),
@@ -20,6 +23,12 @@ public class BathTube extends BlockBed {
     };
     public BathTube(Properties properties) {
         super(properties);
+    }
+    public ItemStack[] getItemsDrop(PlayerEntity pl) {
+        return new ItemStack[] {
+                new ItemStack(RegItems.CERAMIC_SHARD.get(), 4),
+                new ItemStack(RegItems.RUSTY_SCRAP.get(), 6)
+        };
     }
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
 

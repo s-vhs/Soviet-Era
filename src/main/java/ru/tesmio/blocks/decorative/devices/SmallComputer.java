@@ -96,15 +96,16 @@ public class SmallComputer extends BlockSideDevice {
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(FACING,ENABLE, WATERLOGGED);
     }
-    @Override
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        VoxelShape SHP[] = new VoxelShape[] {
-          Block.makeCuboidShape(6,0,4,13,4,16),
+    final VoxelShape SHP[] = new VoxelShape[] {
+        Block.makeCuboidShape(6,0,4,13,4,16),
                 Block.makeCuboidShape(1,0.25,4.4,6,1,15.875),
                 Block.makeCuboidShape(7,5,7,9,10.5,13),
                 Block.makeCuboidShape(7,5.5,7.25,13.5,10.25,12.75),
                 Block.makeCuboidShape(8.75,0,1,16,1,3)
-        };
+    };
+    @Override
+    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+
         switch (state.get(FACING)) {
             case SOUTH:
                 return VoxelShapes.or(

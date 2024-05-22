@@ -27,8 +27,9 @@ public class HomePipesBattery extends BlockSideCustomModel {
                 new ItemStack(RegItems.ARMATURES.get(), tr.nextInt(2,5))
         };
     }
+    final VoxelShape BOX = Block.makeCuboidShape(0,0,12,16,16,16);
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        VoxelShape BOX = Block.makeCuboidShape(0,0,12,16,16,16);
+
         switch (state.get(FACING)) {
             case NORTH:
                 return  BOX;

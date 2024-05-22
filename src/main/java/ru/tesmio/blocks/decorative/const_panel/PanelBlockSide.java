@@ -1,4 +1,4 @@
-package ru.tesmio.blocks.const_panel;
+package ru.tesmio.blocks.decorative.const_panel;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;

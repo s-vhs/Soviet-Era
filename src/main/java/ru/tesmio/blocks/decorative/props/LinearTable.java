@@ -2,9 +2,11 @@ package ru.tesmio.blocks.decorative.props;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.Direction;
@@ -17,6 +19,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import ru.tesmio.blocks.decorative.devices.base.BlockSideDevice;
 import ru.tesmio.reg.RegBlocks;
+import ru.tesmio.reg.RegItems;
 import ru.tesmio.utils.VoxelShapeUtil;
 
 public class LinearTable extends BlockSideDevice {
@@ -37,15 +40,106 @@ public class LinearTable extends BlockSideDevice {
         FluidState fluidstate = context.getWorld().getFluidState(context.getPos());
         return this.getDefaultState().with(FACING, context.getPlacementHorizontalFacing()).with(WATERLOGGED, Boolean.valueOf(fluidstate.getFluid() == Fluids.WATER));
     }
+    public ItemStack[] getItemsDrop(PlayerEntity pl) {
+        if(this == RegBlocks.CHEMLAB_TABLE_CASE.get() || this == RegBlocks.BIOLAB_TABLE_CASE.get()) {
+            return new ItemStack[] {
+                    new ItemStack(RegItems.ALUMINUM_SCRAP.get(), tr.nextInt(2,4)),
+                    new ItemStack(RegItems.RUSTY_SCRAP.get(), tr.nextInt(2,3)),
+                    new ItemStack(RegItems.COPPER_SCRAP.get(), tr.nextInt(3,6)),
+            };
+        }
+        return new ItemStack[] {
+                new ItemStack(RegItems.ALUMINUM_SCRAP.get(), tr.nextInt(2,4)),
+        };
+    }
+    final VoxelShape SHP = Block.makeCuboidShape(0,0,1,16,16,15);
+    final VoxelShape SHPS2[] = new VoxelShape[] {
+            VoxelShapes.or(VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0.5D,12D,0.5D,15.5D,15,15.5D)),
+                    VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0D,15,0D,16D,16,16D)),
+                    VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0.5D,0D,0.5D,1.5D,15,15.5D))),
+            VoxelShapes.or(VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0.5D,12D,0.5D,15.5D,15,15.5D)),
+                    VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0D,15,0D,16D,16,16D)),
+                    VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(14.5D,0D,0.5D,15.5D,15,15.5D))),
+            VoxelShapes.or(VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0.5D,12D,0.5D,15.5D,15,15.5D)),
+                    VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0D,15,0D,16D,16,16D)),
+                    VoxelShapeUtil.shapeRotCW90(   Block.makeCuboidShape(0.5D,0D,0.5D,1.5D,15,15.5D))),
+            VoxelShapes.or(VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0.5D,12D,0.5D,15.5D,15,15.5D)),
+                    VoxelShapeUtil.shapeRotCW90( Block.makeCuboidShape(0D,15,0D,16D,16,16D)),
+                    VoxelShapeUtil.shapeRotCW90( Block.makeCuboidShape(14.5D,0D,0.5D,15.5D,15,15.5D))),
+            VoxelShapes.or(
+                    VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0.5D,12D,0.5D,15.5D,15,15.5D)),
+                    VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0D,15,0D,16D,16,16D))),
+            VoxelShapes.or(
+                    VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0.5D,12D,0.5D,15.5D,15,15.5D)),
+                    VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0D,15,0D,16D,16,16D)),
+                    VoxelShapeUtil.shapeRotCW90( Block.makeCuboidShape(0.5D,0D,0.5D,1.5D,15,15.5D)),
+                    VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(14.5D,0D,0.5D,15.5D,15,15.5D))),
+            VoxelShapes.or(Block.makeCuboidShape(0.5D,12D,0.5D,15.5D,15,15.5D),
+                    Block.makeCuboidShape(0D,15,0D,16D,16,16D),
+                    Block.makeCuboidShape(0.5D,0D,0.5D,1.5D,15,15.5D)),
+            VoxelShapes.or(Block.makeCuboidShape(0.5D,12D,0.5D,15.5D,15,15.5D),
+                    Block.makeCuboidShape(0D,15,0D,16D,16,16D),
+                    Block.makeCuboidShape(14.5D,0D,0.5D,15.5D,15,15.5D)),
+            VoxelShapes.or(Block.makeCuboidShape(0.5D,12D,0.5D,15.5D,15,15.5D),
+                    Block.makeCuboidShape(0D,15,0D,16D,16,16D),
+                    Block.makeCuboidShape(0.5D,0D,0.5D,1.5D,15,15.5D)),
+            VoxelShapes.or(Block.makeCuboidShape(0.5D,12D,0.5D,15.5D,15,15.5D),
+                    Block.makeCuboidShape(0D,15,0D,16D,16,16D),
+                    Block.makeCuboidShape(14.5D,0D,0.5D,15.5D,15,15.5D)),
+            VoxelShapes.or(Block.makeCuboidShape(0.5D,12D,0.5D,15.5D,15,15.5D),
+                    Block.makeCuboidShape(0D,15,0D,16D,16,16D)),
+            VoxelShapes.or(Block.makeCuboidShape(0.5D,12D,0.5D,15.5D,15,15.5D),
+                    Block.makeCuboidShape(0D,15,0D,16D,16,16D),
+                    Block.makeCuboidShape(0.5D,0D,0.5D,1.5D,15,15.5D),
+                    Block.makeCuboidShape(14.5D,0D,0.5D,15.5D,15,15.5D)),
+            VoxelShapes.or(VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0.5D,4D,0.5D,15.5D,15,15.5D)),
+                    VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0D,15,0D,16D,16,16D)),
+                    VoxelShapeUtil.shapeRotCW90(   Block.makeCuboidShape(0.5D,0D,0.5D,1.5D,15,15.5D))),
+            VoxelShapes.or(VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0.5D,4D,0.5D,15.5D,15,15.5D)),
+                    VoxelShapeUtil.shapeRotCW90( Block.makeCuboidShape(0D,15,0D,16D,16,16D)),
+                    VoxelShapeUtil.shapeRotCW90( Block.makeCuboidShape(14.5D,0D,0.5D,15.5D,15,15.5D))),
+            VoxelShapes.or(VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0.5D,4D,0.5D,15.5D,15,15.5D)),
+                    VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0D,15,0D,16D,16,16D)),
+                    VoxelShapeUtil.shapeRotCW90(   Block.makeCuboidShape(0.5D,0D,0.5D,1.5D,15,15.5D))),
+            VoxelShapes.or(VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0.5D,4D,0.5D,15.5D,15,15.5D)),
+                    VoxelShapeUtil.shapeRotCW90( Block.makeCuboidShape(0D,15,0D,16D,16,16D)),
+                    VoxelShapeUtil.shapeRotCW90( Block.makeCuboidShape(14.5D,0D,0.5D,15.5D,15,15.5D))),
+            VoxelShapes.or(
+                    VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0.5D,4D,0.5D,15.5D,15,15.5D)),
+                    VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0D,15,0D,16D,16,16D))),
+            VoxelShapes.or(
+                    VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0.5D,4D,0.5D,15.5D,15,15.5D)),
+                    VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0D,15,0D,16D,16,16D)),
+                    VoxelShapeUtil.shapeRotCW90( Block.makeCuboidShape(0.5D,0D,0.5D,1.5D,15,15.5D)),
+                    VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(14.5D,0D,0.5D,15.5D,15,15.5D))),
+            VoxelShapes.or(Block.makeCuboidShape(0.5D,4D,0.5D,15.5D,15,15.5D),
+                    Block.makeCuboidShape(0D,15,0D,16D,16,16D),
+                    Block.makeCuboidShape(0.5D,0D,0.5D,1.5D,15,15.5D)),
+            VoxelShapes.or(Block.makeCuboidShape(0.5D,4D,0.5D,15.5D,15,15.5D),
+                    Block.makeCuboidShape(0D,15,0D,16D,16,16D),
+                    Block.makeCuboidShape(14.5D,0D,0.5D,15.5D,15,15.5D)),
+            VoxelShapes.or(Block.makeCuboidShape(0.5D,4D,0.5D,15.5D,15,15.5D),
+                    Block.makeCuboidShape(0D,15,0D,16D,16,16D),
+                    Block.makeCuboidShape(0.5D,0D,0.5D,1.5D,15,15.5D)),
+            VoxelShapes.or(Block.makeCuboidShape(0.5D,4D,0.5D,15.5D,15,15.5D),
+                    Block.makeCuboidShape(0D,15,0D,16D,16,16D),
+                    Block.makeCuboidShape(14.5D,0D,0.5D,15.5D,15,15.5D)),
+            VoxelShapes.or(Block.makeCuboidShape(0.5D,4D,0.5D,15.5D,15,15.5D),
+                    Block.makeCuboidShape(0D,15,0D,16D,16,16D)),
+            VoxelShapes.or(Block.makeCuboidShape(0.5D,4D,0.5D,15.5D,15,15.5D),
+                    Block.makeCuboidShape(0D,15,0D,16D,16,16D),
+                    Block.makeCuboidShape(0.5D,0D,0.5D,1.5D,15,15.5D),
+                    Block.makeCuboidShape(14.5D,0D,0.5D,15.5D,15,15.5D))
+};
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         if(state.getBlock() == RegBlocks.BIOLAB_TABLE.get() || state.getBlock() == RegBlocks.BIOLAB_TABLE_CASE.get() || state.getBlock() == RegBlocks.CHEMLAB_TABLE_CASE.get()) {
             switch (state.get(FACING)) {
                 case EAST:
                 case WEST:
-                    return VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0,0,1,16,16,15));
+                    return VoxelShapeUtil.shapeRotCW90(SHP);
                 case NORTH:
                 case SOUTH:
-                    return Block.makeCuboidShape(0,0,1,16,16,15);
+                    return SHP;
             }
             return VoxelShapes.fullCube();
         }
@@ -53,66 +147,40 @@ public class LinearTable extends BlockSideDevice {
             switch (state.get(FACING)) {
                 case EAST:
                     if(state.get(STATES) == EnumState.RIGHT) {
-                        return VoxelShapes.or(VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0.5D,12D,0.5D,15.5D,15,15.5D)),
-                                VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0D,15,0D,16D,16,16D)),
-                                VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0.5D,0D,0.5D,1.5D,15,15.5D)));
+                        return SHPS2[0];
                     }
                     if(state.get(STATES) == EnumState.LEFT) {
-                        return VoxelShapes.or(VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0.5D,12D,0.5D,15.5D,15,15.5D)),
-                                VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0D,15,0D,16D,16,16D)),
-                                VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(14.5D,0D,0.5D,15.5D,15,15.5D)));
+                        return SHPS2[1];
                     }
                 case WEST:
                     if(state.get(STATES) == EnumState.LEFT) {
-                        return VoxelShapes.or(VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0.5D,12D,0.5D,15.5D,15,15.5D)),
-                                VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0D,15,0D,16D,16,16D)),
-                                        VoxelShapeUtil.shapeRotCW90(   Block.makeCuboidShape(0.5D,0D,0.5D,1.5D,15,15.5D)));
+                        return SHPS2[2];
                     }
                     if(state.get(STATES) == EnumState.RIGHT) {
-                        return VoxelShapes.or(VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0.5D,12D,0.5D,15.5D,15,15.5D)),
-                                VoxelShapeUtil.shapeRotCW90( Block.makeCuboidShape(0D,15,0D,16D,16,16D)),
-                                        VoxelShapeUtil.shapeRotCW90( Block.makeCuboidShape(14.5D,0D,0.5D,15.5D,15,15.5D)));
+                        return SHPS2[3];
                     }
                     if(state.get(STATES) == EnumState.CENTER) {
-                        return VoxelShapes.or(
-                                VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0.5D,12D,0.5D,15.5D,15,15.5D)),
-                                        VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0D,15,0D,16D,16,16D)));
+                        return SHPS2[4];
                     }
-                     return VoxelShapes.or(
-                             VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0.5D,12D,0.5D,15.5D,15,15.5D)),
-                             VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0D,15,0D,16D,16,16D)),
-                             VoxelShapeUtil.shapeRotCW90( Block.makeCuboidShape(0.5D,0D,0.5D,1.5D,15,15.5D)),
-                             VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(14.5D,0D,0.5D,15.5D,15,15.5D)));
+                     return SHPS2[5];
                 case NORTH:
                     if(state.get(STATES) == EnumState.RIGHT) {
-                        return VoxelShapes.or(Block.makeCuboidShape(0.5D,12D,0.5D,15.5D,15,15.5D),
-                                Block.makeCuboidShape(0D,15,0D,16D,16,16D),
-                                Block.makeCuboidShape(0.5D,0D,0.5D,1.5D,15,15.5D));
+                        return SHPS2[6];
                     }
                     if(state.get(STATES) == EnumState.LEFT) {
-                        return VoxelShapes.or(Block.makeCuboidShape(0.5D,12D,0.5D,15.5D,15,15.5D),
-                                Block.makeCuboidShape(0D,15,0D,16D,16,16D),
-                                Block.makeCuboidShape(14.5D,0D,0.5D,15.5D,15,15.5D));
+                        return SHPS2[7];
                     }
                 case SOUTH:
                     if(state.get(STATES) == EnumState.LEFT) {
-                        return VoxelShapes.or(Block.makeCuboidShape(0.5D,12D,0.5D,15.5D,15,15.5D),
-                                Block.makeCuboidShape(0D,15,0D,16D,16,16D),
-                                Block.makeCuboidShape(0.5D,0D,0.5D,1.5D,15,15.5D));
+                        return SHPS2[8];
                     }
                     if(state.get(STATES) == EnumState.RIGHT) {
-                        return VoxelShapes.or(Block.makeCuboidShape(0.5D,12D,0.5D,15.5D,15,15.5D),
-                                Block.makeCuboidShape(0D,15,0D,16D,16,16D),
-                                Block.makeCuboidShape(14.5D,0D,0.5D,15.5D,15,15.5D));
+                        return SHPS2[9];
                     }
                     if(state.get(STATES) == EnumState.CENTER) {
-                        return VoxelShapes.or(Block.makeCuboidShape(0.5D,12D,0.5D,15.5D,15,15.5D),
-                                Block.makeCuboidShape(0D,15,0D,16D,16,16D));
+                        return SHPS2[10];
                     }
-                    return VoxelShapes.or(Block.makeCuboidShape(0.5D,12D,0.5D,15.5D,15,15.5D),
-                            Block.makeCuboidShape(0D,15,0D,16D,16,16D),
-                            Block.makeCuboidShape(0.5D,0D,0.5D,1.5D,15,15.5D),
-                            Block.makeCuboidShape(14.5D,0D,0.5D,15.5D,15,15.5D));
+                    return SHPS2[11];
             }
             return VoxelShapes.fullCube();
         }
@@ -120,66 +188,40 @@ public class LinearTable extends BlockSideDevice {
             switch (state.get(FACING)) {
                 case EAST:
                     if(state.get(STATES) == EnumState.RIGHT) {
-                        return VoxelShapes.or(VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0.5D,4D,0.5D,15.5D,15,15.5D)),
-                                VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0D,15,0D,16D,16,16D)),
-                                VoxelShapeUtil.shapeRotCW90(   Block.makeCuboidShape(0.5D,0D,0.5D,1.5D,15,15.5D)));
+                        return SHPS2[12];
                     }
                     if(state.get(STATES) == EnumState.LEFT) {
-                        return VoxelShapes.or(VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0.5D,4D,0.5D,15.5D,15,15.5D)),
-                                VoxelShapeUtil.shapeRotCW90( Block.makeCuboidShape(0D,15,0D,16D,16,16D)),
-                                VoxelShapeUtil.shapeRotCW90( Block.makeCuboidShape(14.5D,0D,0.5D,15.5D,15,15.5D)));
+                        return SHPS2[13];
                     }
                 case WEST:
                     if(state.get(STATES) == EnumState.LEFT) {
-                        return VoxelShapes.or(VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0.5D,4D,0.5D,15.5D,15,15.5D)),
-                                VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0D,15,0D,16D,16,16D)),
-                                VoxelShapeUtil.shapeRotCW90(   Block.makeCuboidShape(0.5D,0D,0.5D,1.5D,15,15.5D)));
+                        return SHPS2[14];
                     }
                     if(state.get(STATES) == EnumState.RIGHT) {
-                        return VoxelShapes.or(VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0.5D,4D,0.5D,15.5D,15,15.5D)),
-                                VoxelShapeUtil.shapeRotCW90( Block.makeCuboidShape(0D,15,0D,16D,16,16D)),
-                                VoxelShapeUtil.shapeRotCW90( Block.makeCuboidShape(14.5D,0D,0.5D,15.5D,15,15.5D)));
+                        return SHPS2[15];
                     }
                     if(state.get(STATES) == EnumState.CENTER) {
-                        return VoxelShapes.or(
-                                VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0.5D,4D,0.5D,15.5D,15,15.5D)),
-                                VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0D,15,0D,16D,16,16D)));
+                        return SHPS2[16];
                     }
-                    return VoxelShapes.or(
-                            VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0.5D,4D,0.5D,15.5D,15,15.5D)),
-                            VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0D,15,0D,16D,16,16D)),
-                            VoxelShapeUtil.shapeRotCW90( Block.makeCuboidShape(0.5D,0D,0.5D,1.5D,15,15.5D)),
-                            VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(14.5D,0D,0.5D,15.5D,15,15.5D)));
+                    return SHPS2[17];
                 case NORTH:
                     if(state.get(STATES) == EnumState.RIGHT) {
-                        return VoxelShapes.or(Block.makeCuboidShape(0.5D,4D,0.5D,15.5D,15,15.5D),
-                                Block.makeCuboidShape(0D,15,0D,16D,16,16D),
-                                Block.makeCuboidShape(0.5D,0D,0.5D,1.5D,15,15.5D));
+                        return SHPS2[18];
                     }
                     if(state.get(STATES) == EnumState.LEFT) {
-                        return VoxelShapes.or(Block.makeCuboidShape(0.5D,4D,0.5D,15.5D,15,15.5D),
-                                Block.makeCuboidShape(0D,15,0D,16D,16,16D),
-                                Block.makeCuboidShape(14.5D,0D,0.5D,15.5D,15,15.5D));
+                        return SHPS2[19];
                     }
                 case SOUTH:
                     if(state.get(STATES) == EnumState.LEFT) {
-                        return VoxelShapes.or(Block.makeCuboidShape(0.5D,4D,0.5D,15.5D,15,15.5D),
-                                Block.makeCuboidShape(0D,15,0D,16D,16,16D),
-                                Block.makeCuboidShape(0.5D,0D,0.5D,1.5D,15,15.5D));
+                        return SHPS2[20];
                     }
                     if(state.get(STATES) == EnumState.RIGHT) {
-                        return VoxelShapes.or(Block.makeCuboidShape(0.5D,4D,0.5D,15.5D,15,15.5D),
-                                Block.makeCuboidShape(0D,15,0D,16D,16,16D),
-                                Block.makeCuboidShape(14.5D,0D,0.5D,15.5D,15,15.5D));
+                        return SHPS2[21];
                     }
                     if(state.get(STATES) == EnumState.CENTER) {
-                        return VoxelShapes.or(Block.makeCuboidShape(0.5D,4D,0.5D,15.5D,15,15.5D),
-                                Block.makeCuboidShape(0D,15,0D,16D,16,16D));
+                        return SHPS2[22];
                     }
-                    return VoxelShapes.or(Block.makeCuboidShape(0.5D,4D,0.5D,15.5D,15,15.5D),
-                            Block.makeCuboidShape(0D,15,0D,16D,16,16D),
-                            Block.makeCuboidShape(0.5D,0D,0.5D,1.5D,15,15.5D),
-                            Block.makeCuboidShape(14.5D,0D,0.5D,15.5D,15,15.5D));
+                    return SHPS2[23];
             }
             return VoxelShapes.fullCube();
         }

@@ -1,6 +1,5 @@
 package ru.tesmio.data.providers;
 
-import net.minecraft.advancements.criterion.InventoryChangeTrigger;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.*;
 import net.minecraft.item.Items;
@@ -9,6 +8,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ForgeRecipeProvider;
 import ru.tesmio.core.Core;
+import ru.tesmio.core.SETags;
+import ru.tesmio.data.recipes.ShapelessRecipeBuilder2;
+import ru.tesmio.reg.RegBlocks;
 import ru.tesmio.reg.RegItems;
 
 import java.util.function.Consumer;
@@ -20,6 +22,39 @@ public class SovietRecipeProvider extends ForgeRecipeProvider {
     @Override
     protected void registerRecipes(Consumer<IFinishedRecipe> consumer)
     {
+        ShapedRecipeBuilder.shapedRecipe(RegItems.REDSTONE_GRINDER.get())
+                .key('#', Items.IRON_INGOT)
+                .key('$', SETags.Items.TAG_COPPER_INGOT)
+                .key('R', Items.REDSTONE)
+                .key('T', Items.DIAMOND)
+                .patternLine("T##")
+                .patternLine("TR#")
+                .patternLine("#$$")
+                .addCriterion("has_item", hasItem(Items.DIAMOND))
+                .build(consumer, modId("redstone_grinder"));
+        ShapedRecipeBuilder.shapedRecipe(RegItems.WIRE_CUTTERS.get())
+                .key('#', Items.IRON_INGOT)
+                .key('$', Items.STICK)
+                .patternLine("# #")
+                .patternLine("$#$")
+                .patternLine("$ $")
+                .addCriterion("has_item", hasItem(Items.IRON_INGOT))
+                .build(consumer, modId("wire_cutters"));
+        ShapedRecipeBuilder.shapedRecipe(RegItems.PULLER.get())
+                .key('#', Items.IRON_INGOT)
+                .key('$', Items.STICK)
+                .patternLine("# #")
+                .patternLine(" $ ")
+                .patternLine(" $ ")
+                .addCriterion("has_item", hasItem(Items.IRON_INGOT))
+                .build(consumer, modId("puller"));
+        ShapedRecipeBuilder.shapedRecipe(RegItems.WRENCH.get())
+                .key('#', Items.IRON_INGOT)
+                .patternLine("# #")
+                .patternLine("###")
+                .patternLine("  #")
+                .addCriterion("has_item", hasItem(Items.IRON_INGOT))
+                .build(consumer, modId("wrench"));
         ShapedRecipeBuilder.shapedRecipe(RegItems.CERAMIC_DUST.get())
                 .key('#', RegItems.PESTLE.get())
                 .key('$', RegItems.QUAD_TILE.get())
@@ -27,8 +62,8 @@ public class SovietRecipeProvider extends ForgeRecipeProvider {
                 .patternLine(" # ")
                 .patternLine(" $ ")
                 .patternLine(" % ")
-                .addCriterion("pestle", InventoryChangeTrigger.Instance.forItems(RegItems.PESTLE.get(),RegItems.QUAD_TILE.get(), RegItems.MORTAR.get()))
-                .build(consumer, "ceramic_dust1");
+                .addCriterion("has_item", hasItem(RegItems.MORTAR.get()))
+                .build(consumer, modId("ceramic_dust1"));
         ShapedRecipeBuilder.shapedRecipe(RegItems.CERAMIC_DUST.get())
                 .key('#', RegItems.PESTLE.get())
                 .key('$', RegItems.REST_TILE.get())
@@ -36,8 +71,8 @@ public class SovietRecipeProvider extends ForgeRecipeProvider {
                 .patternLine(" # ")
                 .patternLine(" $ ")
                 .patternLine(" % ")
-                .addCriterion("pestle", InventoryChangeTrigger.Instance.forItems(RegItems.PESTLE.get(),RegItems.REST_TILE.get(), RegItems.MORTAR.get()))
-                .build(consumer, "ceramic_dust2");
+                .addCriterion("has_item", hasItem(RegItems.MORTAR.get()))
+                .build(consumer, modId("ceramic_dust2"));
         ShapedRecipeBuilder.shapedRecipe(RegItems.CERAMIC_DUST.get())
                 .key('#', RegItems.PESTLE.get())
                 .key('$', RegItems.SMALL_TILE.get())
@@ -45,8 +80,8 @@ public class SovietRecipeProvider extends ForgeRecipeProvider {
                 .patternLine(" # ")
                 .patternLine(" $ ")
                 .patternLine(" % ")
-                .addCriterion("pestle", InventoryChangeTrigger.Instance.forItems(RegItems.PESTLE.get(),RegItems.SMALL_TILE.get(), RegItems.MORTAR.get()))
-                .build(consumer, "ceramic_dust3");
+                .addCriterion("has_item", hasItem(RegItems.MORTAR.get()))
+                .build(consumer, modId("ceramic_dust3"));
         ShapedRecipeBuilder.shapedRecipe(RegItems.CERAMIC_DUST.get())
                 .key('#', RegItems.PESTLE.get())
                 .key('$', RegItems.BIG_TILE.get())
@@ -54,8 +89,8 @@ public class SovietRecipeProvider extends ForgeRecipeProvider {
                 .patternLine(" # ")
                 .patternLine(" $ ")
                 .patternLine(" % ")
-                .addCriterion("pestle", InventoryChangeTrigger.Instance.forItems(RegItems.PESTLE.get(),RegItems.SMALL_TILE.get(), RegItems.MORTAR.get()))
-                .build(consumer, "ceramic_dust4");
+                .addCriterion("has_item", hasItem(RegItems.MORTAR.get()))
+                .build(consumer, modId("ceramic_dust4"));
         ShapedRecipeBuilder.shapedRecipe(RegItems.PESTLE.get())
                 .key('$', Items.STICK)
                 .key('%', Items.IRON_INGOT)
@@ -63,123 +98,143 @@ public class SovietRecipeProvider extends ForgeRecipeProvider {
                 .patternLine(" $ ")
                 .patternLine("%  ")
                 .addCriterion("has_item",  hasItem(Items.IRON_INGOT))
-                .build(consumer, "pestle");
+                .build(consumer, modId("pestle"));
         ShapedRecipeBuilder.shapedRecipe(RegItems.MORTAR.get())
                 .key('$', Blocks.STONE)
                 .patternLine("   ")
                 .patternLine("$ $")
                 .patternLine(" $ ")
-                .addCriterion("has_item",  hasItem(Items.IRON_INGOT))
-                .build(consumer, "mortar");
+                .addCriterion("has_item",  hasItem(Blocks.STONE))
+                .build(consumer, modId("mortar"));
         ShapedRecipeBuilder.shapedRecipe(RegItems.SIEVE.get())
                 .key('$', Tags.Items.NUGGETS_IRON)
                 .patternLine("   ")
                 .patternLine("$ $")
                 .patternLine(" $ ")
-                .addCriterion("has_item",  hasItem(Items.IRON_INGOT))
-                .build(consumer, "sieve");
+                .addCriterion("has_item",  hasItem(Tags.Items.NUGGETS_IRON))
+                .build(consumer, modId("sieve"));
         ShapedRecipeBuilder.shapedRecipe(RegItems.PLATOL_DUST.get())
                 .key('#', RegItems.GOLD_DUST.get())
                 .key('$', RegItems.PLATINUM_DUST.get())
                 .patternLine("$$$")
                 .patternLine("$#$")
                 .patternLine("$$$")
-                .addCriterion("has_item",  hasItem(Items.IRON_INGOT))
-                .build(consumer, "platol_dust");
+                .addCriterion("has_item",  hasItem(RegItems.PLATINUM_DUST.get())).addCriterion("has_item2",  hasItem(RegItems.PLATINUM_DUST.get()))
+                .build(consumer, modId("platol_dust"));
         ShapelessRecipeBuilder.shapelessRecipe(RegItems.SMALL_LEAD_DUST.get(), 1)
                 .addIngredient(RegItems.LEADCERAMIC_DUST.get())
                 .addIngredient(RegItems.SIEVE.get())
-                .addCriterion("has_item", hasItem(RegItems.SMALL_LEAD_DUST.get()))
-                .build(consumer);
+                .addCriterion("has_item", hasItem(RegItems.LEADCERAMIC_DUST.get()))
+                .build(consumer, modId("small_lead_dust"));
         ShapedRecipeBuilder.shapedRecipe(RegItems.PLATINUM_SWORD.get())
                 .key('#', Items.STICK)
                 .key('$', RegItems.PLATINUM_INGOT.get())
                 .patternLine("  $")
                 .patternLine(" $ ")
                 .patternLine("#  ")
-                .addCriterion("has_item",  hasItem(Items.IRON_INGOT))
-                .build(consumer, "platinum_sword");
+                .addCriterion("has_item",  hasItem(RegItems.PLATINUM_INGOT.get()))
+                .build(consumer, modId("platinum_sword"));
         ShapedRecipeBuilder.shapedRecipe(RegItems.PLATINUM_PICKAXE.get())
                 .key('#', Items.STICK)
                 .key('$', RegItems.PLATINUM_INGOT.get())
                 .patternLine("$$$")
                 .patternLine(" # ")
                 .patternLine(" # ")
-                .addCriterion("has_item",  hasItem(Items.IRON_INGOT))
-                .build(consumer, "platinum_pickaxe");
+                .addCriterion("has_item",  hasItem(RegItems.PLATINUM_INGOT.get()))
+                .build(consumer, modId("platinum_pickaxe"));
         ShapedRecipeBuilder.shapedRecipe(RegItems.PLATINUM_AXE.get())
                 .key('#', Items.STICK)
                 .key('$', RegItems.PLATINUM_INGOT.get())
                 .patternLine(" $$")
                 .patternLine(" #$")
                 .patternLine(" # ")
-                .addCriterion("has_item",  hasItem(Items.IRON_INGOT))
-                .build(consumer, "platinum_axe");
+                .addCriterion("has_item",  hasItem(RegItems.PLATINUM_INGOT.get()))
+                .build(consumer, modId("platinum_axe"));
         ShapedRecipeBuilder.shapedRecipe(RegItems.PLATINUM_HOE.get())
                 .key('#', Items.STICK)
                 .key('$', RegItems.PLATINUM_INGOT.get())
                 .patternLine("$$ ")
                 .patternLine(" # ")
                 .patternLine(" # ")
-                .addCriterion("has_item",  hasItem(Items.IRON_INGOT))
-                .build(consumer, "platinum_hoe");
+                .addCriterion("has_item",  hasItem(RegItems.PLATINUM_INGOT.get()))
+                .build(consumer, modId("platinum_hoe"));
         ShapedRecipeBuilder.shapedRecipe(RegItems.PLATINUM_SHOVEL.get())
                 .key('#', Items.STICK)
                 .key('$', RegItems.PLATINUM_INGOT.get())
                 .patternLine(" $ ")
                 .patternLine(" # ")
                 .patternLine(" # ")
-                .addCriterion("has_item",  hasItem(Items.IRON_INGOT))
-                .build(consumer, "platinum_shovel");
+                .addCriterion("has_item",  hasItem(RegItems.PLATINUM_INGOT.get()))
+                .build(consumer, modId("platinum_shovel"));
         ShapedRecipeBuilder.shapedRecipe(RegItems.PLATOL_SWORD.get())
                 .key('#', Items.STICK)
                 .key('$', RegItems.PLATOL_INGOT.get())
                 .patternLine("  $")
                 .patternLine(" $ ")
                 .patternLine("#  ")
-                .addCriterion("has_item",  hasItem(Items.IRON_INGOT))
-                .build(consumer, "platol_sword");
+                .addCriterion("has_item",  hasItem(RegItems.PLATOL_INGOT.get()))
+                .build(consumer, modId("platol_sword"));
         ShapedRecipeBuilder.shapedRecipe(RegItems.PLATOL_PICKAXE.get())
                 .key('#', Items.STICK)
                 .key('$', RegItems.PLATOL_INGOT.get())
                 .patternLine("$$$")
                 .patternLine(" # ")
                 .patternLine(" # ")
-                .addCriterion("has_item",  hasItem(Items.IRON_INGOT))
-                .build(consumer, "platol_pickaxe");
+                .addCriterion("has_item",  hasItem(RegItems.PLATOL_INGOT.get()))
+                .build(consumer, modId("platol_pickaxe"));
         ShapedRecipeBuilder.shapedRecipe(RegItems.PLATOL_AXE.get())
                 .key('#', Items.STICK)
                 .key('$', RegItems.PLATOL_INGOT.get())
                 .patternLine(" $$")
                 .patternLine(" #$")
                 .patternLine(" # ")
-                .addCriterion("has_item",  hasItem(Items.IRON_INGOT))
-                .build(consumer, "platol_axe");
+                .addCriterion("has_item",  hasItem(RegItems.PLATOL_INGOT.get()))
+                .build(consumer, modId("platol_axe"));
         ShapedRecipeBuilder.shapedRecipe(RegItems.PLATOL_HOE.get())
                 .key('#', Items.STICK)
                 .key('$', RegItems.PLATOL_INGOT.get())
                 .patternLine("$$ ")
                 .patternLine(" # ")
                 .patternLine(" # ")
-                .addCriterion("has_item",  hasItem(Items.IRON_INGOT))
-                .build(consumer, "platol_hoe");
+                .addCriterion("has_item",  hasItem(RegItems.PLATOL_INGOT.get()))
+                .build(consumer, modId("platol_hoe"));
         ShapedRecipeBuilder.shapedRecipe(RegItems.PLATOL_SHOVEL.get())
                 .key('#', Items.STICK)
                 .key('$', RegItems.PLATOL_INGOT.get())
                 .patternLine(" $ ")
                 .patternLine(" # ")
                 .patternLine(" # ")
-                .addCriterion("platol_shovel",  hasItem(Items.IRON_INGOT))
-                .build(consumer, "platol_shovel");
+                .addCriterion("has_item",  hasItem(RegItems.PLATOL_INGOT.get()))
+                .build(consumer, modId("platol_shovel"));
         ShapelessRecipeBuilder.shapelessRecipe(RegItems.LEAD_DUST.get(), 1)
                 .addIngredient(RegItems.SMALL_LEAD_DUST.get(), 4)
-                .addCriterion("platol_ingot", hasItem(RegItems.LEAD_DUST.get()))
-                .build(consumer);
+                .addCriterion("has_item", hasItem(RegItems.SMALL_LEAD_DUST.get()))
+                .build(consumer, modId("lead_dust"));
+        ShapelessRecipeBuilder.shapelessRecipe(Items.BRICK)
+                .addIngredient(Items.CLAY_BALL, 1).addIngredient(RegItems.CRACKED_RED_BRICK.get())
+                .addCriterion("has_item", hasItem(RegItems.CRACKED_RED_BRICK.get()))
+                .build(consumer, modId("vanilla_brick"));
+        ShapelessRecipeBuilder.shapelessRecipe(RegBlocks.BRICKS_BR.get())
+                .addIngredient(RegItems.CRACKED_RED_BRICK.get(), 4)
+                .addCriterion("has_item", hasItem(RegItems.CRACKED_RED_BRICK.get()))
+                .build(consumer, modId("red_bricks"));
+        ShapelessRecipeBuilder.shapelessRecipe(RegBlocks.YELLOW_BRICKS_3_BR.get())
+                .addIngredient(RegItems.CRACKED_YELLOW_BRICK.get(), 4)
+                .addCriterion("has_item", hasItem(RegItems.CRACKED_YELLOW_BRICK.get()))
+                .build(consumer, modId("yel_bricks"));
+        ShapelessRecipeBuilder.shapelessRecipe(RegBlocks.WHITE_BRICKS_BR.get())
+                .addIngredient(RegItems.WHITE_BRICK.get(), 4)
+                .addCriterion("has_item", hasItem(RegItems.WHITE_BRICK.get()))
+                .build(consumer, modId("white_bricks"));
+
+        ShapelessRecipeBuilder2.shapelessRecipe(Blocks.GRAVEL)
+                .addIngredient(SETags.Items.TAG_BROKEN_BRICK, 9)
+                .addCriterion("has_item", hasItem(SETags.Items.TAG_BROKEN_BRICK))
+                .build(consumer, modId("vanilla_gravel"));
 
         //blasting recipe
-
         CookingRecipeBuilder.blastingRecipe(Ingredient.fromItems(RegItems.PLATOL_DUST.get()), RegItems.PLATOL_INGOT.get(), 5f, 100)
-                .addCriterion("platol_ingot", hasItem(RegItems.PLATOL_DUST.get()))
+                .addCriterion("has_item", hasItem(RegItems.PLATOL_DUST.get()))
                 .build(consumer, modId("platol_ingot"));
         CookingRecipeBuilder.blastingRecipe(Ingredient.fromItems(RegItems.LEAD_DUST.get()), RegItems.LEAD_INGOT.get(), 0.7f, 100)
                 .addCriterion("has_item", hasItem(RegItems.LEAD_DUST.get()))
@@ -220,8 +275,10 @@ public class SovietRecipeProvider extends ForgeRecipeProvider {
         CookingRecipeBuilder.blastingRecipe(Ingredient.fromItems(RegItems.NETHERITE_DUST.get()), Items.NETHERITE_INGOT, 0.9f, 600)
                 .addCriterion("has_item", hasItem(RegItems.NETHERITE_DUST.get()))
                 .build(consumer, modId("netherite_ingot"));
+
     }
 
+    //крафты сделать 4 мусор в измельчитель -> 1 порошок -> 1 слиток. Как раньше.
     private static ResourceLocation modId(String path) {
         return new ResourceLocation(Core.MODID, path);
     }

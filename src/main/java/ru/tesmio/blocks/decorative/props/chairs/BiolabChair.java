@@ -33,7 +33,7 @@ public class BiolabChair extends SittableBlock {
     public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         return this.getShape(state, worldIn, pos, context);
     }
-    VoxelShape[] BOXS = new VoxelShape[]{
+    final VoxelShape[] BOXS = new VoxelShape[]{
             Block.makeCuboidShape(3,7.75,3,13,8.5,13),
             Block.makeCuboidShape(4,0,4,12,8,12)
     };

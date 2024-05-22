@@ -18,7 +18,6 @@ import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.stats.Stats;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
@@ -96,10 +95,24 @@ public class AffinageFactory extends BaseBlock {
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
         return RegTileEntitys.AFFINAGE_TE.get().create();
     }
-    public void harvestBlock(World worldIn, PlayerEntity player, BlockPos pos, BlockState state, @Nullable TileEntity te, ItemStack stack) {
-        player.addStat(Stats.BLOCK_MINED.get(this));
-        player.addExhaustion(0.005F);
-        spawnDrops(state, worldIn, pos, te, player, stack);
+    @Override
+    public void harvestBlock(World w, PlayerEntity pl, BlockPos p, BlockState s, @Nullable TileEntity te, ItemStack st) {
+        if (!w.isRemote) {
+            if (!pl.isCreative()) {
+                getDropsWithBlock(w, p, pl);
+            }
+        }
+    }
+    protected void getDropsWithBlock(World w, BlockPos p,PlayerEntity pl) {
+        for(ItemStack is : getItemsDrop(pl)) {
+            spawnAsEntity(w, p, is);
+        }
+    }
+
+    public ItemStack[] getItemsDrop(PlayerEntity pl) {
+        return new ItemStack[] {
+                new ItemStack(this, 1)
+        };
     }
     @OnlyIn(Dist.CLIENT)
     public void animateTick(BlockState s, World w, BlockPos p, Random rand) {

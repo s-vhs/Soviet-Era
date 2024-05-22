@@ -47,21 +47,24 @@ public class Siren extends BlockForFacingDevice {
                 new ItemStack(RegItems.RUSTY_SCRAP.get(), tr.nextInt(2,3))
         };
     }
+    final VoxelShape BOX = Block.makeCuboidShape(4D, 4D, 12.5D, 12D, 12D, 15.5D);
+    final VoxelShape DOWN = Block.makeCuboidShape(4D, 0.5D, 4D, 12D, 3.5D, 12D);
+    final VoxelShape UP = Block.makeCuboidShape(4D, 12.5D, 4D, 12D, 15.5D, 12D);
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
 
         switch (state.get(FACING)) {
             case SOUTH:
-                return Block.makeCuboidShape(4D, 4D, 12.5D, 12D, 12D, 15.5D);
+                return BOX;
             case WEST:
-                return VoxelShapeUtil.shapeRotCCW90(Block.makeCuboidShape(4D, 4D, 12.5D, 12D, 12D, 15.5D));
+                return VoxelShapeUtil.shapeRotCCW90(BOX);
             case EAST:
-                return VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(4D, 4D, 12.5D, 12D, 12D, 15.5D));
+                return VoxelShapeUtil.shapeRotCW90(BOX);
             case NORTH:
-                return VoxelShapeUtil.shapeRot180(Block.makeCuboidShape(4D, 4D, 12.5D, 12D, 12D, 15.5D));
+                return VoxelShapeUtil.shapeRot180(BOX);
             case DOWN:
-                return Block.makeCuboidShape(4D, 0.5D, 4D, 12D, 3.5D, 12D);
+                return DOWN;
             case UP:
-                return Block.makeCuboidShape(4D, 12.5D, 4D, 12D, 15.5D, 12D);
+                return UP;
         }
         return VoxelShapes.fullCube();
     }

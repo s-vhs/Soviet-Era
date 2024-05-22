@@ -48,51 +48,59 @@ public class HeatPipes extends BlockCustomModel {
                 new ItemStack(RegItems.ARMATURES.get(), tr.nextInt(2)),
         };
     }
+    final VoxelShape[] SHPS = new VoxelShape[] {
+            VoxelShapes.or(
+                    Block.makeCuboidShape(7D, 5D, 1D, 9D, 12D, 15D),
+                    Block.makeCuboidShape(0D, 6D, 2D, 16D, 11D, 14D)
+            ),
+            VoxelShapes.or(
+                    Block.makeCuboidShape(7D, 5D, 1D, 9D, 12D, 15D),
+                    Block.makeCuboidShape(0D, 6D, 2D, 9D, 11D, 14D)
+            ),
+            VoxelShapes.or(
+                    Block.makeCuboidShape(7D, 5D, 1D, 9D, 12D, 15D),
+                    Block.makeCuboidShape(7D, 6D, 2D, 16D, 11D, 14D)
+            ),
+            Block.makeCuboidShape(7D, 5D, 1D, 9D, 12D, 15D),
+            VoxelShapes.or(
+                    VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(7D, 5D, 1D, 9D, 12D, 15D)),
+                    VoxelShapeUtil.shapeRotCW90( Block.makeCuboidShape(0D, 6D, 2D, 16D, 11D, 14D))
+            ),
+            VoxelShapes.or(
+                    VoxelShapeUtil.shapeRot180( VoxelShapeUtil.shapeRotCCW90(Block.makeCuboidShape(7D, 5D, 1D, 9D, 12D, 15D))),
+                    VoxelShapeUtil.shapeRot180(VoxelShapeUtil.shapeRotCCW90(Block.makeCuboidShape(0D, 6D, 2D, 9D, 11D, 14D)))
+
+            ),
+            VoxelShapes.or(
+                    VoxelShapeUtil.shapeRot180( VoxelShapeUtil.shapeRotCCW90(Block.makeCuboidShape(7D, 5D, 1D, 9D, 12D, 15D))),
+                    VoxelShapeUtil.shapeRot180( VoxelShapeUtil.shapeRotCCW90(Block.makeCuboidShape(7D, 6D, 2D, 16D, 11D, 14D)))
+            )
+    };
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        VoxelShape vs;
+
         switch (state.get(AXIS)) {
             case X:
                 if(state.get(FRONT) && state.get(BACK)){
-                    return VoxelShapes.or(
-                            Block.makeCuboidShape(7D, 5D, 1D, 9D, 12D, 15D),
-                            Block.makeCuboidShape(0D, 6D, 2D, 16D, 11D, 14D)
-                    );
+                    return SHPS[0];
                 }
                 if(state.get(FRONT)){
-                    return VoxelShapes.or(
-                            Block.makeCuboidShape(7D, 5D, 1D, 9D, 12D, 15D),
-                            Block.makeCuboidShape(0D, 6D, 2D, 9D, 11D, 14D)
-
-                    );
+                    return SHPS[1];
                 }
                 if(state.get(BACK)){
-                    return VoxelShapes.or(
-                            Block.makeCuboidShape(7D, 5D, 1D, 9D, 12D, 15D),
-                            Block.makeCuboidShape(7D, 6D, 2D, 16D, 11D, 14D)
-                    );
+                    return SHPS[2];
                 }
-                return Block.makeCuboidShape(7D, 5D, 1D, 9D, 12D, 15D);
+                return SHPS[3];
             case Z:
                 if(state.get(FRONT) && state.get(BACK)){
-                    return VoxelShapes.or(
-                            VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(7D, 5D, 1D, 9D, 12D, 15D)),
-                            VoxelShapeUtil.shapeRotCW90( Block.makeCuboidShape(0D, 6D, 2D, 16D, 11D, 14D))
-                    );
+                    return SHPS[4];
                 }
                 if(state.get(FRONT)){
-                    return VoxelShapes.or(
-                            VoxelShapeUtil.shapeRot180( VoxelShapeUtil.shapeRotCCW90(Block.makeCuboidShape(7D, 5D, 1D, 9D, 12D, 15D))),
-                            VoxelShapeUtil.shapeRot180(VoxelShapeUtil.shapeRotCCW90(Block.makeCuboidShape(0D, 6D, 2D, 9D, 11D, 14D)))
-
-                    );
+                    return SHPS[5];
                 }
                 if(state.get(BACK)){
-                    return VoxelShapes.or(
-                            VoxelShapeUtil.shapeRot180( VoxelShapeUtil.shapeRotCCW90(Block.makeCuboidShape(7D, 5D, 1D, 9D, 12D, 15D))),
-                                    VoxelShapeUtil.shapeRot180( VoxelShapeUtil.shapeRotCCW90(Block.makeCuboidShape(7D, 6D, 2D, 16D, 11D, 14D)))
-                    );
+                    return SHPS[6];
                 }
-                return VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(7D, 5D, 1D, 9D, 12D, 15D));
+                return VoxelShapeUtil.shapeRotCW90(SHPS[3]);
         }
         return VoxelShapes.fullCube();
     }

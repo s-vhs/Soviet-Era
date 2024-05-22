@@ -44,16 +44,17 @@ public class ElectronicaClock extends BlockSideDevice {
                 new ItemStack(RegBlocks.COPPER_CIRCUIT.get(), tr.nextInt(5))
         };
     }
+    final VoxelShape BOX = Block.makeCuboidShape(0D, 5.75D, 0D, 16D, 10.75D, 2D);
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         switch (state.get(FACING)) {
             case NORTH:
-                return VoxelShapeUtil.shapeRot180(Block.makeCuboidShape(0D, 5.75D, 0D, 16D, 10.75D, 2D));
+                return VoxelShapeUtil.shapeRot180(BOX);
             case SOUTH:
-                return Block.makeCuboidShape(0D, 5.75D, 0D, 16D, 10.75D, 2D);
+                return BOX;
             case WEST:
-                return VoxelShapeUtil.shapeRotCCW90(Block.makeCuboidShape(0D, 5.75D, 0D, 16D, 10.75D, 2D));
+                return VoxelShapeUtil.shapeRotCCW90(BOX);
             case EAST:
-                return VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0D, 5.75D, 0D, 16D, 10.75D, 2D));
+                return VoxelShapeUtil.shapeRotCW90(BOX);
         }
         return VoxelShapes.fullCube();
     }

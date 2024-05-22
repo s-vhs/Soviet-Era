@@ -86,7 +86,7 @@ public class ContactWire extends BlockSideCustomModel {
     public void onBlockAdded(BlockState s, World w, BlockPos p, BlockState oldState, boolean isMoving) {
         this.updateState(w,p,s);
     }
-    VoxelShape SHP[] = new VoxelShape[] {
+    final VoxelShape SHP[] = new VoxelShape[] {
             Block.makeCuboidShape(2,11,7,12,12,9),
             Block.makeCuboidShape(2,11,7,12,12,16),
             Block.makeCuboidShape(2,11,0,12,12,9),

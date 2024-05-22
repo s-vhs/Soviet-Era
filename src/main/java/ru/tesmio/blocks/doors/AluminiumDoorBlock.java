@@ -8,8 +8,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.DoorHingeSide;
 import net.minecraft.state.properties.DoubleBlockHalf;
-import net.minecraft.stats.Stats;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
@@ -17,10 +15,10 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
+import ru.tesmio.reg.RegItems;
 import ru.tesmio.reg.RegSounds;
 
-import javax.annotation.Nullable;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class AluminiumDoorBlock extends LockedDoor  implements IWaterLoggable{
 
@@ -67,10 +65,15 @@ public class AluminiumDoorBlock extends LockedDoor  implements IWaterLoggable{
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(HALF, FACING, OPEN, HINGE, POWERED, LOCKED, WATERLOGGED);
     }
-    public void harvestBlock(World worldIn, PlayerEntity player, BlockPos pos, BlockState state, @Nullable TileEntity te, ItemStack stack) {
-        player.addStat(Stats.BLOCK_MINED.get(this));
-        player.addExhaustion(0.005F);
-        spawnDrops(state, worldIn, pos, te, player, stack);
+    ThreadLocalRandom tr = ThreadLocalRandom.current();
+    public ItemStack[] getItemsDrop(PlayerEntity pl) {
+        return new ItemStack[] {
+                new ItemStack(RegItems.ALUMINUM_SCRAP.get(), tr.nextInt(3,12)),
+                new ItemStack(RegItems.RUSTY_SCRAP.get(), tr.nextInt(2)),
+        };
+    }
+    public boolean isCustomDrop() {
+        return true;
     }
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {

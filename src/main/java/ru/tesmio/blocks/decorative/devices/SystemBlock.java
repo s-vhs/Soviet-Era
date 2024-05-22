@@ -42,15 +42,17 @@ public class SystemBlock extends BlockSideDevice {
             }
 
     }
+    final VoxelShape NS = VoxelShapes.create(0.25D, 0.0D, 0D, 0.75D, 0.91D, 1D);
+    final VoxelShape WE = VoxelShapes.create(0D, 0.0D, 0.25D, 1D, 0.91D, 0.75D);
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         switch (state.get(FACING)) {
             case SOUTH:
             case NORTH:
-                return VoxelShapes.create(0.25D, 0.0D, 0D, 0.75D, 0.91D, 1D);
+                return NS;
             case WEST:
             case EAST:
-                return VoxelShapes.create(0D, 0.0D, 0.25D, 1D, 0.91D, 0.75D);
+                return WE;
         }
         return VoxelShapes.fullCube();
     }

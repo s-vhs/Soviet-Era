@@ -35,15 +35,16 @@ public class Chain extends BlockCustomModel {
     @Override
     public ItemStack[] getItemsDrop(PlayerEntity pl) {
         return new ItemStack[] {
-                new ItemStack(RegItems.RUSTY_SCRAP.get(), tr.nextInt(1)),
+                new ItemStack(RegItems.RUSTY_SCRAP.get(), 1),
         };
     }
+    final VoxelShape SHP = VoxelShapes.create(0.42D, 0D, 0.42D, 0.58D, 1D, 0.58D);
     @OnlyIn(Dist.CLIENT)
     public float getAmbientOcclusionLightValue(BlockState state, IBlockReader worldIn, BlockPos pos) {
         return 1F;
     }
     public VoxelShape getShape(BlockState s, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        return VoxelShapes.create(0.42D, 0D, 0.42D, 0.58D, 1D, 0.58D);
+        return SHP;
     }
     public BlockState updateState(World w, BlockPos p, BlockState s) {
         if (!w.isRemote()) {

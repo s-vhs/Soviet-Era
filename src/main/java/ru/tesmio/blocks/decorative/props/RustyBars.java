@@ -33,6 +33,9 @@ public class RustyBars extends BaseFourWayBlock {
     public VoxelShape getRenderShape(BlockState state, IBlockReader worldIn, BlockPos pos) {
         return this.renderShapes[this.getIndex(state)];
     }
+    public boolean isCustomDrop() {
+        return true;
+    }
     @Override
     public ItemStack[] getItemsDrop(PlayerEntity pl) {
         return new ItemStack[] {

@@ -12,7 +12,7 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import ru.tesmio.utils.VoxelShapeUtil;
 
-//необходимо сделать коллизию, доделать все блокстейты, доделать все пути к текстурам в моделях, добавить восклицательный знак и тире
+
 public class SymbolBlock extends BlockSideCustomModel{
     public SymbolBlock(Properties properties, float shadingInside) {
         super(properties, shadingInside);

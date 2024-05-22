@@ -10,6 +10,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import ru.tesmio.blocks.baseblock.BlockSideCustomModel;
+import ru.tesmio.reg.RegItems;
 
 public class VentPipeFilter extends BlockSideCustomModel {
     public VentPipeFilter(Properties properties, float shadingInside) {
@@ -22,24 +23,18 @@ public class VentPipeFilter extends BlockSideCustomModel {
     @Override
     public ItemStack[] getItemsDrop(PlayerEntity pl) {
         return new ItemStack[] {
-            //    new ItemStack(RegItems.CERAMIC_SHARD.get(), tr.nextInt(1,3))
+                new ItemStack(RegItems.RUSTY_SCRAP.get(), tr.nextInt(3,5)),
         };
     }
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        switch (state.get(FACING)) {
-            case EAST:
-            case WEST:
-            case SOUTH:
-            case NORTH:
-                return VoxelShapes.or(
-                        Block.makeCuboidShape(0,0,0,16,2,16),
-                        Block.makeCuboidShape(1,2,2,15,14,14),
-                        Block.makeCuboidShape(2,2,1,14,14,15),
-                        Block.makeCuboidShape(0,14,0,16,16,16)
+    final VoxelShape SHP = VoxelShapes.or(
+            Block.makeCuboidShape(0,0,0,16,2,16),
+            Block.makeCuboidShape(1,2,2,15,14,14),
+            Block.makeCuboidShape(2,2,1,14,14,15),
+            Block.makeCuboidShape(0,14,0,16,16,16)
 
-                );
-        }
-        return VoxelShapes.fullCube();
+    );
+    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+                return SHP;
     }
 
 }

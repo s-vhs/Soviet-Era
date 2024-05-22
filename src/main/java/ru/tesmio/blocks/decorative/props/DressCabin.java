@@ -84,12 +84,13 @@ public class DressCabin extends BlockSideCustomModel {
     public VoxelShape getCollisionShape(BlockState s, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         return this.getShape(s,worldIn,pos,context);
     }
+    final VoxelShape[] BOXS = new VoxelShape[]{
+            Block.makeCuboidShape(0,0,1,16,4,15),
+            Block.makeCuboidShape(0,0,1.25,1,16,14.75),
+            Block.makeCuboidShape(15,0,1.25,16,16,14.75),
+    };
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        VoxelShape[] BOXS = new VoxelShape[]{
-                Block.makeCuboidShape(0,0,1,16,4,15),
-                Block.makeCuboidShape(0,0,1.25,1,16,14.75),
-                Block.makeCuboidShape(15,0,1.25,16,16,14.75),
-        };
+
         if (state.get(HALF) == Fridge.EnumPart.LOWER) {
         switch (state.get(FACING)) {
 

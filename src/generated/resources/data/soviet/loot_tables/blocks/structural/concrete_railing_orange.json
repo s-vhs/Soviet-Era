@@ -3,7 +3,11 @@
   "pools": [
     {
       "name": "structural/concrete_railing_orange",
-      "rolls": 1,
+      "rolls": {
+        "min": 0.0,
+        "max": 4.0,
+        "type": "minecraft:uniform"
+      },
       "entries": [
         {
           "type": "minecraft:item",

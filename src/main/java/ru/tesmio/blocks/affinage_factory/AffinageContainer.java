@@ -53,8 +53,8 @@ public class AffinageContainer extends Container {
         }
 
         // Furnace Slots
-        this.addSlot(new SlotItemHandler(tile.getInventory(), 0, 56, 34));
-        this.addSlot(new SlotItemHandler(tile.getInventory(), 1, 116, 35));
+        this.addSlot(new SlotItemHandler(tile.getInventory(), 0, 51, 30));
+        this.addSlot(new SlotItemHandler(tile.getInventory(), 1, 107, 30));
 
         this.trackInt(currentSmeltTime = new FunctionalIntReferenceHolder(() -> this.tileEntity.currentSmeltTime,
                 value -> this.tileEntity.currentSmeltTime = value));

@@ -46,8 +46,11 @@ public class BarbWire extends BlockCustomModel {
     @Override
     public ItemStack[] getItemsDrop(PlayerEntity pl) {
         return new ItemStack[] {
-                new ItemStack(RegItems.RUSTY_SCRAP.get(), tr.nextInt(1)),
+                new ItemStack(RegItems.RUSTY_SCRAP.get(), 1),
         };
+    }
+    public boolean isCustomDrop() {
+        return true;
     }
     @Override
     public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
@@ -89,7 +92,7 @@ public class BarbWire extends BlockCustomModel {
     VoxelShape SHP_DEF[] = new VoxelShape[] {
             Block.makeCuboidShape(7,0,7,9,1,9), Block.makeCuboidShape(7.5,0,7.5,8.5,16,8.5)
     };
-    VoxelShape SHP = Block.makeCuboidShape(7.5,2,0,8.5,14.5,8.5);
+    final VoxelShape SHP = Block.makeCuboidShape(7.5,2,0,8.5,14.5,8.5);
     public void onEntityCollision(BlockState s, World w, BlockPos p, Entity e) {
         e.attackEntityFrom(DamageSource.CACTUS, 3);
         e.setMotionMultiplier(s, new Vector3d(0.25D, (double)0.05F, 0.25D));

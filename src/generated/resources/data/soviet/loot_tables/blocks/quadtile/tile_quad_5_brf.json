@@ -3,7 +3,11 @@
   "pools": [
     {
       "name": "quadtile/tile_quad_5_brf",
-      "rolls": 1,
+      "rolls": {
+        "min": 0.0,
+        "max": 1.0,
+        "type": "minecraft:uniform"
+      },
       "entries": [
         {
           "type": "minecraft:item",

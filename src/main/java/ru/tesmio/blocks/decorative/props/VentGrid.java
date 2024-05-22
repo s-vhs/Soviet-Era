@@ -9,7 +9,6 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import ru.tesmio.blocks.baseblock.BlockSideCustomModel;
-import ru.tesmio.reg.RegBlocks;
 import ru.tesmio.reg.RegItems;
 
 import java.util.concurrent.ThreadLocalRandom;
@@ -26,8 +25,7 @@ public class VentGrid extends BlockSideCustomModel {
     public ItemStack[] getItemsDrop(PlayerEntity pl) {
         ThreadLocalRandom tr = ThreadLocalRandom.current();
         return new ItemStack[] {
-                new ItemStack(RegBlocks.DIAMOND_CIRCUIT.get(), tr.nextInt(1,2)),
-                new ItemStack(RegItems.RUSTY_SCRAP.get(), tr.nextInt(2,3))
+                new ItemStack(RegItems.RUSTY_SCRAP.get(), tr.nextInt(3,5))
         };
     }
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {

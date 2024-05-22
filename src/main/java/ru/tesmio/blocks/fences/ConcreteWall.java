@@ -41,10 +41,7 @@ public class ConcreteWall extends BlockSideCustomModel {
         };
     }
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        VoxelShape BOXS[] = new VoxelShape[] {Block.makeCuboidShape(0D, 0D, 6D, 16D, 16D, 10D),
-                Block.makeCuboidShape(0D, 0D, 6D, 16D, 16D, 10D),
-                Block.makeCuboidShape(6D, 0D, 0D, 10D, 16D, 16D),
-                Block.makeCuboidShape(6D, 0D, 0D, 10D, 16D, 16D)};
+
         switch (state.get(FACING)) {
             case NORTH:
                 return BOXS[0];

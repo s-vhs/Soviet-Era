@@ -48,9 +48,10 @@ public class ElectricalPanel extends BlockSideCustomModel {
                 new ItemStack(RegItems.RUSTY_SCRAP.get(), tr.nextInt(1,2))
         };
     }
+    final VoxelShape SHP = Block.makeCuboidShape(0,0,0,16,16,3.5);
     @Override
     public VoxelShape getFacingShape(BlockState s) {
-        VoxelShape SHP = Block.makeCuboidShape(0,0,0,16,16,3.5);
+
         return SHP;
     }
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {

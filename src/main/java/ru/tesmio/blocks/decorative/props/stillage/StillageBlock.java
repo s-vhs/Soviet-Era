@@ -30,13 +30,14 @@ public class StillageBlock extends BlockSideUpDownCM {
         super(p, 1F);
         this.setDefaultState(this.stateContainer.getBaseState().with(PART, BlockSideUpDownCM.EnumPart.MIDDLE));
     }
+    final VoxelShape SHP = Block.makeCuboidShape(0,0,0,16,1,16);
     @Override
     public boolean hasTileEntity(BlockState state) {
         return true;
     }
     public VoxelShape getShape(BlockState s, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         if(s.get(PART) == EnumPart.UP) {
-            return Block.makeCuboidShape(0,0,0,16,1,16);
+            return SHP;
         }
         return VoxelShapes.fullCube();
     }

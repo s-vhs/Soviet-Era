@@ -41,22 +41,23 @@ public class BioStillage extends BlockAxisProps {
     public float getAmbientOcclusionLightValue(BlockState state, IBlockReader worldIn, BlockPos pos) {
         return 1F;
     }
+    final VoxelShape SHP[] = new VoxelShape[] {
+            Block.makeCuboidShape(0,0,0.23,16,1,15.5),
+            Block.makeCuboidShape(7,1,0.5,9,16,1.5),
+            Block.makeCuboidShape(7,1,14.25,9,16,15.25),
+
+            Block.makeCuboidShape(2,5.75,1.5,14,6.75,14.25),//нижняя полка
+            Block.makeCuboidShape(2,10.5,1.5,14,11.5,14.25),//верхняя полка для down и def
+
+            Block.makeCuboidShape(2,1,1.5,14,2,14.25), //нижняя полка
+            Block.makeCuboidShape(2,6,1.5,14,7,14.25), //средняя полка
+            Block.makeCuboidShape(2,11,1.5,14,12,14.25), //верхняя полка для up и mid
+
+
+            Block.makeCuboidShape(6.5,15.25,1.5,9.5,15.75,14.25),//верхняя перекладина
+    };
     public VoxelShape getShape(BlockState s, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        VoxelShape SHP[] = new VoxelShape[] {
-                Block.makeCuboidShape(0,0,0.23,16,1,15.5),
-                Block.makeCuboidShape(7,1,0.5,9,16,1.5),
-                Block.makeCuboidShape(7,1,14.25,9,16,15.25),
 
-                Block.makeCuboidShape(2,5.75,1.5,14,6.75,14.25),//нижняя полка
-                Block.makeCuboidShape(2,10.5,1.5,14,11.5,14.25),//верхняя полка для down и def
-
-                Block.makeCuboidShape(2,1,1.5,14,2,14.25), //нижняя полка
-                Block.makeCuboidShape(2,6,1.5,14,7,14.25), //средняя полка
-                Block.makeCuboidShape(2,11,1.5,14,12,14.25), //верхняя полка для up и mid
-
-
-                Block.makeCuboidShape(6.5,15.25,1.5,9.5,15.75,14.25),//верхняя перекладина
-        };
         if(s.get(AXIS) == Direction.Axis.X) {
             if(s.get(PART) == Part.DEF || s.get(PART) == Part.DOWN) return VoxelShapes.or(SHP[0],SHP[1],SHP[2],SHP[3],SHP[4],SHP[8]);
             else return VoxelShapes.or(SHP[1],SHP[2],SHP[5],SHP[6],SHP[7],SHP[8]);

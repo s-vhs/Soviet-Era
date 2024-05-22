@@ -10,7 +10,6 @@ import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.state.properties.DoorHingeSide;
 import net.minecraft.state.properties.DoubleBlockHalf;
-import net.minecraft.stats.Stats;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
@@ -29,9 +28,12 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import ru.tesmio.blocks.decorative.devices.Turnstile;
 import ru.tesmio.blocks.tumbler.AirlockDoorController;
+import ru.tesmio.reg.RegBlocks;
+import ru.tesmio.reg.RegItems;
 import ru.tesmio.reg.RegSounds;
 
 import javax.annotation.Nullable;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class AirlockDoorBlock extends DoorBlock implements IWaterLoggable {
     public static final BooleanProperty LOCKED = BooleanProperty.create("locked");
@@ -115,11 +117,7 @@ public class AirlockDoorBlock extends DoorBlock implements IWaterLoggable {
         super(properties);
         this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(OPEN, Boolean.valueOf(false)).with(HINGE, DoorHingeSide.LEFT).with(POWERED, Boolean.valueOf(false)).with(HALF, DoubleBlockHalf.LOWER).with(WATERLOGGED, Boolean.valueOf(false)).with(LOCKED, true));
     }
-    public void harvestBlock(World worldIn, PlayerEntity player, BlockPos pos, BlockState state, @Nullable TileEntity te, ItemStack stack) {
-        player.addStat(Stats.BLOCK_MINED.get(this));
-        player.addExhaustion(0.005F);
-        spawnDrops(state, worldIn, pos, te, player, stack);
-    }
+
     public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
         return true;
     }
@@ -141,6 +139,34 @@ public class AirlockDoorBlock extends DoorBlock implements IWaterLoggable {
     }
     public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
 
+    }
+    ThreadLocalRandom tr = ThreadLocalRandom.current();
+    public ItemStack[] getItemsDrop(PlayerEntity pl) {
+        return new ItemStack[] {
+                new ItemStack(RegItems.COPPER_SCRAP.get(), tr.nextInt(6)),
+                new ItemStack(RegItems.ALUMINUM_SCRAP.get(), tr.nextInt(9)),
+                new ItemStack(RegBlocks.GOLD_CIRCUIT.get(), tr.nextInt(2)),
+                new ItemStack(RegBlocks.PLATINUM_CIRCUIT.get(), tr.nextInt(1)),
+        };
+    }
+    @Override
+    public void harvestBlock(World w, PlayerEntity pl, BlockPos p, BlockState s, @Nullable TileEntity te, ItemStack st) {
+
+            if (!w.isRemote) {
+                if (!pl.isCreative()) {
+                    getDropsWithBlock(w, p, pl);
+                }
+            }
+
+
+    }
+    public boolean isCustomDrop() {
+        return true;
+    }
+    protected void getDropsWithBlock(World w, BlockPos p,PlayerEntity pl) {
+        for(ItemStack is : getItemsDrop(pl)) {
+            spawnAsEntity(w, p, is);
+        }
     }
     public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
         DoubleBlockHalf doubleblockhalf = stateIn.get(HALF);

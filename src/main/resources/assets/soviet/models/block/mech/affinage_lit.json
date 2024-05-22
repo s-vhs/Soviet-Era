@@ -6,7 +6,7 @@
 		"2": "soviet:block/mech/aluminum",
 		"3": "soviet:block/structural/rusty_ralling",
 		"4": "soviet:block/structural/panel_concrete_both",
-		"5": "soviet:block/mech/monitor_disable",
+		"5": "soviet:block/mech/monitor_enable",
 		"6": "soviet:block/mech/green_pixel",
 		"particle": "soviet:block/mech/gofro_metal3"
 	},

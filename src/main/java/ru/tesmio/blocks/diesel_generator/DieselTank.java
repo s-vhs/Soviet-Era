@@ -2,12 +2,18 @@ package ru.tesmio.blocks.diesel_generator;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.World;
 import ru.tesmio.blocks.baseblock.BlockSideCustomModel;
+
+import javax.annotation.Nullable;
 
 public class DieselTank extends BlockSideCustomModel {
     private static final VoxelShape NORTH_AABB = VoxelShapes.or(Block.makeCuboidShape(2D, 0D, 3D, 16D, 13.0D, 13D),
@@ -24,6 +30,25 @@ public class DieselTank extends BlockSideCustomModel {
             Block.makeCuboidShape(11D, 0D, 0D, 5D, 11.0D, 16D));
     public DieselTank(Properties properties) {
         super(properties, 1F);
+    }
+    @Override
+    public void harvestBlock(World w, PlayerEntity pl, BlockPos p, BlockState s, @Nullable TileEntity te, ItemStack st) {
+        if (!w.isRemote) {
+            if (!pl.isCreative()) {
+                getDropsWithBlock(w, p, pl);
+            }
+        }
+    }
+    protected void getDropsWithBlock(World w, BlockPos p,PlayerEntity pl) {
+        for(ItemStack is : getItemsDrop(pl)) {
+            spawnAsEntity(w, p, is);
+        }
+    }
+
+    public ItemStack[] getItemsDrop(PlayerEntity pl) {
+        return new ItemStack[] {
+                new ItemStack(this, 1)
+        };
     }
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {

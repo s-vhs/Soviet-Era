@@ -11,6 +11,7 @@ import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.state.properties.DoubleBlockHalf;
+import net.minecraft.stats.Stats;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
@@ -29,6 +30,7 @@ import ru.tesmio.reg.RegSounds;
 import javax.annotation.Nullable;
 
 public class LockedDoor extends DoorBlock implements IWaterLoggable {
+    boolean isCustomDrop = false;
     public static final BooleanProperty LOCKED = BooleanProperty.create("locked");
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public SoundEvent soundOpen;
@@ -69,13 +71,22 @@ public class LockedDoor extends DoorBlock implements IWaterLoggable {
     }
     @Override
     public void harvestBlock(World w, PlayerEntity pl, BlockPos p, BlockState s, @Nullable TileEntity te, ItemStack st) {
-        if (!w.isRemote) {
-            if (!pl.isCreative()) {
-                getDropsWithBlock(w, p,pl);
-                getAdditionDrops(w,p,getStackAddDrop(pl));
+        if(isCustomDrop()) {
+            if (!w.isRemote) {
+                if (!pl.isCreative()) {
+                    getDropsWithBlock(w, p, pl);
+                    getAdditionDrops(w, p, getStackAddDrop(pl));
+                }
             }
         }
+        pl.addStat(Stats.BLOCK_MINED.get(this));
+        pl.addExhaustion(0.005F);
+        spawnDrops(s, w, p, te, pl, st);
     }
+    public boolean isCustomDrop() {
+        return isCustomDrop;
+    }
+
     public ItemStack getStackAddDrop(PlayerEntity pl) {
         return ItemStack.EMPTY;
     }

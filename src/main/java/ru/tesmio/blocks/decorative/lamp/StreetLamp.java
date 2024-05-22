@@ -66,8 +66,8 @@ public class StreetLamp extends BlockSideCustomModel {
 
         return s;
     }
+    final VoxelShape SHP = Block.makeCuboidShape(0,0,4.5,16,15.75,11.5);
     public VoxelShape getShape(BlockState s, IBlockReader w, BlockPos p, ISelectionContext c) {
-        VoxelShape SHP = Block.makeCuboidShape(0,0,4.5,16,15.75,11.5);
 
         switch (s.get(FACING)) {
             case EAST:

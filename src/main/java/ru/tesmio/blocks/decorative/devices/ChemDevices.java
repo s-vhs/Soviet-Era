@@ -42,13 +42,14 @@ public class ChemDevices extends BlockSideDevice {
                 new ItemStack(RegItems.WOOD_SCRAP.get(), 1)
         };
     }
+   final VoxelShape SHP[] = new VoxelShape[]{
+            Block.makeCuboidShape(2.5, 0, 4, 13.5, 3, 12),
+            Block.makeCuboidShape(1, 0, 3.5, 15, 7, 12.5),
+            Block.makeCuboidShape(2.5, 0, 2.5, 13.5, 3, 13.5),
+    };
     @Override
     public VoxelShape getFacingShape(BlockState s) {
-        VoxelShape SHP[] = new VoxelShape[]{
-                Block.makeCuboidShape(2.5, 0, 4, 13.5, 3, 12),
-                Block.makeCuboidShape(1, 0, 3.5, 15, 7, 12.5),
-                Block.makeCuboidShape(2.5, 0, 2.5, 13.5, 3, 13.5),
-        };
+
         if(s.getBlock() == RegBlocks.MAGNET_MIXER.get()) {
             return SHP[0];
         }

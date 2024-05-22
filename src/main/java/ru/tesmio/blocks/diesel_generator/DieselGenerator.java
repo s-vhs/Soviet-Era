@@ -67,6 +67,25 @@ public class DieselGenerator extends BlockCustomModel {
 
     }
     @Override
+    public void harvestBlock(World w, PlayerEntity pl, BlockPos p, BlockState s, @Nullable TileEntity te, ItemStack st) {
+        if (!w.isRemote) {
+            if (!pl.isCreative()) {
+                getDropsWithBlock(w, p, pl);
+            }
+        }
+    }
+    protected void getDropsWithBlock(World w, BlockPos p,PlayerEntity pl) {
+        for(ItemStack is : getItemsDrop(pl)) {
+            spawnAsEntity(w, p, is);
+        }
+    }
+
+    public ItemStack[] getItemsDrop(PlayerEntity pl) {
+        return new ItemStack[] {
+                new ItemStack(this, 1)
+        };
+    }
+    @Override
     public void addInformation(ItemStack stack, @Nullable IBlockReader reader, List<ITextComponent> list, ITooltipFlag flags) {
         list.add(new TranslationTextComponent("message.diesel_gen", Integer.toString(1000)));
     }

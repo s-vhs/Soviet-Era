@@ -9,9 +9,6 @@ import net.minecraft.data.IDataProvider;
 import net.minecraft.data.LootTableProvider;
 import net.minecraft.item.Item;
 import net.minecraft.loot.*;
-import net.minecraft.loot.functions.CopyName;
-import net.minecraft.loot.functions.CopyNbt;
-import net.minecraft.loot.functions.SetContents;
 import net.minecraft.util.ResourceLocation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -36,67 +33,24 @@ public abstract class BaseLootProvider extends LootTableProvider {
 
     protected abstract void addTables();
 
-    protected static LootTable.Builder standartBuilder(String name, Block block) {
-        LootPool.Builder builder = LootPool.builder().name(name)
-                .rolls(ConstantRange.of(1))
-                .addEntry(ItemLootEntry.builder(block)
-                        .acceptFunction(CopyName.builder(CopyName.Source.BLOCK_ENTITY))
-                        .acceptFunction(CopyNbt.builder(CopyNbt.Source.BLOCK_ENTITY)
-                                .addOperation("inv", "BlockEntityTag.inv", CopyNbt.Action.REPLACE)
-                                .addOperation("energy", "BlockEntityTag.energy", CopyNbt.Action.REPLACE))
-                        .acceptFunction(SetContents.builderIn()
-                                .addLootEntry(DynamicLootEntry.func_216162_a(new ResourceLocation("soviet", "contents"))))
-                );
+protected static LootTable.Builder drop1x1Rand(String name, Item item, int min, int max) {
+    LootPool.Builder builder = LootPool.builder().name(name).addEntry(ItemLootEntry.builder(item)).rolls(RandomValueRange.of(min, max));
+    return LootTable.builder().addLootPool(builder);
+}
+    protected static LootTable.Builder drop1x1Rand(String name, Item item, int count) {
+        LootPool.Builder builder = LootPool.builder().name(name).addEntry(ItemLootEntry.builder(item)).rolls(RandomValueRange.of(0, count));
         return LootTable.builder().addLootPool(builder);
     }
-//    static Map map = new HashMap<Block, Integer>();
-//    protected static Map<Block, Integer> formedMap(Block[] b, Integer[] i) {
-//        for(Block b2 : b) {
-//            for(int i2 : i) {
-//                map.put(b2, i2);
-//            }
-//        }
-//        return map;
-//    }
-//    protected void getMap(Map<Block, Integer> map) {
-//
-//    }
-//    protected static LootTable.Builder standartBlocksBuilder(String name, Block[] b, Integer[] i) {
-//
-//        for (Map.Entry<Block, Integer> m : formedMap(b,i).entrySet()) {
-//            LootPool.Builder builder = LootPool.builder().name(name)
-//                    .rolls(ConstantRange.of(m.getValue()))
-//                    .addEntry(ItemLootEntry.builder(m.getKey()));
-//            return LootTable.builder().addLootPool(builder);
-//        }
-//        return LootTable.builder();
-//
-//    }
-//    protected static LootTable.Builder standartItemsBuilder(String name, Map<Item, Integer> map) {
-//        for (Map.Entry<Item, Integer> entry: map.entrySet()) {
-//            LootPool.Builder builder = LootPool.builder().name(name)
-//                    .rolls(ConstantRange.of(entry.getValue()))
-//                    .addEntry(ItemLootEntry.builder(entry.getKey()));
-//            return LootTable.builder().addLootPool(builder);
-//        }
-//        return LootTable.builder();
-//
-//    }
-    protected static LootTable.Builder standartItemBlockBuilder(String name, Item item, int count) {
-        LootPool.Builder builder = LootPool.builder().name(name)
-                .rolls(ConstantRange.of(count))
-                .addEntry(ItemLootEntry.builder(item));
-        return LootTable.builder().addLootPool(builder);
+    protected static LootTable.Builder drop2x2Const(String name, Item item1, Item item2) {
+        LootPool.Builder builder = LootPool.builder().name(name).addEntry(ItemLootEntry.builder(item1)).rolls(RandomValueRange.of(1,2));
+        LootPool.Builder builder2 = LootPool.builder().name(name).addEntry(ItemLootEntry.builder(item2)).rolls(RandomValueRange.of(2,5));
+        return LootTable.builder().addLootPool(builder).addLootPool(builder2);
     }
-    protected static LootTable.Builder standart2ItemBlockBuilder(String name, Item item1, Item item2) {
-        LootPool.Builder builder = LootPool.builder().name(name)
-                .rolls(ConstantRange.of(1))
-                .addEntry(ItemLootEntry.builder(item1))
-                .rolls(ConstantRange.of(3)).addEntry(ItemLootEntry.builder(item2));
-
-        return LootTable.builder().addLootPool(builder);
+    protected static LootTable.Builder drop2x2Rand(String name, Item item1, Item item2, int min1, int max1, int min2, int max2) {
+        LootPool.Builder builder = LootPool.builder().name(name).addEntry(ItemLootEntry.builder(item1)).rolls(RandomValueRange.of(min1, max1));
+        LootPool.Builder builder2 = LootPool.builder().name(name) .addEntry(ItemLootEntry.builder(item2)).rolls(RandomValueRange.of(min2, max2));
+        return LootTable.builder().addLootPool(builder).addLootPool(builder2);
     }
-
 
     @Override
     public void act(DirectoryCache cache) {

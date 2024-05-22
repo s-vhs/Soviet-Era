@@ -13,6 +13,7 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
+import ru.tesmio.blocks.baseblock.BaseEnumOrientation;
 import ru.tesmio.blocks.baseblock.BlockRotatedAxisCustomModel;
 import ru.tesmio.reg.RegItems;
 import ru.tesmio.utils.VoxelShapeUtil;
@@ -34,9 +35,9 @@ public class FloorGrid extends BlockRotatedAxisCustomModel {
         FluidState fluidstate = context.getWorld().getFluidState(context.getPos());
         for(Direction direction : context.getNearestLookingDirections()) {
             if (direction.getAxis() == Direction.Axis.Y) {
-                return this.getDefaultState().with(FACING, EnumOrientation.forFacing(direction.getOpposite(), context.getPlacementHorizontalFacing().getOpposite())).with(WATERLOGGED, Boolean.valueOf(fluidstate.getFluid() == Fluids.WATER));
+                return this.getDefaultState().with(FACING, BaseEnumOrientation.forFacing(direction.getOpposite(), context.getPlacementHorizontalFacing().getOpposite())).with(WATERLOGGED, Boolean.valueOf(fluidstate.getFluid() == Fluids.WATER));
             } else {
-                return this.getDefaultState().with(FACING, EnumOrientation.forFacing(direction.getOpposite(), direction.getOpposite())).with(WATERLOGGED, Boolean.valueOf(fluidstate.getFluid() == Fluids.WATER));
+                return this.getDefaultState().with(FACING, BaseEnumOrientation.forFacing(direction.getOpposite(), direction.getOpposite())).with(WATERLOGGED, Boolean.valueOf(fluidstate.getFluid() == Fluids.WATER));
             }
         }
         return this.getDefaultState();

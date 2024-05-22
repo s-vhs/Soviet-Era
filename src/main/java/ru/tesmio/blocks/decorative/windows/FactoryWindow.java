@@ -76,17 +76,18 @@ public class FactoryWindow extends BlockSideCustomModel {
         }
         return ActionResultType.FAIL;
     }
+    final VoxelShape SHP = Block.makeCuboidShape(0D, 0D, 0D, 2D, 16D, 16D);
     public VoxelShape getShape(BlockState s, IBlockReader w, BlockPos p, ISelectionContext context) {
         if(s.getBlock() == RegBlocks.FACTORY_WINDOW.get()) {
             switch (s.get(FACING)) {
                 case SOUTH:
-                    return VoxelShapeUtil.shapeRotCW90(Block.makeCuboidShape(0D, 0D, 0D, 2D, 16D, 16D));
+                    return VoxelShapeUtil.shapeRotCW90(SHP);
                 case WEST:
-                    return VoxelShapeUtil.shapeRot180(Block.makeCuboidShape(0D, 0D, 0D, 2D, 16D, 16D));
+                    return VoxelShapeUtil.shapeRot180(SHP);
                 case NORTH:
-                    return VoxelShapeUtil.shapeRot180(VoxelShapeUtil.shapeRotCCW90(Block.makeCuboidShape(0D, 0D, 0D, 2D, 16D, 16D)));
+                    return VoxelShapeUtil.shapeRot180(VoxelShapeUtil.shapeRotCCW90(SHP));
                 case EAST:
-                    return Block.makeCuboidShape(0D, 0D, 0D, 2D, 16D, 16D);
+                    return SHP;
             }
         }
         //настроить шейпы для разбитого окна

@@ -23,7 +23,7 @@ public class RegItems {
 
     public static RegistryObject<Item> TOXIC_WATER_BUCKET;
 
-    public static RegistryObject<Item> LINO, ARMATURE, ARMATURES,QUAD_TILE,BIG_TILE,REST_TILE,SMALL_TILE,CERAMIC_DUST,SILICON_INGOT,MORTAR,PESTLE,SIEVE,LEAD_DUST,SMALL_LEAD_DUST,
+    public static RegistryObject<Item> LINO, ARMATURE, ARMATURES,QUAD_TILE_NEW,BIG_TILE_NEW,REST_TILE_NEW,SMALL_TILE_NEW,QUAD_TILE,BIG_TILE,REST_TILE,SMALL_TILE,CERAMIC_DUST,SILICON_INGOT,MORTAR,PESTLE,SIEVE,LEAD_DUST,SMALL_LEAD_DUST,
     LEADCERAMIC_DUST,LEAD_INGOT ;
 
     public static RegistryObject<Item> LEADCERAMIC_TILE;
@@ -32,7 +32,7 @@ public class RegItems {
     public static RegistryObject<Item> VARIANT_ITEM;
 
 
-    public static RegistryObject<Item> ALUMINUM_SCRAP, LEAD_SCRAP, CERAMIC_SHARD, RUSTY_SCRAP, WOOD_SCRAP, COPPER_SCRAP;
+    public static RegistryObject<Item> ALUMINUM_SCRAP, LEAD_SCRAP, CERAMIC_SHARD, RUSTY_SCRAP, WOOD_SCRAP, COPPER_SCRAP, CONCRETE_SCRAP;
 
     public static RegistryObject<Item> RED_CONDENSER, ORANGE_CONDENSER, YELLOW_CONDENSER, GREEN_CONDENSER, BLUE_CONDENSER, DIODE_BLACK, DIODE_GRAY, BLACK_MICRO, DARK_YELLOW_MICRO,
             DARK_RED_MICRO, DARK_BLUE_MICRO, DARK_YELLOW_TRANSISTOR, DARK_GRAY_TRANSISTOR, YELLOW_JACK, GREEN_JACK, BLUE_JACK;
@@ -47,6 +47,8 @@ public class RegItems {
 
     public static RegistryObject<Item> SUIT_GAS_MASK, SUIT_JACKET, SUIT_LEGS, SUIT_BOOTS;
 
+    public static RegistryObject<Item> WHITE_BRICK, BROKEN_WHITE_BRICK, CRACKED_YELLOW_BRICK, BROKEN_YELLOW_BRICK, CRACKED_RED_BRICK, BROKEN_RED_BRICK;
+
     public static void init() {
         //suit
         SUIT_GAS_MASK = registerItem("adc_gasmask", () -> new Suit(ArmorMaterial.DIAMOND, EquipmentSlotType.HEAD, (new Item.Properties()).group(Core.ItemGroups.TAB_ITEMS)));
@@ -56,10 +58,15 @@ public class RegItems {
 
 
         //other items
-        QUAD_TILE = registerItem("quad_tile", () -> new Item(new Item.Properties().group(Core.ItemGroups.TAB_ITEMS)));
-        BIG_TILE = registerItem("big_tile", () -> new Item(new Item.Properties().group(Core.ItemGroups.TAB_ITEMS)));
-        REST_TILE = registerItem("rest_tile", () -> new Item(new Item.Properties().group(Core.ItemGroups.TAB_ITEMS)));
-        SMALL_TILE = registerItem("small_tile", () -> new Item(new Item.Properties().group(Core.ItemGroups.TAB_ITEMS)));
+        QUAD_TILE = registerItem("quad_tile", () -> new ItemInfo(new Item.Properties().group(Core.ItemGroups.TAB_ITEMS), "info.quad_tile"));
+        BIG_TILE = registerItem("big_tile", () -> new ItemInfo(new Item.Properties().group(Core.ItemGroups.TAB_ITEMS), "info.big_tile"));
+        REST_TILE = registerItem("rest_tile", () -> new ItemInfo(new Item.Properties().group(Core.ItemGroups.TAB_ITEMS), "info.rest_tile"));
+        SMALL_TILE = registerItem("small_tile", () -> new ItemInfo(new Item.Properties().group(Core.ItemGroups.TAB_ITEMS), "info.small_tile"));
+        QUAD_TILE_NEW = registerItem("quad_tile_new", () -> new ItemInfo(new Item.Properties().group(Core.ItemGroups.TAB_ITEMS), "info.quad_tile"));
+        BIG_TILE_NEW = registerItem("big_tile_new", () -> new ItemInfo(new Item.Properties().group(Core.ItemGroups.TAB_ITEMS), "info.big_tile"));
+        REST_TILE_NEW = registerItem("rest_tile_new", () -> new ItemInfo(new Item.Properties().group(Core.ItemGroups.TAB_ITEMS), "info.rest_tile"));
+        SMALL_TILE_NEW = registerItem("small_tile_new", () -> new ItemInfo(new Item.Properties().group(Core.ItemGroups.TAB_ITEMS), "info.small_tile"));
+
         LINO = registerItem("lino", () -> new Item(new Item.Properties().group(Core.ItemGroups.TAB_ITEMS)));
         FLUOLAMP = registerItem("fluolamp", () -> new Item(new Item.Properties().group(Core.ItemGroups.TAB_ITEMS)));
         FUEL_CANISTER = registerItem("fuel_canister", () -> new ItemInfo(new Item.Properties().group(Core.ItemGroups.TAB_ITEMS).maxStackSize(1), "info.fuel_canister"));
@@ -69,6 +76,7 @@ public class RegItems {
                         new Item.Properties().maxStackSize(1).group(Core.ItemGroups.TAB_ITEMS)));
 
         LEAD_SCRAP = registerItem("lead_scrap", () -> new ItemInfo(new Item.Properties().group(Core.ItemGroups.TAB_ITEMS), "info.restore"));
+        CONCRETE_SCRAP = registerItem("concrete_scrap", () -> new ItemInfo(new Item.Properties().group(Core.ItemGroups.TAB_ITEMS), "info.restore"));
 
         WOOD_SCRAP = registerItem("wood_scrap", () -> new ItemInfo(new Item.Properties().group(Core.ItemGroups.TAB_ITEMS), "info.wood_scrap") {
             @Override
@@ -82,6 +90,15 @@ public class RegItems {
         ARMATURE = registerItem("armature", () -> new Item(new Item.Properties().group(Core.ItemGroups.TAB_ITEMS)));
         COPPER_SCRAP = registerItem("copper_scrap", () -> new ItemInfo(new Item.Properties().group(Core.ItemGroups.TAB_ITEMS), "info.restore"));
         ALUMINUM_SCRAP = registerItem("aluminum_scrap", () -> new ItemInfo(new Item.Properties().group(Core.ItemGroups.TAB_ITEMS), "info.restore"));
+
+        //brick
+        WHITE_BRICK = registerItem("white_brick", () -> new Item(new Item.Properties().group(Core.ItemGroups.TAB_ITEMS)));
+        BROKEN_WHITE_BRICK = registerItem("broken_white_brick", () -> new Item(new Item.Properties().group(Core.ItemGroups.TAB_ITEMS)));
+        CRACKED_YELLOW_BRICK = registerItem("cracked_yellow_brick", () -> new Item(new Item.Properties().group(Core.ItemGroups.TAB_ITEMS)));
+        BROKEN_YELLOW_BRICK = registerItem("broken_yellow_brick", () -> new Item(new Item.Properties().group(Core.ItemGroups.TAB_ITEMS)));
+        CRACKED_RED_BRICK = registerItem("cracked_red_brick", () -> new Item(new Item.Properties().group(Core.ItemGroups.TAB_ITEMS)));
+        BROKEN_RED_BRICK = registerItem("broken_red_brick", () -> new Item(new Item.Properties().group(Core.ItemGroups.TAB_ITEMS)));
+
 
         //tools
         PLATINUM_SWORD = registerItem("platinum_sword", () -> new SwordItem(SovietItemTier.PLATINUM, 5, -1F, (new Item.Properties()).group(ItemGroup.COMBAT)));

@@ -26,6 +26,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.WorldGenRegion;
+import ru.tesmio.blocks.baseblock.BaseEnumOrientation;
 import ru.tesmio.blocks.decorative.lamp.base.BlockRotLamp;
 import ru.tesmio.reg.RegBlocks;
 import ru.tesmio.reg.RegItems;
@@ -33,6 +34,7 @@ import ru.tesmio.reg.RegSounds;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class FluoLamp extends BlockRotLamp {
 
@@ -48,10 +50,17 @@ public class FluoLamp extends BlockRotLamp {
             Block.makeCuboidShape(0D, 5D, 0D, 2D, 11D, 16D)};
     public FluoLamp(Properties builder) {
         super(builder);
-        this.setDefaultState(this.stateContainer.getBaseState().with(FACING, EnumOrientation.NORTH).with(LIT_VALUE, Integer.valueOf(0)).with(WATERLOGGED, false).with(CLOSED, true));
+        this.setDefaultState(this.stateContainer.getBaseState().with(FACING, BaseEnumOrientation.NORTH).with(LIT_VALUE, Integer.valueOf(0)).with(WATERLOGGED, false).with(CLOSED, true));
 
     }
-
+    @Override
+    public ItemStack[] getItemsDrop(PlayerEntity pl) {
+        ThreadLocalRandom tr = ThreadLocalRandom.current();
+        return new ItemStack[] {
+                new ItemStack(RegItems.COPPER_SCRAP.get(), tr.nextInt(1)),
+                new ItemStack(RegItems.ALUMINUM_SCRAP.get(), tr.nextInt(1)),
+        };
+    }
     public VoxelShape getRenderShape(BlockState state, IBlockReader worldIn, BlockPos pos) {
         return this.getShape(state, worldIn, pos, null);
     }
@@ -84,36 +93,36 @@ public class FluoLamp extends BlockRotLamp {
             if (direction.getAxis() == Direction.Axis.Y) {
 
                 if (powerLight == 0)
-                        return this.getDefaultState().with(LIT_VALUE, 0).with(WATERLOGGED, Boolean.valueOf(fluidstate.getFluid() == Fluids.WATER)).with(FACING, EnumOrientation.forFacing(direction, c.getPlacementHorizontalFacing()));
+                        return this.getDefaultState().with(LIT_VALUE, 0).with(WATERLOGGED, Boolean.valueOf(fluidstate.getFluid() == Fluids.WATER)).with(FACING, BaseEnumOrientation.forFacing(direction, c.getPlacementHorizontalFacing()));
                     if (powerLight <= 4 && powerLight > 0) {
-                        return this.getDefaultState().with(LIT_VALUE, 1).with(WATERLOGGED, Boolean.valueOf(fluidstate.getFluid() == Fluids.WATER)).with(FACING, EnumOrientation.forFacing(direction, c.getPlacementHorizontalFacing()));
+                        return this.getDefaultState().with(LIT_VALUE, 1).with(WATERLOGGED, Boolean.valueOf(fluidstate.getFluid() == Fluids.WATER)).with(FACING, BaseEnumOrientation.forFacing(direction, c.getPlacementHorizontalFacing()));
                     }
                     if (powerLight <= 8 && powerLight > 4) {
-                        return this.getDefaultState().with(LIT_VALUE, 2).with(WATERLOGGED, Boolean.valueOf(fluidstate.getFluid() == Fluids.WATER)).with(FACING, EnumOrientation.forFacing(direction, c.getPlacementHorizontalFacing()));
+                        return this.getDefaultState().with(LIT_VALUE, 2).with(WATERLOGGED, Boolean.valueOf(fluidstate.getFluid() == Fluids.WATER)).with(FACING, BaseEnumOrientation.forFacing(direction, c.getPlacementHorizontalFacing()));
                     }
                     if (powerLight <= 12 && powerLight > 8) {
-                        return this.getDefaultState().with(LIT_VALUE, 3).with(WATERLOGGED, Boolean.valueOf(fluidstate.getFluid() == Fluids.WATER)).with(FACING, EnumOrientation.forFacing(direction, c.getPlacementHorizontalFacing()));
+                        return this.getDefaultState().with(LIT_VALUE, 3).with(WATERLOGGED, Boolean.valueOf(fluidstate.getFluid() == Fluids.WATER)).with(FACING, BaseEnumOrientation.forFacing(direction, c.getPlacementHorizontalFacing()));
                     }
                     if (powerLight > 12) {
-                        return this.getDefaultState().with(LIT_VALUE, 4).with(WATERLOGGED, Boolean.valueOf(fluidstate.getFluid() == Fluids.WATER)).with(FACING, EnumOrientation.forFacing(direction, c.getPlacementHorizontalFacing()));
+                        return this.getDefaultState().with(LIT_VALUE, 4).with(WATERLOGGED, Boolean.valueOf(fluidstate.getFluid() == Fluids.WATER)).with(FACING, BaseEnumOrientation.forFacing(direction, c.getPlacementHorizontalFacing()));
 
 
                 }
             } else {
 
                 if (powerLight == 0)
-                        return this.getDefaultState().with(LIT_VALUE, 0).with(WATERLOGGED, Boolean.valueOf(fluidstate.getFluid() == Fluids.WATER)).with(FACING, EnumOrientation.forFacing(direction, direction));
+                        return this.getDefaultState().with(LIT_VALUE, 0).with(WATERLOGGED, Boolean.valueOf(fluidstate.getFluid() == Fluids.WATER)).with(FACING, BaseEnumOrientation.forFacing(direction, direction));
                     if (powerLight <= 4 && powerLight > 0) {
-                        return this.getDefaultState().with(LIT_VALUE, 1).with(WATERLOGGED, Boolean.valueOf(fluidstate.getFluid() == Fluids.WATER)).with(FACING, EnumOrientation.forFacing(direction, direction));
+                        return this.getDefaultState().with(LIT_VALUE, 1).with(WATERLOGGED, Boolean.valueOf(fluidstate.getFluid() == Fluids.WATER)).with(FACING, BaseEnumOrientation.forFacing(direction, direction));
                     }
                     if (powerLight <= 8 && powerLight > 4) {
-                        return this.getDefaultState().with(LIT_VALUE, 2).with(WATERLOGGED, Boolean.valueOf(fluidstate.getFluid() == Fluids.WATER)).with(FACING, EnumOrientation.forFacing(direction, direction));
+                        return this.getDefaultState().with(LIT_VALUE, 2).with(WATERLOGGED, Boolean.valueOf(fluidstate.getFluid() == Fluids.WATER)).with(FACING, BaseEnumOrientation.forFacing(direction, direction));
                     }
                     if (powerLight <= 12 && powerLight > 8) {
-                        return this.getDefaultState().with(LIT_VALUE, 3).with(WATERLOGGED, Boolean.valueOf(fluidstate.getFluid() == Fluids.WATER)).with(FACING, EnumOrientation.forFacing(direction, direction));
+                        return this.getDefaultState().with(LIT_VALUE, 3).with(WATERLOGGED, Boolean.valueOf(fluidstate.getFluid() == Fluids.WATER)).with(FACING, BaseEnumOrientation.forFacing(direction, direction));
                     }
                     if (powerLight > 12) {
-                        return this.getDefaultState().with(LIT_VALUE, 4).with(WATERLOGGED, Boolean.valueOf(fluidstate.getFluid() == Fluids.WATER)).with(FACING, EnumOrientation.forFacing(direction, direction));
+                        return this.getDefaultState().with(LIT_VALUE, 4).with(WATERLOGGED, Boolean.valueOf(fluidstate.getFluid() == Fluids.WATER)).with(FACING, BaseEnumOrientation.forFacing(direction, direction));
 
                     }
 

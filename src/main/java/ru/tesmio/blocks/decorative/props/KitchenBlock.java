@@ -24,26 +24,21 @@ public class KitchenBlock extends BlockSideCustomModel {
     }
     @Override
     public ItemStack[] getItemsDrop(PlayerEntity pl) {
-            return new ItemStack[] {
-                    new ItemStack(RegItems.WOOD_SCRAP.get(), 4)
+        if(this == RegBlocks.KITCHEN_SINK.get()) {
+            return new ItemStack[]{
+                    new ItemStack(RegItems.ALUMINUM_SCRAP.get(), 2),
+                    new ItemStack(RegItems.RUSTY_SCRAP.get(), 2)
             };
-    }
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        VoxelShape BOX0 = Block.makeCuboidShape(0,0,0,16,16,13);
-        VoxelShape BOX = Block.makeCuboidShape(0,15,0,16,16,13);
-        VoxelShape BOX2 = Block.makeCuboidShape(0,0,0,16,15,12);
-        if(state.getBlock() == RegBlocks.KITCHEN_TABLE.get()) {
-            switch (state.get(FACING)) {
-                case EAST:
-                    return VoxelShapes.or(VoxelShapeUtil.shapeRotCW90(BOX),VoxelShapeUtil.shapeRotCW90(BOX2));
-                case WEST:
-                    return VoxelShapes.or(VoxelShapeUtil.shapeRotCCW90(BOX),VoxelShapeUtil.shapeRotCCW90(BOX2));
-                case NORTH:
-                    return VoxelShapes.or(VoxelShapeUtil.shapeRot180(BOX),VoxelShapeUtil.shapeRot180(BOX2));
-                case SOUTH:
-                    return VoxelShapes.or(BOX, BOX2);
-            }
         }
+        return new ItemStack[]{
+                new ItemStack(RegItems.WOOD_SCRAP.get(), 4)
+        };
+    }
+    final VoxelShape BOX0 = Block.makeCuboidShape(0,0,0,16,16,13);
+    final VoxelShape BOX = Block.makeCuboidShape(0,15,0,16,16,13);
+    final VoxelShape BOX2 = Block.makeCuboidShape(0,0,0,16,15,12);
+    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+
         switch (state.get(FACING)) {
             case EAST:
                 return VoxelShapeUtil.shapeRotCW90(BOX0);

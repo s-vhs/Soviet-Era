@@ -13,7 +13,7 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
-import ru.tesmio.blocks.baseblock.BlockRotatedAxis;
+import ru.tesmio.blocks.baseblock.BaseEnumOrientation;
 import ru.tesmio.blocks.baseblock.BlockRotatedAxisCustomModel;
 import ru.tesmio.reg.RegItems;
 import ru.tesmio.utils.VoxelShapeUtil;
@@ -37,10 +37,10 @@ public class SlateBlock extends BlockRotatedAxisCustomModel {
         for(Direction direction : context.getNearestLookingDirections()) {
             if (direction.getAxis() == Direction.Axis.Y) {
 
-                return this.getDefaultState().with(FACING, BlockRotatedAxis.EnumOrientation.forFacing(direction, context.getPlacementHorizontalFacing())).with(WATERLOGGED, Boolean.valueOf(fluidstate.getFluid() == Fluids.WATER));
+                return this.getDefaultState().with(FACING, BaseEnumOrientation.forFacing(direction, context.getPlacementHorizontalFacing())).with(WATERLOGGED, Boolean.valueOf(fluidstate.getFluid() == Fluids.WATER));
             } else {
 
-                return this.getDefaultState().with(FACING, BlockRotatedAxis.EnumOrientation.forFacing(direction, direction)).with(WATERLOGGED, Boolean.valueOf(fluidstate.getFluid() == Fluids.WATER));
+                return this.getDefaultState().with(FACING, BaseEnumOrientation.forFacing(direction, direction)).with(WATERLOGGED, Boolean.valueOf(fluidstate.getFluid() == Fluids.WATER));
             }
         }
         return this.getDefaultState();

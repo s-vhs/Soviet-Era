@@ -24,13 +24,14 @@ public class Chair extends SittableBlock {
                 new ItemStack(RegItems.WOOD_SCRAP.get(), tr.nextInt(1,3)),
         };
     }
+    final VoxelShape SHAPES[] = new VoxelShape[]{
+            Block.makeCuboidShape(0, 0, 2, 1.5, 8, 15),
+            Block.makeCuboidShape(14.5, 0, 2, 16, 8, 15),
+            Block.makeCuboidShape(1.5, 6, 1, 14.5, 7, 9),
+            Block.makeCuboidShape(0, 0, 12, 16, 16, 15)
+    };
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        VoxelShape SHAPES[] = new VoxelShape[]{
-                Block.makeCuboidShape(0, 0, 2, 1.5, 8, 15),
-                Block.makeCuboidShape(14.5, 0, 2, 16, 8, 15),
-                Block.makeCuboidShape(1.5, 6, 1, 14.5, 7, 9),
-                Block.makeCuboidShape(0, 0, 12, 16, 16, 15)
-        };
+
         if(state.getBlock() == RegBlocks.PINK_CHAIR.get()) {
             switch (state.get(FACING)) {
                 case EAST:
