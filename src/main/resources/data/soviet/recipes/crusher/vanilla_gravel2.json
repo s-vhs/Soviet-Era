@@ -1,0 +1,13 @@
+{
+	"type": "soviet:crusher",
+	"output": {
+		"item": "minecraft:gravel"
+	},
+	"countOutput": 1,
+	"input": {
+		"item": "soviet:concrete_scrap"
+	},
+	"countInput": 4, 
+	"oneByOne": false
+
+}

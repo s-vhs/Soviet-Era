@@ -1,0 +1,13 @@
+{
+	"type": "soviet:affinage",
+	"output": {
+		"item": "soviet:palladium_dust"
+	},
+	"countOutput": 3,
+	"input": {
+		"item": "soviet:circuits/reochord"
+	},
+	"countInput": 4,
+	"oneByOne": false
+
+}

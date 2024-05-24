@@ -1,0 +1,13 @@
+{
+	"type": "soviet:crusher",
+	"output": {
+		"item": "soviet:aluminum_dust"
+	},
+	"countOutput": 1,
+	"input": {
+		"item": "soviet:aluminum_ingot"
+	},
+	"countInput": 1, 
+	"oneByOne": false
+
+}

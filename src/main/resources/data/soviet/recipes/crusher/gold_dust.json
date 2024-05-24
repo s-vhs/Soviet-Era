@@ -1,0 +1,13 @@
+{
+	"type": "soviet:crusher",
+	"output": {
+		"item": "soviet:gold_dust"
+	},
+	"countOutput": 1,
+	"input": {
+		"item": "minecraft:gold_ingot"
+	},
+	"countInput": 1, 
+	"oneByOne": false
+
+}
