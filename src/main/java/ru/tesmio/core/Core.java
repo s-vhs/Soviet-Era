@@ -11,6 +11,7 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.*;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import ru.tesmio.network.NetworkHandler;
 import ru.tesmio.reg.*;
 import ru.tesmio.utils.BlockSavingHelper;
 
@@ -37,7 +38,7 @@ public class Core {
         RegSounds.SOUNDS.register(eventBus);
         RegStructures.register(eventBus);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC, "soviet_era2_config.toml");
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onCommonSetup);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onCommonSetup); //возможны проблемы переместить выше!
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onClientSetup);
     }
 
@@ -78,6 +79,7 @@ public class Core {
     }
 
     private void onCommonSetup(FMLCommonSetupEvent event) {
+        NetworkHandler.init();
         RegStructures.setupStructures();
     }
 

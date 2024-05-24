@@ -10,6 +10,7 @@ import net.minecraftforge.client.event.RenderHandEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.network.NetworkEvent;
 import ru.tesmio.blocks.affinage_factory.AffinageFactory;
 import ru.tesmio.blocks.crusher.BlockCrusher;
 import ru.tesmio.blocks.decorative.devices.SmallButton;
@@ -40,6 +41,13 @@ public class RegEvents {
     }
     public static void renderWorkGrinder(RenderHandEvent e) {
 
+    }
+
+    @SubscribeEvent
+    public static void openTabletGUI(NetworkEvent e) {
+//        TileEntityTablet te = new TileEntityTablet();
+
+//        e.setGui(new ScreenTablet());
     }
     @SubscribeEvent
     public static void rightClickDismatling(PlayerInteractEvent.RightClickBlock e) {

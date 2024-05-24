@@ -15,6 +15,7 @@ import ru.tesmio.blocks.storage.desc_drawers.LinearTableDrawersTE;
 import ru.tesmio.blocks.storage.dsp_tump.DspTumbTE;
 import ru.tesmio.blocks.storage.kitchen_table.KitchenTableTE;
 import ru.tesmio.blocks.storage.safe.TileEntitySafe;
+import ru.tesmio.blocks.tablet.TileEntityTablet;
 import ru.tesmio.core.Core;
 
 import java.util.function.Supplier;
@@ -49,7 +50,9 @@ public class RegTileEntitys {
     public static final RegistryObject<TileEntityType<RastyFrameTile>> FRAMEBLOCK_TILE = TILE_ENTITY_TYPES
             .register("rasty_frame_te",
                     () -> TileEntityType.Builder.create(RastyFrameTile::new, RegBlocks.RASTY_FRAME.get()).build(null));
-
+    public static final RegistryObject<TileEntityType<TileEntityTablet>> TABLET_TE = TILE_ENTITY_TYPES
+            .register("tablet_te",
+                    () -> TileEntityType.Builder.create(TileEntityTablet::new, RegBlocks.TABLET.get()).build(null));
 
 
     private static <T extends TileEntity> RegistryObject<TileEntityType<T>> register(String name, Supplier<T> factoryIn, Supplier<Block[]> validBlocksSupplier) {

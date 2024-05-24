@@ -263,6 +263,9 @@ public class SovietRecipeProvider extends ForgeRecipeProvider {
         CookingRecipeBuilder.blastingRecipe(Ingredient.fromItems(RegItems.ALUMINUM_DUST.get()), RegItems.ALUMINUM_INGOT.get(), 0.7f, 600)
                 .addCriterion("has_item", hasItem(RegItems.ALUMINUM_DUST.get()))
                 .build(consumer, modId("aluminum_dust"));
+        CookingRecipeBuilder.blastingRecipe(Ingredient.fromItems(RegItems.ALUMINUM_SCRAP.get()), RegItems.ALUMINUM_INGOT.get(), 0.7f, 600)
+                .addCriterion("has_item", hasItem(RegItems.ALUMINUM_SCRAP.get()))
+                .build(consumer, modId("aluminum_scrap"));
         CookingRecipeBuilder.blastingRecipe(Ingredient.fromItems(RegItems.LEAD_DUST.get()), RegItems.LEAD_INGOT.get(), 0.7f, 600)
                 .addCriterion("has_item", hasItem(RegItems.LEAD_DUST.get()))
                 .build(consumer, modId("lead_dust2"));

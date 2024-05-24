@@ -24,7 +24,7 @@ public class RegScreen {
         if (e.getType() == RenderGameOverlayEvent.ElementType.VIGNETTE) {
 
             ItemStack itemstack = this.mc.player.inventory.armorItemInSlot(3);
-//необходимо вычислить, что нужно добавить за условия, для того чтобы метод не рендерился поверхвс
+
             if (!itemstack.isEmpty()) {
                 Item item = itemstack.getItem();
 

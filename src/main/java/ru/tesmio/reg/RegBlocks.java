@@ -47,6 +47,7 @@ import ru.tesmio.blocks.storage.desc_drawers.LinearTableDrawers;
 import ru.tesmio.blocks.storage.dsp_tump.DspTumbBlock;
 import ru.tesmio.blocks.storage.kitchen_table.KitchenTable;
 import ru.tesmio.blocks.storage.safe.BlockSafe;
+import ru.tesmio.blocks.tablet.BlockTablet;
 import ru.tesmio.blocks.tumbler.AirlockDoorController;
 import ru.tesmio.blocks.tumbler.ElectroFenceTumbler;
 import ru.tesmio.blocks.tumbler.RustyTumbler;
@@ -123,7 +124,7 @@ public class RegBlocks {
     public static RegistryObject<Block> METRO_RAIL, TOXIC_AIR;
     public static RegistryObject<Block> RASTY_FRAME;
 
-
+    public static RegistryObject<Block> TABLET;
     public static void init() {
         Symbols.addSymbols();
         Symbols.addSymbolsName();
@@ -135,6 +136,7 @@ public class RegBlocks {
         TOXIC_AIR = registerBlock("toxic_air", () -> new ToxicAir(getP(Material.AIR, 0f,0f, null, 0, SoundType.WOOD, false, true)), null);
 
         RASTY_FRAME = registerBlockWithModel("rasty_frames", () -> new RastyFrameBlock(getP(Material.IRON, 0.4f,0.6f, null, 1, SoundType.METAL, false, true)), Core.ItemGroups.TAB_OUTER_DECO);
+        TABLET = registerBlockWithModel("tablet", () -> new BlockTablet(getP(Material.IRON, 0.4f,0.6f, null, 1, SoundType.METAL, false, true)), Core.ItemGroups.TAB_INNER_DECO);
 
         //windows
         AbstractBlock.Properties WINDOW_PROPERTIES = getP(Material.IRON, 0.9f,1.9f,ToolType.PICKAXE, 0, SoundType.GLASS, true, true);
