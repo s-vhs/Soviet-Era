@@ -58,9 +58,10 @@ public class BlockTablet extends BlockSideCustomModel {
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if (!worldIn.isRemote()) {
             TileEntity te = worldIn.getTileEntity(pos);
-            if (te instanceof TileEntityTablet) {
-                TileEntityTablet tet = (TileEntityTablet) te;
-                ItemStack itemstack = player.getHeldItem(handIn);
+            if (te != null) {
+                if (te instanceof TileEntityTablet) {
+                    TileEntityTablet tet = (TileEntityTablet) te;
+                    ItemStack itemstack = player.getHeldItem(handIn);
 
 //                boolean flag = itemstack.getItem() instanceof DyeItem && player.abilities.allowEdit;
 //                if (worldIn.isRemote) {
@@ -78,15 +79,17 @@ public class BlockTablet extends BlockSideCustomModel {
 //                }
 
 
+                    this.mc.displayGuiScreen(new ScreenTablet(tet));
 
-                this.mc.displayGuiScreen(new ScreenTablet(tet));
-
-                tet.executeCommand(player);
-            //    tet.updateText();
-                return ActionResultType.SUCCESS;
+                    tet.executeCommand(player);
+                //    NetworkHandler.CHANNEL.sendTo(new PacketTabletUpdate(tet.getPos(), tet.signText[0].getString(), tet.signText[1].getString(), tet.signText[2].getString(), tet.signText[3].getString()), Minecraft.getInstance().getConnection().getNetworkManager(), NetworkDirection.PLAY_TO_CLIENT);
 
 
+                    //    tet.updateText();
+                    return ActionResultType.SUCCESS;
 
+
+                }
             }
         }
 

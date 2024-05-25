@@ -26,20 +26,30 @@ public class TabletTER extends TileEntityRenderer<TileEntityTablet> {
         matrixStackIn.translate(0.0D, 0F, 0F);
        // matrixStackIn.scale(0.010416667F, 0.010416667F, 0.010416667F);
         matrixStackIn.scale(0.10416667F, 0.10416667F, 0.10416667F);
-        int color = te.getTextColor().getTextColor();
+
         for(int k1 = 0; k1 < 4; ++k1) {
             IReorderingProcessor ireorderingprocessor = te.reorderText(k1, (p_243502_1_) -> {
                 List<IReorderingProcessor> list = fontrenderer.trimStringToWidth(p_243502_1_, 90);
                 return list.isEmpty() ? IReorderingProcessor.field_242232_a : list.get(0);
             });
-            if (ireorderingprocessor != null) {
-                float f3 = (float)(-fontrenderer.func_243245_a(ireorderingprocessor) / 2);
-               fontrenderer.drawString(matrixStackIn, te.getText(0).getString(),   f3, (float)(k1 * 10 - 60), color);
-                fontrenderer.drawEntityText(ireorderingprocessor, f3, (float)(k1 * 10 -70), color, false, matrixStackIn.getLast().getMatrix(), bufferIn, false, 0, combinedLightIn);
-
-            }
+            float f3 = (float)(-fontrenderer.func_243245_a(ireorderingprocessor) / 2);
+            fontrenderer.drawString(matrixStackIn, "lox ",   f3, (float)(k1 * 10 - 60), 0);
+            fontrenderer.drawEntityText(ireorderingprocessor, f3, (float)(k1 * 10 -70), 0, false, matrixStackIn.getLast().getMatrix(), bufferIn, false, 0, combinedLightIn);
         }
 
         matrixStackIn.pop();
     }
 }
+
+
+//
+//            IReorderingProcessor ireorderingprocessor = te.reorderText(k1, (p_243502_1_) -> {
+//                List<IReorderingProcessor> list = fontrenderer.trimStringToWidth(p_243502_1_, 90);
+//                return list.isEmpty() ? IReorderingProcessor.field_242232_a : list.get(0);
+//            });
+//            if (ireorderingprocessor != null) {
+//                float f3 = (float)(-fontrenderer.func_243245_a(ireorderingprocessor) / 2);
+//               fontrenderer.drawString(matrixStackIn, te.getText(0).getString(),   f3, (float)(k1 * 10 - 60), color);
+//                fontrenderer.drawEntityText(ireorderingprocessor, f3, (float)(k1 * 10 -70), color, false, matrixStackIn.getLast().getMatrix(), bufferIn, false, 0, combinedLightIn);
+//
+//            }

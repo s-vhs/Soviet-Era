@@ -17,8 +17,6 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import ru.tesmio.core.Core;
-import ru.tesmio.network.NetworkHandler;
-import ru.tesmio.network.packets.PacketTabletUpdate;
 
 import java.util.stream.IntStream;
 
@@ -44,6 +42,7 @@ public class ScreenTablet extends Screen {
 
 
     protected void init() {
+        assert this.minecraft != null;
         this.minecraft.keyboardListener.enableRepeatEvents(true);
         this.addButton(new Button(this.width / 2 - 100, this.height / 4 + 120, 200, 20, DialogTexts.GUI_DONE, (p_238847_1_) -> {
             this.close();
@@ -55,6 +54,7 @@ public class ScreenTablet extends Screen {
         }, TextInputUtil.getClipboardTextSupplier(this.minecraft), TextInputUtil.getClipboardTextSetter(this.minecraft), (p_238848_1_) -> this.minecraft.fontRenderer.getStringWidth(p_238848_1_) <= 90);
     }
     public void onClose() {
+        assert this.minecraft != null;
         this.minecraft.keyboardListener.enableRepeatEvents(false);
         ClientPlayNetHandler clientplaynethandler = this.minecraft.getConnection();
         if (clientplaynethandler != null) {
@@ -74,9 +74,6 @@ public class ScreenTablet extends Screen {
     }
 
     private void close() {
-       // this.tileSign.markDirty();
-      //  this.tileSign.updateText(this.field_238846_r_[0], this.field_238846_r_[1], this.field_238846_r_[2], this.field_238846_r_[3]);
-        NetworkHandler.CHANNEL.sendToServer(new PacketTabletUpdate(tileSign.getPos(), this.field_238846_r_[0], this.field_238846_r_[1], this.field_238846_r_[2], this.field_238846_r_[3]));
         this.minecraft.displayGuiScreen((Screen)null);
     }
 
@@ -120,7 +117,7 @@ public class ScreenTablet extends Screen {
         float f2 = 0.010416667F;
         matrixStack.translate(0.0D, (double)0.33333334F, (double)0.046666667F);
         matrixStack.scale(0.010416667F, -0.010416667F, 0.010416667F);
-        int i = this.tileSign.getTextColor().getTextColor();
+    //    int i = this.tileSign.getTextColor().getTextColor();
         int j = this.textInputUtil.getSelectionEnd();
         int k = this.textInputUtil.getSelectionStart();
         int l = this.editLine * 10 - this.field_238846_r_.length * 5;
@@ -133,12 +130,12 @@ public class ScreenTablet extends Screen {
                 }
 
                 float f3 = (float)(-this.minecraft.fontRenderer.getStringWidth(s) / 2);
-                this.minecraft.fontRenderer.drawBidiString(s, f3, (float)(i1 * 10 - this.field_238846_r_.length * 5), i, false, matrix4f, irendertypebuffer$impl, false, 0, 15728880, false);
+                this.minecraft.fontRenderer.drawBidiString(s, f3, (float)(i1 * 10 - this.field_238846_r_.length * 5), 0, false, matrix4f, irendertypebuffer$impl, false, 0, 15728880, false);
                 if (i1 == this.editLine && j >= 0 && flag1) {
                     int j1 = this.minecraft.fontRenderer.getStringWidth(s.substring(0, Math.max(Math.min(j, s.length()), 0)));
                     int k1 = j1 - this.minecraft.fontRenderer.getStringWidth(s) / 2;
                     if (j >= s.length()) {
-                        this.minecraft.fontRenderer.drawBidiString("_", (float)k1, (float)l, i, false, matrix4f, irendertypebuffer$impl, false, 0, 15728880, false);
+                        this.minecraft.fontRenderer.drawBidiString("_", (float)k1, (float)l, 0, false, matrix4f, irendertypebuffer$impl, false, 0, 15728880, false);
                     }
                 }
             }
@@ -150,7 +147,7 @@ public class ScreenTablet extends Screen {
                 int j3 = this.minecraft.fontRenderer.getStringWidth(s1.substring(0, Math.max(Math.min(j, s1.length()), 0)));
                 int k3 = j3 - this.minecraft.fontRenderer.getStringWidth(s1) / 2;
                 if (flag1 && j < s1.length()) {
-                    fill(matrixStack, k3, l - 1, k3 + 1, l + 9, -16777216 | i);
+                    fill(matrixStack, k3, l - 1, k3 + 1, l + 9, -16777216 | 0);
                 }
 
                 if (k != j) {

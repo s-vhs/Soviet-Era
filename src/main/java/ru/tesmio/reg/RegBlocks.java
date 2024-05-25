@@ -18,9 +18,9 @@ import ru.tesmio.blocks.affinage_factory.AffinageFactory;
 import ru.tesmio.blocks.baseblock.*;
 import ru.tesmio.blocks.baseblock.subtype.*;
 import ru.tesmio.blocks.circuits.*;
+import ru.tesmio.blocks.crusher.BlockCrusher;
 import ru.tesmio.blocks.decorative.const_panel.PanelBlockCorner;
 import ru.tesmio.blocks.decorative.const_panel.PanelBlockSide;
-import ru.tesmio.blocks.crusher.BlockCrusher;
 import ru.tesmio.blocks.decorative.devices.*;
 import ru.tesmio.blocks.decorative.lamp.*;
 import ru.tesmio.blocks.decorative.props.*;
@@ -47,7 +47,7 @@ import ru.tesmio.blocks.storage.desc_drawers.LinearTableDrawers;
 import ru.tesmio.blocks.storage.dsp_tump.DspTumbBlock;
 import ru.tesmio.blocks.storage.kitchen_table.KitchenTable;
 import ru.tesmio.blocks.storage.safe.BlockSafe;
-import ru.tesmio.blocks.tablet.BlockTablet;
+import ru.tesmio.blocks.tablet2.TabletBlock;
 import ru.tesmio.blocks.tumbler.AirlockDoorController;
 import ru.tesmio.blocks.tumbler.ElectroFenceTumbler;
 import ru.tesmio.blocks.tumbler.RustyTumbler;
@@ -136,7 +136,7 @@ public class RegBlocks {
         TOXIC_AIR = registerBlock("toxic_air", () -> new ToxicAir(getP(Material.AIR, 0f,0f, null, 0, SoundType.WOOD, false, true)), null);
 
         RASTY_FRAME = registerBlockWithModel("rasty_frames", () -> new RastyFrameBlock(getP(Material.IRON, 0.4f,0.6f, null, 1, SoundType.METAL, false, true)), Core.ItemGroups.TAB_OUTER_DECO);
-        TABLET = registerBlockWithModel("tablet", () -> new BlockTablet(getP(Material.IRON, 0.4f,0.6f, null, 1, SoundType.METAL, false, true)), Core.ItemGroups.TAB_INNER_DECO);
+        TABLET = registerBlockWithModel("tablet", () -> new TabletBlock(getP(Material.IRON, 0.4f,0.6f, null, 1, SoundType.METAL, false, true)), Core.ItemGroups.TAB_INNER_DECO);
 
         //windows
         AbstractBlock.Properties WINDOW_PROPERTIES = getP(Material.IRON, 0.9f,1.9f,ToolType.PICKAXE, 0, SoundType.GLASS, true, true);
