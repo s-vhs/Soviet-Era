@@ -14,7 +14,6 @@ import ru.tesmio.blocks.storage.desc_drawers.LinearTableDrawersScreen;
 import ru.tesmio.blocks.storage.dsp_tump.DspTumbScreen;
 import ru.tesmio.blocks.storage.kitchen_table.KitchenTableScreen;
 import ru.tesmio.blocks.storage.safe.ScreenSafe;
-import ru.tesmio.blocks.tablet2.TabletTileEntityRenderer;
 import ru.tesmio.entity.renderer.EntitySittableBlockRender;
 import ru.tesmio.reg.*;
 
@@ -80,7 +79,7 @@ public class ClientProxy {
     private static void registerTileEntityRenderers() {
         ClientRegistry.bindTileEntityRenderer(RegTileEntitys.STILLAGE_TE.get(), StillageTER::new);
        // ClientRegistry.bindTileEntityRenderer(RegTileEntitys.TABLET_TE.get(), TabletTER::new);
-        ClientRegistry.bindTileEntityRenderer(RegTileEntitys.TABLET_TE.get(), TabletTileEntityRenderer::new);
+
     }
     private static void registerEntityRenderers() {
         RenderingRegistry.registerEntityRenderingHandler(RegEntitys.SEAT.get(), EntitySittableBlockRender::new);

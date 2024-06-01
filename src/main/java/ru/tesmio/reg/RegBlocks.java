@@ -47,7 +47,7 @@ import ru.tesmio.blocks.storage.desc_drawers.LinearTableDrawers;
 import ru.tesmio.blocks.storage.dsp_tump.DspTumbBlock;
 import ru.tesmio.blocks.storage.kitchen_table.KitchenTable;
 import ru.tesmio.blocks.storage.safe.BlockSafe;
-import ru.tesmio.blocks.tablet2.TabletBlock;
+
 import ru.tesmio.blocks.tumbler.AirlockDoorController;
 import ru.tesmio.blocks.tumbler.ElectroFenceTumbler;
 import ru.tesmio.blocks.tumbler.RustyTumbler;
@@ -84,6 +84,7 @@ public class RegBlocks {
     public static RegistryObject<Block> CERAMIC_GLASS_BLUE, CERAMIC_GLASS_GREEN, CERAMIC_GLASS_BROWN;
     public static RegistryObject<Block> CRUSHER, AFFINAGE_FACTORY, ENERGY_GENERATOR, DIESEL_E_GENERATOR, DIESEL_TANK;
     public static RegistryObject<Block> TRIM_TILE_1,TRIM_TILE_1_BR, TRIM_STONE_1, TRIM_STONE_2, TRIM_STONE_3, TRIM_STONE_4, PARQUET_BLOCK,PARQUET_BLOCK_DIAG,  TRIM_TILE_RED, TRIM_TILE_BLUE, CONCRETE_PLATE, CONTAINMENT_BLOCK, TRIM_METAL_1, TRIM_METAL_2, RUSTYMETAL_BLOCK, LEADCERAMIC_TILE;
+    public static RegistryObject<Block> WALLPAPER_1,WALLPAPER_2,WALLPAPER_3,WALLPAPER_4,WALLPAPER_5, WALLPAPER_6, WALLPAPER_7,WALLPAPER_8,WALLPAPER_9,WALLPAPER_10,WALLPAPER_11,WALLPAPER_12, WALLPAPER_13, WALLPAPER_14, WALLPAPER_15;
     public static RegistryObject<Block> TUBING_HORIZONTAL, TUBING_VERTICAL;
     public static RegistryObject<Block> CONTROL_PANEL_UP, CONTROL_PANEL_DOWN;
     public static RegistryObject<Block> FLUORESCENT_LAMP, BROKEN_FLUORESCENT_LAMP,FLUORESCENT_LAMP2, BROKEN_FLUORESCENT_LAMP2,FLUORESCENT_LAMP3, BROKEN_FLUORESCENT_LAMP3,INC_LAMP,RED_LAMP;
@@ -122,9 +123,8 @@ public class RegBlocks {
 
     public static RegistryObject<Block> BLOCK_MOULD,BLOCK_MOSS_FULL,BLOCK_MOSS;
     public static RegistryObject<Block> METRO_RAIL, TOXIC_AIR;
-    public static RegistryObject<Block> RASTY_FRAME;
+    public static RegistryObject<Block> RASTY_FRAME, STEEL_PYLON, HORIZONTAL_STEEL_PYLON;
 
-    public static RegistryObject<Block> TABLET;
     public static void init() {
         Symbols.addSymbols();
         Symbols.addSymbolsName();
@@ -136,7 +136,10 @@ public class RegBlocks {
         TOXIC_AIR = registerBlock("toxic_air", () -> new ToxicAir(getP(Material.AIR, 0f,0f, null, 0, SoundType.WOOD, false, true)), null);
 
         RASTY_FRAME = registerBlockWithModel("rasty_frames", () -> new RastyFrameBlock(getP(Material.IRON, 0.4f,0.6f, null, 1, SoundType.METAL, false, true)), Core.ItemGroups.TAB_OUTER_DECO);
-        TABLET = registerBlockWithModel("tablet", () -> new TabletBlock(getP(Material.IRON, 0.4f,0.6f, null, 1, SoundType.METAL, false, true)), Core.ItemGroups.TAB_INNER_DECO);
+
+        STEEL_PYLON = registerBlockWithModel("structural/steel_pylon", () -> new PylonBlock(getP(Material.IRON, 0.4f,0.6f, null, 1, SoundType.METAL, false, true)), Core.ItemGroups.TAB_OUTER_DECO);
+        HORIZONTAL_STEEL_PYLON = registerBlockWithModel("structural/steel_pylon_horizontal", () -> new PylonBlockH(getP(Material.IRON, 0.4f,0.6f, null, 1, SoundType.METAL, false, true)), Core.ItemGroups.TAB_OUTER_DECO);
+
 
         //windows
         AbstractBlock.Properties WINDOW_PROPERTIES = getP(Material.IRON, 0.9f,1.9f,ToolType.PICKAXE, 0, SoundType.GLASS, true, true);
@@ -159,6 +162,7 @@ public class RegBlocks {
 
         ALUM_FRAMES_EMPTY = registerBlockWithModel("innerdeco/windows/alum_frame_empty", () -> new AlumFrame(WINDOW_PROPERTIES), Core.ItemGroups.TAB_INNER_DECO);
         ALUM_FRAMES = registerBlockWithModel("innerdeco/windows/alum_frame", () -> new AlumFrame(WINDOW_PROPERTIES), Core.ItemGroups.TAB_INNER_DECO);
+
         //redstone devices
         SWITCH_REDSTONE_WIRE = registerBlockWithModel("innerdeco/devices/switch_redstone_wire", () -> new SwitchRedstoneWire(getP(Material.WOOL, 0.8f,1.1f,ToolType.AXE, 0, SoundType.CLOTH, true, true), 1F), Core.ItemGroups.TAB_INNER_DECO);
         HORIZONTAL_REDSTONE_WIRE = registerBlockWithModel("innerdeco/devices/horiz_redstone_wire", () -> new HorizontalRedstoneWire(getP(Material.WOOL, 0.8f,1.1f,ToolType.AXE, 0, SoundType.CLOTH, true, true)), Core.ItemGroups.TAB_INNER_DECO);
@@ -375,8 +379,22 @@ public class RegBlocks {
         DIESEL_TANK = registerBlockWithModel("mech/diesel_tank", () -> new DieselTank(AbstractBlock.Properties.create(Material.IRON).setRequiresTool().hardnessAndResistance(3f,8f).notSolid()), Core.ItemGroups.TAB_INNER_DECO);
         DIESEL_E_GENERATOR = registerBlockWithModel("mech/diesel_electro_generator", () -> new DieselElectroGenerator(AbstractBlock.Properties.create(Material.IRON).setRequiresTool().hardnessAndResistance(3f,8f).notSolid()), Core.ItemGroups.TAB_INNER_DECO);
 
-
-
+        //wallpapers
+        WALLPAPER_1 = registerBlock("wallpapers/wp1", () -> new WallpaperBlock(),Core.ItemGroups.TAB_MAIN);
+        WALLPAPER_2 = registerBlock("wallpapers/wp2", () -> new WallpaperBlock(),Core.ItemGroups.TAB_MAIN);
+        WALLPAPER_3 = registerBlock("wallpapers/wp3", () -> new WallpaperBlock(),Core.ItemGroups.TAB_MAIN);
+        WALLPAPER_4 = registerBlock("wallpapers/wp4", () -> new WallpaperBlock(),Core.ItemGroups.TAB_MAIN);
+        WALLPAPER_5 = registerBlock("wallpapers/wp5", () -> new WallpaperBlock(),Core.ItemGroups.TAB_MAIN);
+        WALLPAPER_6 = registerBlock("wallpapers/wp6", () -> new WallpaperBlock(),Core.ItemGroups.TAB_MAIN);
+        WALLPAPER_7 = registerBlock("wallpapers/wp7", () -> new WallpaperBlock(),Core.ItemGroups.TAB_MAIN);
+        WALLPAPER_8 = registerBlock("wallpapers/wp8", () -> new WallpaperBlock(),Core.ItemGroups.TAB_MAIN);
+        WALLPAPER_9 = registerBlock("wallpapers/wp9", () -> new WallpaperBlock(),Core.ItemGroups.TAB_MAIN);
+        WALLPAPER_10 = registerBlock("wallpapers/wp10", () -> new WallpaperBlock(),Core.ItemGroups.TAB_MAIN);
+        WALLPAPER_11 = registerBlock("wallpapers/wp11", () -> new WallpaperBlock(),Core.ItemGroups.TAB_MAIN);
+        WALLPAPER_12 = registerBlock("wallpapers/wp12", () -> new WallpaperBlock(),Core.ItemGroups.TAB_MAIN);
+        WALLPAPER_13 = registerBlock("wallpapers/wp13", () -> new WallpaperBlock(),Core.ItemGroups.TAB_MAIN);
+        WALLPAPER_14 = registerBlock("wallpapers/wp14", () -> new WallpaperBlock(),Core.ItemGroups.TAB_MAIN);
+        WALLPAPER_15 = registerBlock("wallpapers/wp15", () -> new WallpaperBlock(),Core.ItemGroups.TAB_MAIN);
         //trim_stone
         TRIM_TILE_1 = registerBlock("structural/trim_tile_1", () -> new TilledBlock(),Core.ItemGroups.TAB_MAIN);
         TRIM_TILE_1_BR = registerBlock("structural/trim_tile_1_br", () -> new TilledBlock(),Core.ItemGroups.TAB_MAIN);
@@ -398,15 +416,15 @@ public class RegBlocks {
 
         AbstractBlock.Properties WINDPROOF_PROPERTIES = getP(Material.ROCK, 2,1,ToolType.PICKAXE, 2, SoundType.STONE, true, true);
         //windproof
-        WINDPROOF_BETON_GRAY = registerBlockWithModelColored("outerdeco/streetdeco/windproof_beton_gray", () -> new WindProofPanel(WINDPROOF_PROPERTIES, 1, "info.gray"), Core.ItemGroups.TAB_MAIN);
-        WINDPROOF_BETON_RED = registerBlockWithModelColored("outerdeco/streetdeco/windproof_beton_red", () -> new WindProofPanel(WINDPROOF_PROPERTIES, 1, "info.red"), Core.ItemGroups.TAB_MAIN);
-        WINDPROOF_BETON_GREEN = registerBlockWithModelColored("outerdeco/streetdeco/windproof_beton_green", () -> new WindProofPanel(WINDPROOF_PROPERTIES, 1, "info.green"), Core.ItemGroups.TAB_MAIN);
-        WINDPROOF_BETON_ORANGE = registerBlockWithModelColored("outerdeco/streetdeco/windproof_beton_orange", () -> new WindProofPanel(WINDPROOF_PROPERTIES, 1, "info.orange"), Core.ItemGroups.TAB_MAIN);
-        WINDPROOF_BETON_BLUE = registerBlockWithModelColored("outerdeco/streetdeco/windproof_beton_blue", () -> new WindProofPanel(WINDPROOF_PROPERTIES, 1, "info.blue"), Core.ItemGroups.TAB_MAIN);
-        WINDPROOF_BETON_YELLOW = registerBlockWithModelColored("outerdeco/streetdeco/windproof_beton_yellow", () -> new WindProofPanel(WINDPROOF_PROPERTIES, 1, "info.yellow"), Core.ItemGroups.TAB_MAIN);
-        WINDPROOF_BETON_BEIGE = registerBlockWithModelColored("outerdeco/streetdeco/windproof_beton_beige", () -> new WindProofPanel(WINDPROOF_PROPERTIES, 1, "info.beige"), Core.ItemGroups.TAB_MAIN);
-        WINDPROOF_BETON_BEIGE2 = registerBlockWithModelColored("outerdeco/streetdeco/windproof_beton_beige2", () -> new WindProofPanel(WINDPROOF_PROPERTIES, 1, "info.beige2"), Core.ItemGroups.TAB_MAIN);
-        WINDPROOF_BETON_WHITE = registerBlockWithModelColored("outerdeco/streetdeco/windproof_beton_white", () -> new WindProofPanel(WINDPROOF_PROPERTIES, 1, "info.white"), Core.ItemGroups.TAB_MAIN);
+        WINDPROOF_BETON_GRAY = registerBlockWithModelColored("outerdeco/streetdeco/windproof_beton_gray", () -> new WindProofPanel(WINDPROOF_PROPERTIES, 1, "info.gray"), Core.ItemGroups.TAB_OUTER_DECO);
+        WINDPROOF_BETON_RED = registerBlockWithModelColored("outerdeco/streetdeco/windproof_beton_red", () -> new WindProofPanel(WINDPROOF_PROPERTIES, 1, "info.red"), Core.ItemGroups.TAB_OUTER_DECO);
+        WINDPROOF_BETON_GREEN = registerBlockWithModelColored("outerdeco/streetdeco/windproof_beton_green", () -> new WindProofPanel(WINDPROOF_PROPERTIES, 1, "info.green"), Core.ItemGroups.TAB_OUTER_DECO);
+        WINDPROOF_BETON_ORANGE = registerBlockWithModelColored("outerdeco/streetdeco/windproof_beton_orange", () -> new WindProofPanel(WINDPROOF_PROPERTIES, 1, "info.orange"), Core.ItemGroups.TAB_OUTER_DECO);
+        WINDPROOF_BETON_BLUE = registerBlockWithModelColored("outerdeco/streetdeco/windproof_beton_blue", () -> new WindProofPanel(WINDPROOF_PROPERTIES, 1, "info.blue"), Core.ItemGroups.TAB_OUTER_DECO);
+        WINDPROOF_BETON_YELLOW = registerBlockWithModelColored("outerdeco/streetdeco/windproof_beton_yellow", () -> new WindProofPanel(WINDPROOF_PROPERTIES, 1, "info.yellow"), Core.ItemGroups.TAB_OUTER_DECO);
+        WINDPROOF_BETON_BEIGE = registerBlockWithModelColored("outerdeco/streetdeco/windproof_beton_beige", () -> new WindProofPanel(WINDPROOF_PROPERTIES, 1, "info.beige"), Core.ItemGroups.TAB_OUTER_DECO);
+        WINDPROOF_BETON_BEIGE2 = registerBlockWithModelColored("outerdeco/streetdeco/windproof_beton_beige2", () -> new WindProofPanel(WINDPROOF_PROPERTIES, 1, "info.beige2"), Core.ItemGroups.TAB_OUTER_DECO);
+        WINDPROOF_BETON_WHITE = registerBlockWithModelColored("outerdeco/streetdeco/windproof_beton_white", () -> new WindProofPanel(WINDPROOF_PROPERTIES, 1, "info.white"), Core.ItemGroups.TAB_OUTER_DECO);
 
         //ceramic_glass
         CERAMIC_GLASS_BLUE = registerBlock("structural/ceramic_glass_blue", () -> new GlassBlock(),Core.ItemGroups.TAB_MAIN);
@@ -425,15 +443,15 @@ public class RegBlocks {
 
         AbstractBlock.Properties CONCRETE_RAILING_PROPERTIES = getP(Material.ROCK, 2,1,ToolType.PICKAXE, 2, SoundType.STONE, true, true);
         //concrete_railing
-        CONCRETE_RAILING_ORANGE = registerBlockWithModel("structural/concrete_railing_orange", () -> new BlockRailing(CONCRETE_RAILING_PROPERTIES, "info.orange", 0.5F), Core.ItemGroups.TAB_MAIN);
-        CONCRETE_RAILING_WHITE = registerBlockWithModel("structural/concrete_railing_white", () -> new BlockRailing(CONCRETE_RAILING_PROPERTIES, "info.white", 0.5F), Core.ItemGroups.TAB_MAIN);
-        CONCRETE_RAILING_GRAY = registerBlockWithModel("structural/concrete_railing_gray", () -> new BlockRailing(CONCRETE_RAILING_PROPERTIES, "info.gray", 0.5F), Core.ItemGroups.TAB_MAIN);
-        CONCRETE_RAILING_GREEN = registerBlockWithModel("structural/concrete_railing_green", () -> new BlockRailing(CONCRETE_RAILING_PROPERTIES, "info.green", 0.5F), Core.ItemGroups.TAB_MAIN);
-        CONCRETE_RAILING_RED = registerBlockWithModel("structural/concrete_railing_red", () -> new BlockRailing(CONCRETE_RAILING_PROPERTIES, "info.red", 0.5F), Core.ItemGroups.TAB_MAIN);
-        CONCRETE_RAILING_BLUE = registerBlockWithModel("structural/concrete_railing_blue", () -> new BlockRailing(CONCRETE_RAILING_PROPERTIES, "info.blue", 0.5F), Core.ItemGroups.TAB_MAIN);
-        CONCRETE_RAILING_BEIGE = registerBlockWithModel("structural/concrete_railing_beige", () -> new BlockRailing(CONCRETE_RAILING_PROPERTIES, "info.beige", 0.5F), Core.ItemGroups.TAB_MAIN);
-        CONCRETE_RAILING_BEIGE2 = registerBlockWithModel("structural/concrete_railing_beige2", () -> new BlockRailing(CONCRETE_RAILING_PROPERTIES, "info.beige2", 0.5F), Core.ItemGroups.TAB_MAIN);
-        CONCRETE_RAILING_YELLOW = registerBlockWithModel("structural/concrete_railing_yellow", () -> new BlockRailing(CONCRETE_RAILING_PROPERTIES, "info.yellow", 0.5F), Core.ItemGroups.TAB_MAIN);
+        CONCRETE_RAILING_ORANGE = registerBlockWithModel("structural/concrete_railing_orange", () -> new BlockRailing(CONCRETE_RAILING_PROPERTIES, "info.orange", 0.5F), Core.ItemGroups.TAB_OUTER_DECO);
+        CONCRETE_RAILING_WHITE = registerBlockWithModel("structural/concrete_railing_white", () -> new BlockRailing(CONCRETE_RAILING_PROPERTIES, "info.white", 0.5F), Core.ItemGroups.TAB_OUTER_DECO);
+        CONCRETE_RAILING_GRAY = registerBlockWithModel("structural/concrete_railing_gray", () -> new BlockRailing(CONCRETE_RAILING_PROPERTIES, "info.gray", 0.5F), Core.ItemGroups.TAB_OUTER_DECO);
+        CONCRETE_RAILING_GREEN = registerBlockWithModel("structural/concrete_railing_green", () -> new BlockRailing(CONCRETE_RAILING_PROPERTIES, "info.green", 0.5F), Core.ItemGroups.TAB_OUTER_DECO);
+        CONCRETE_RAILING_RED = registerBlockWithModel("structural/concrete_railing_red", () -> new BlockRailing(CONCRETE_RAILING_PROPERTIES, "info.red", 0.5F), Core.ItemGroups.TAB_OUTER_DECO);
+        CONCRETE_RAILING_BLUE = registerBlockWithModel("structural/concrete_railing_blue", () -> new BlockRailing(CONCRETE_RAILING_PROPERTIES, "info.blue", 0.5F), Core.ItemGroups.TAB_OUTER_DECO);
+        CONCRETE_RAILING_BEIGE = registerBlockWithModel("structural/concrete_railing_beige", () -> new BlockRailing(CONCRETE_RAILING_PROPERTIES, "info.beige", 0.5F), Core.ItemGroups.TAB_OUTER_DECO);
+        CONCRETE_RAILING_BEIGE2 = registerBlockWithModel("structural/concrete_railing_beige2", () -> new BlockRailing(CONCRETE_RAILING_PROPERTIES, "info.beige2", 0.5F), Core.ItemGroups.TAB_OUTER_DECO);
+        CONCRETE_RAILING_YELLOW = registerBlockWithModel("structural/concrete_railing_yellow", () -> new BlockRailing(CONCRETE_RAILING_PROPERTIES, "info.yellow", 0.5F), Core.ItemGroups.TAB_OUTER_DECO);
 
         //beams
         IRON_BEAM_CONCRETE = registerBlockWithModel("structural/iron_beam_concrete", () -> new BlockRotatedAxisCustomModel(AbstractBlock.Properties.create(Material.IRON).setRequiresTool().hardnessAndResistance(3f,8f).notSolid(), 0.5F), Core.ItemGroups.TAB_MAIN);

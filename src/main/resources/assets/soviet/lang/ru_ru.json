@@ -615,5 +615,13 @@
   "item.soviet.cracked_red_brick": "Потрескавшийся красный кирпич",
   "item.soviet.broken_red_brick": "Битый красный кирпич",
   "block.soviet.structural.rusty_block": "Ржавый стальной блок",
-"block.soviet.structural.parquet_block_diagonal": "Диагональный паркет"
+"block.soviet.structural.parquet_block_diagonal": "Диагональный паркет",
+"adv.start_exlore":"Исследование начинается!",
+  "adv.start_exlore.description":"",
+"adv.wrench": "Универсальный ключ",
+"adv.wrench.description": "Создайте разводник",
+"adv.wc": "Кусь...?",
+"adv.wc.description": "Создайте кусачки",
+"adv.wip": "В разработке.",
+"adv.wip.description": "Система достижений и вознаграждений для реализации четвертой концепции будет добавлена позже."
 }

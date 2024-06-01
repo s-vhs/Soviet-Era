@@ -10,6 +10,7 @@ import ru.tesmio.data.providers.SovietBlockStateProvider;
 import ru.tesmio.data.providers.SovietItemModelProvider;
 import ru.tesmio.data.providers.SovietLootProvider;
 import ru.tesmio.data.providers.SovietRecipeProvider;
+import ru.tesmio.data.providers.advancements.SovietAdvancementsProvider;
 
 @Mod.EventBusSubscriber(modid = Core.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DataGenerators {
@@ -21,14 +22,9 @@ public class DataGenerators {
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
 
         gen.addProvider(new SovietBlockStateProvider(gen, existingFileHelper));
-       // gen.addProvider(new SovietBlockModelProvider(gen, existingFileHelper));
-          gen.addProvider(new SovietItemModelProvider(gen, existingFileHelper));
-
-//        SovietBlockTagsProvider blockTags = new SovietBlockTagsProvider(gen, existingFileHelper);
-//        gen.addProvider(blockTags);
-//        gen.addProvider(new SovietItemTagsProvider(gen, blockTags, existingFileHelper));
-
+        gen.addProvider(new SovietItemModelProvider(gen, existingFileHelper));
         gen.addProvider(new SovietLootProvider(gen));
         gen.addProvider(new SovietRecipeProvider(gen));
+        gen.addProvider(new SovietAdvancementsProvider(gen));
     }
 }

@@ -20,6 +20,7 @@ public class Core {
 
     public static final String MODID = "soviet";
   //  IReloadableResourceManager resMgr = (IReloadableResourceManager) Minecraft.getInstance().getResourceManager();
+    // public static final DiscoveryBlockTrigger DISCOVERY_BLOCK_TRIGGER = CriteriaTriggers.register(new DiscoveryBlockTrigger());
     public Core() {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
@@ -38,6 +39,7 @@ public class Core {
         RegSounds.SOUNDS.register(eventBus);
         RegStructures.register(eventBus);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC, "soviet_era2_config.toml");
+     //   CriteriaTriggers.register(DiscoveryBlockTrigger.INSTANCE);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onCommonSetup); //возможны проблемы переместить выше!
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onClientSetup);
     }
