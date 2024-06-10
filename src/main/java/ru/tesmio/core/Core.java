@@ -11,6 +11,8 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.*;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+
+import ru.tesmio.event.EventAdvancement;
 import ru.tesmio.network.NetworkHandler;
 import ru.tesmio.reg.*;
 import ru.tesmio.utils.BlockSavingHelper;
@@ -26,13 +28,14 @@ public class Core {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
         //   resMgr.addReloadListener(AssetPreLoader.INSTANCE);
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
-
+   //     ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.DISPLAYTEST, () -> Pair.of(() -> "", (x, y) -> true));
         MinecraftForge.EVENT_BUS.register(this);
+        MinecraftForge.EVENT_BUS.register(new EventAdvancement());
         RegItems.register(eventBus);
         RegRecipeSerializers.RECIPE_SERIALIZERS.register(eventBus);
         RegBlocks.register(eventBus);
         RegFluids.register(eventBus);
-        MinecraftForge.EVENT_BUS.register(new RegScreen());
+
         RegEntitys.ENTITY_TYPES.register(eventBus);
         RegContainers.CONTAINER_TYPES.register(eventBus);
         RegTileEntitys.TILE_ENTITY_TYPES.register(eventBus);

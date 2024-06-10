@@ -35,14 +35,15 @@ public class SovietBlockStateProvider extends BlockStateProvider {
     protected void registerStatesAndModels() {
 
         variantBuilderAll();
-      //  builderSlabs();
+        //  builderSlabs();
         builderStairs();
         blockWithCustomModelBuilder();
     }
+
     public void blockRotAxisCustomModelBuilder() {
         AtomicInteger down = new AtomicInteger();
         AtomicInteger up = new AtomicInteger();
-        for(RegistryObject<Block> block : RegBlocks.BLOCKS_CUSTOM_MODELS_COLORED.getEntries()) {
+        for (RegistryObject<Block> block : RegBlocks.BLOCKS_CUSTOM_MODELS_COLORED.getEntries()) {
             if (block.get() instanceof BaseSlab) {
                 String name = block.get().getRegistryName().toString();
                 String loc2 = name.replaceAll(name, "block/concrete/concrete" + name.substring(26));
@@ -62,10 +63,11 @@ public class SovietBlockStateProvider extends BlockStateProvider {
             }
         }
     }
+
     public void blockWithCustomModelBuilder() {
         AtomicInteger down = new AtomicInteger();
         AtomicInteger up = new AtomicInteger();
-        for(RegistryObject<Block> block : RegBlocks.BLOCKS_CUSTOM_MODELS_COLORED.getEntries()) {
+        for (RegistryObject<Block> block : RegBlocks.BLOCKS_CUSTOM_MODELS_COLORED.getEntries()) {
 
             if (block.get() instanceof WindProofPanel) {
                 String name = block.get().getRegistryName().toString();
@@ -80,23 +82,23 @@ public class SovietBlockStateProvider extends BlockStateProvider {
                         }, BlockSideCustomModel.WATERLOGGED);
             }
 
-                if (block.get() instanceof BaseSlab) {
-                    String name = block.get().getRegistryName().toString();
-                    String loc2 = name.replaceAll(name, "block/concrete/concrete" + name.substring(26));
-                    getVariantBuilder(block.get())
-                            .forAllStatesExcept(state -> {
-                                BlockForFacing.EnumOrientation enumOrient = state.get(BlockForFacing.FACING);
-                                Direction orient = enumOrient.getDirection();
-                                down.set(orient.getDirectionVec().getY() * 90);
-                                up.set(orient.getDirectionVec().getY() * (-270));
-                                return ConfiguredModel.builder()
-                                        .modelFile(builderForParent("block/" + name.substring(7), "soviet:block/structural/slab", modLoc(loc2), "0"))
-                                        .rotationY(orient.getAxis().isVertical() ? 0 : (((int) orient.getHorizontalAngle())) % 360)
-                                        .rotationX(orient.getDirectionVec().getY() == 1 ? down.get() : up.get())
-                                        .build();
-                            }, BlockSideCustomModel.WATERLOGGED);
-                }
+            if (block.get() instanceof BaseSlab) {
+                String name = block.get().getRegistryName().toString();
+                String loc2 = name.replaceAll(name, "block/concrete/concrete" + name.substring(26));
+                getVariantBuilder(block.get())
+                        .forAllStatesExcept(state -> {
+                            BlockForFacing.EnumOrientation enumOrient = state.get(BlockForFacing.FACING);
+                            Direction orient = enumOrient.getDirection();
+                            down.set(orient.getDirectionVec().getY() * 90);
+                            up.set(orient.getDirectionVec().getY() * (-270));
+                            return ConfiguredModel.builder()
+                                    .modelFile(builderForParent("block/" + name.substring(7), "soviet:block/structural/slab", modLoc(loc2), "0"))
+                                    .rotationY(orient.getAxis().isVertical() ? 0 : (((int) orient.getHorizontalAngle())) % 360)
+                                    .rotationX(orient.getDirectionVec().getY() == 1 ? down.get() : up.get())
+                                    .build();
+                        }, BlockSideCustomModel.WATERLOGGED);
             }
+        }
     }
 
     public ModelBuilder<BlockModelBuilder> builder(String name, ResourceLocation rs) {
@@ -106,7 +108,7 @@ public class SovietBlockStateProvider extends BlockStateProvider {
     public void variantBuilderAll() {
         for (RegistryObject<Block> b2 : RegBlocks.BLOCKS.getEntries()) {
             String name = b2.get().getRegistryName().toString();
-            if ( !(b2.get() instanceof ToxicAir) && !(b2.get() instanceof BaseStairs) && !(b2.get() instanceof BaseSlab) && !(b2.get() == RegFluids.TOXIC_WATER_BLOCK.get()))
+            if (!(b2.get() instanceof ToxicAir) && !(b2.get() instanceof BaseStairs) && !(b2.get() instanceof BaseSlab) && !(b2.get() == RegFluids.TOXIC_WATER_BLOCK.get()))
                 getVariantBuilder(b2.get()).forAllStates(state -> ConfiguredModel.builder().modelFile(builder("block/" + name.substring(7), modLoc("block/" + name.substring(7)))).build());
 
         }
@@ -116,6 +118,7 @@ public class SovietBlockStateProvider extends BlockStateProvider {
         return models().withExistingParent(name, parent)
                 .texture(textureKey, color);
     }
+
     public ModelBuilder<BlockModelBuilder> builder3TexturesModel(String name, String parent, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
         return models().withExistingParent(name, parent)
                 .texture("side", side)
@@ -124,7 +127,7 @@ public class SovietBlockStateProvider extends BlockStateProvider {
     }
 
 
-//    public void builderSlabs() {
+    //    public void builderSlabs() {
 //        for (RegistryObject<Block> b2 : RegBlocks.BLOCKS.getEntries()) {
 //            if (b2.get() instanceof BaseSlab) {
 //                String name = b2.get().getRegistryName().toString();
@@ -206,7 +209,62 @@ public class SovietBlockStateProvider extends BlockStateProvider {
                                 case OUTER_LEFT:
                                     return ConfiguredModel.builder()
                                             .modelFile(builder3TexturesModel(
-                                                    "block/" + name.substring(7)+ "_outer", "block/outer_stairs", modLoc(loc2), modLoc(loc2), modLoc("block/concrete/concrete_gray")))
+                                                    "block/" + name.substring(7) + "_outer", "block/outer_stairs", modLoc(loc2), modLoc(loc2), modLoc("block/concrete/concrete_gray")))
+                                            .rotationX(half == Half.BOTTOM ? 0 : 180)
+                                            .rotationY(yRot)
+                                            .uvLock(uvlock)
+                                            .build();
+                            }
+                        }, StairsBlock.WATERLOGGED);
+            }
+        }
+    }
+
+    public void builderVault() {
+        for (RegistryObject<Block> b2 : RegBlocks.BLOCKS.getEntries()) {
+            if (b2.get() instanceof BaseStairs) {
+                getVariantBuilder(b2.get())
+                        .forAllStatesExcept(state -> {
+                            Direction facing = state.get(StairsBlock.FACING);
+                            Half half = state.get(StairsBlock.HALF);
+                            StairsShape shape = state.get(StairsBlock.SHAPE);
+                            int yRot = (int) facing.rotateY().getHorizontalAngle();
+                            if (shape == StairsShape.INNER_LEFT || shape == StairsShape.OUTER_LEFT) {
+                                yRot += 270;
+                            }
+                            if (shape != StairsShape.STRAIGHT && half == Half.TOP) {
+                                yRot += 90;
+                            }
+                            yRot %= 360;
+                            boolean uvlock = yRot != 0 || half == Half.TOP;
+                            String name = b2.get().getRegistryName().toString();
+
+                            String loc = "block/" + name.substring(7, name.length() - 7);
+                            String loc2 = loc.replaceAll(loc, "block/concrete/" + loc.substring(13));
+                            switch (shape) {
+                                case STRAIGHT:
+                                default:
+                                    return ConfiguredModel.builder()
+                                            .modelFile(builder3TexturesModel(
+                                                    "block/" + name.substring(7), "block/structural/vault_block", modLoc(loc2), modLoc(loc2), modLoc("block/concrete/concrete_gray")))
+                                            .rotationX(half == Half.BOTTOM ? 0 : 180)
+                                            .rotationY(yRot)
+                                            .uvLock(uvlock)
+                                            .build();
+                                case INNER_LEFT:
+                                case INNER_RIGHT:
+                                    return ConfiguredModel.builder()
+                                            .modelFile(builder3TexturesModel(
+                                                    "block/" + name.substring(7) + "_inner", "block/structural/inner_vault_block", modLoc(loc2), modLoc(loc2), modLoc("block/concrete/concrete_gray")))
+                                            .rotationX(half == Half.BOTTOM ? 0 : 180)
+                                            .rotationY(yRot)
+                                            .uvLock(uvlock)
+                                            .build();
+                                case OUTER_RIGHT:
+                                case OUTER_LEFT:
+                                    return ConfiguredModel.builder()
+                                            .modelFile(builder3TexturesModel(
+                                                    "block/" + name.substring(7) + "_outer", "block/structural/outer_vault_block", modLoc(loc2), modLoc(loc2), modLoc("block/concrete/concrete_gray")))
                                             .rotationX(half == Half.BOTTOM ? 0 : 180)
                                             .rotationY(yRot)
                                             .uvLock(uvlock)
@@ -217,10 +275,3 @@ public class SovietBlockStateProvider extends BlockStateProvider {
         }
     }
 }
-
-
-
-//                                    .modelFile(builderStairsModel(
-//                                            "block/" + name.substring(7), "block/outer_stairs", modLoc(loc2), modLoc(loc2), modLoc("block/concrete/concrete_gray")))
-//                                    .modelFile(builderStairsModel(
-//                                            "block/" + name.substring(7), "block/inner_stairs", modLoc(loc2), modLoc(loc2), modLoc("block/concrete/concrete_gray")))

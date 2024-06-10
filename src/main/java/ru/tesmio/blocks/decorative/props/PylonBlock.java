@@ -17,6 +17,7 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.WorldGenRegion;
 import ru.tesmio.blocks.baseblock.BlockAxisCustomModel;
 import ru.tesmio.reg.RegItems;
 import ru.tesmio.utils.VoxelShapeUtil;
@@ -78,10 +79,60 @@ public class PylonBlock extends BlockAxisCustomModel {
                     VoxelShapeUtil.shapeRotCW90(VoxelShapeUtil.shapeRot180(VoxelShapes.create(0, 0.1875, 0.3125, 0.1875, 0.3125, 0.6875))),
                     VoxelShapeUtil.shapeRotCW90(VoxelShapeUtil.shapeRot180(VoxelShapes.create(0, 0.6875, 0.3125, 0.1875, 0.8125, 0.6875))),
                     VoxelShapeUtil.shapeRotCW90(VoxelShapeUtil.shapeRot180(VoxelShapes.create(0, 0.3125, 0.375, 0.1875, 0.6875, 0.625)))
+            ),
+            VoxelShapes.or(VoxelShapes.create(0.6875, 0, 0.3125, 0.8125, 1, 0.6875),
+                    VoxelShapes.create(0.1875, 0, 0.3125, 0.3125, 1, 0.6875),
+                    VoxelShapes.create(0.3125, 0, 0.375, 0.6875, 1, 0.625)),
+            VoxelShapes.create(0.125, 0, 0.1875, 0.875, 0.0625, 0.8125),
+
+            VoxelShapes.or(VoxelShapes.create(0.6875, 0, 0.3125, 0.8125, 1, 0.6875),
+                    VoxelShapes.create(0.1875, 0, 0.3125, 0.3125, 1, 0.6875),
+                    VoxelShapes.create(0.3125, 0, 0.375, 0.6875, 1, 0.625),
+                    VoxelShapes.create(0.125, 0.9375, 0.1875, 0.875, 1, 0.8125)),
+
+            VoxelShapes.or(
+                    VoxelShapes.create(0.3125, 0.1875, 0, 0.6875, 0.3125, 0.375),
+                    VoxelShapes.create(0.375, 0.3125, 0, 0.625, 0.6875, 0.3125),
+                    VoxelShapes.create(0.25, 0.3125, 0.25, 0.375, 0.6875, 0.3125),
+                    VoxelShapes.create(0.625, 0.3125, 0.25, 0.75, 0.6875, 0.3125),
+                    VoxelShapes.create(0.3125, 0.6875, 0, 0.6875, 0.8125, 0.375)
+            ),
+            VoxelShapes.or(
+                    VoxelShapeUtil.shapeRot180(VoxelShapes.create(0.3125, 0.1875, 0, 0.6875, 0.3125, 0.375)),
+                    VoxelShapeUtil.shapeRot180(VoxelShapes.create(0.375, 0.3125, 0, 0.625, 0.6875, 0.3125)),
+                    VoxelShapeUtil.shapeRot180(VoxelShapes.create(0.25, 0.3125, 0.25, 0.375, 0.6875, 0.3125)),
+                    VoxelShapeUtil.shapeRot180( VoxelShapes.create(0.625, 0.3125, 0.25, 0.75, 0.6875, 0.3125)),
+                    VoxelShapeUtil.shapeRot180(VoxelShapes.create(0.3125, 0.6875, 0, 0.6875, 0.8125, 0.375))
+            ),
+            VoxelShapes.or(
+                    VoxelShapes.create(0.125, 0.0625, 0.53125, 0.1875, 0.125, 0.65625),
+                    VoxelShapes.create(0.125, 0.0625, 0.34375, 0.1875, 0.125, 0.46875),
+                    VoxelShapes.create(0.125, 0.875, 0.53125, 0.1875, 0.9375, 0.65625),
+                    VoxelShapes.create(0.125, 0.875, 0.34375, 0.1875, 0.9375, 0.46875),
+                    VoxelShapes.create(0, 0.125, 0.53125, 0.1875, 0.1875, 0.65625),
+                    VoxelShapes.create(0, 0.125, 0.34375, 0.1875, 0.1875, 0.46875),
+                    VoxelShapes.create(0, 0.8125, 0.34375, 0.1875, 0.875, 0.46875),
+                    VoxelShapes.create(0, 0.8125, 0.53125, 0.1875, 0.875, 0.65625),
+                    VoxelShapes.create(0, 0.1875, 0.3125, 0.1875, 0.3125, 0.6875),
+                    VoxelShapes.create(0, 0.6875, 0.3125, 0.1875, 0.8125, 0.6875),
+                    VoxelShapes.create(0, 0.3125, 0.375, 0.1875, 0.6875, 0.625)
+            ),
+            VoxelShapes.or(
+                    VoxelShapeUtil.shapeRot180(VoxelShapes.create(0.125, 0.0625, 0.53125, 0.1875, 0.125, 0.65625)),
+                    VoxelShapeUtil.shapeRot180(VoxelShapes.create(0.125, 0.0625, 0.34375, 0.1875, 0.125, 0.46875)),
+                    VoxelShapeUtil.shapeRot180( VoxelShapes.create(0.125, 0.875, 0.53125, 0.1875, 0.9375, 0.65625)),
+                    VoxelShapeUtil.shapeRot180(VoxelShapes.create(0.125, 0.875, 0.34375, 0.1875, 0.9375, 0.46875)),
+                    VoxelShapeUtil.shapeRot180(VoxelShapes.create(0, 0.125, 0.53125, 0.1875, 0.1875, 0.65625)),
+                    VoxelShapeUtil.shapeRot180(VoxelShapes.create(0, 0.125, 0.34375, 0.1875, 0.1875, 0.46875)),
+                    VoxelShapeUtil.shapeRot180(VoxelShapes.create(0, 0.8125, 0.34375, 0.1875, 0.875, 0.46875)),
+                    VoxelShapeUtil.shapeRot180(VoxelShapes.create(0, 0.8125, 0.53125, 0.1875, 0.875, 0.65625)),
+                    VoxelShapeUtil.shapeRot180(VoxelShapes.create(0, 0.1875, 0.3125, 0.1875, 0.3125, 0.6875)),
+                    VoxelShapeUtil.shapeRot180(VoxelShapes.create(0, 0.6875, 0.3125, 0.1875, 0.8125, 0.6875)),
+                    VoxelShapeUtil.shapeRot180(VoxelShapes.create(0, 0.3125, 0.375, 0.1875, 0.6875, 0.625))
             )
     };
 
-    //шейпы по Х настроены, осталось по Z и горизонтальные
+
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
 
         switch (state.get(AXIS)) {
@@ -107,28 +158,31 @@ public class PylonBlock extends BlockAxisCustomModel {
                 }
                 return shape;
             case Z:
+                VoxelShape shape2 = SHAPEX[7];
                 if(state.get(DOWN)) {
-                    return VoxelShapes.or(VoxelShapes.create(0.6875, 0, 0.3125, 0.8125, 1, 0.6875),
-                            VoxelShapes.create(0.1875, 0, 0.3125, 0.3125, 1, 0.6875),
-                            VoxelShapes.create(0.3125, 0, 0.375, 0.6875, 1, 0.625),
-                            VoxelShapes.create(0.125, 0, 0.1875, 0.875, 0.0625, 0.8125));
+                    shape2 = VoxelShapes.or(shape2, SHAPEX[8]);
                 }
                 if(state.get(UP)) {
-                    return VoxelShapes.or(VoxelShapes.create(0.6875, 0, 0.3125, 0.8125, 1, 0.6875),
-                            VoxelShapes.create(0.1875, 0, 0.3125, 0.3125, 1, 0.6875),
-                            VoxelShapes.create(0.3125, 0, 0.375, 0.6875, 1, 0.625),
-                            VoxelShapes.create(0.125, 0.9375, 0.1875, 0.875, 1, 0.8125));
+                    shape2 = VoxelShapes.or(shape2, SHAPEX[9]);
                 }
-                return VoxelShapes.or(VoxelShapes.create(0.6875, 0, 0.3125, 0.8125, 1, 0.6875),
-                        VoxelShapes.create(0.1875, 0, 0.3125, 0.3125, 1, 0.6875),
-                        VoxelShapes.create(0.3125, 0, 0.375, 0.6875, 1, 0.625));
+                if(state.get(NORTH)) {
+                    shape2 = VoxelShapes.or(shape2, SHAPEX[10]);
+                }
+                if(state.get(SOUTH)) {
+                    shape2 = VoxelShapes.or(shape2, SHAPEX[11]);
+                }
+                if(state.get(WEST)) {
+                    shape2 = VoxelShapes.or(shape2, SHAPEX[12]);
+                }
+                if(state.get(EAST)) {
+                    shape2 = VoxelShapes.or(shape2, SHAPEX[13]);
+                }
+                return shape2;
 
         }
 
 
-        return VoxelShapes.or(VoxelShapes.create(0.6875, 0, 0.3125, 0.8125, 1, 0.6875),
-        VoxelShapes.create(0.1875, 0, 0.3125, 0.3125, 1, 0.6875),
-       VoxelShapes.create(0.3125, 0, 0.375, 0.6875, 1, 0.625));
+        return VoxelShapes.fullCube();
     }
     @Override
     public ItemStack[] getItemsDrop(PlayerEntity pl) {
@@ -139,11 +193,22 @@ public class PylonBlock extends BlockAxisCustomModel {
     public BlockState getStateForPlacement(BlockItemUseContext c) {
         Direction facing = Direction.fromAngle(c.getPlayer().getRotationYawHead());
         Direction.Axis axis = facing.getAxis();
+        World w = c.getWorld();
+        BlockPos p = c.getPos();
         FluidState fluidstate = c.getWorld().getFluidState(c.getPos());
-        return this.getDefaultState().with(AXIS, axis).with(WATERLOGGED, Boolean.valueOf(fluidstate.getFluid() == Fluids.WATER));
+        BlockState s = this.getDefaultState().with(AXIS, axis).with(WATERLOGGED, Boolean.valueOf(fluidstate.getFluid() == Fluids.WATER));
+
+        if (w.getBlockState(p.down()).isSolid()|| w.getBlockState(p.down()).getBlock() instanceof PylonBlockH) {
+            s = s.with(DOWN, Boolean.TRUE);
+        }
+        if (w.getBlockState(p.up()).isSolid()|| w.getBlockState(p.down()).getBlock() instanceof PylonBlockH) {
+            s = s.with(UP, Boolean.TRUE);
+        }
+        return s;
     }
     @Override
     public BlockState updatePostPlacement(BlockState s, Direction f, BlockState bs, IWorld w, BlockPos p, BlockPos facingPos) {
+        if(w instanceof WorldGenRegion) return s;
         return updateState((World) w,p,s);
     }
     public void neighborChanged(BlockState s, World w, BlockPos p, Block b, BlockPos fromPos, boolean isMoving) {
@@ -151,10 +216,10 @@ public class PylonBlock extends BlockAxisCustomModel {
     }
 @Override
 public void onBlockAdded(BlockState s, World w, BlockPos p, BlockState oldState, boolean isMoving) {
+
     this.updateState((World) w,p,s);
 }
-    public BlockState updateState(World w, BlockPos p, BlockState s) {
-        BlockState ts = w.getBlockState(p);
+    public BlockState updateState(World w, BlockPos p, BlockState ts) {
         BlockState up = w.getBlockState(p.up());
         BlockState down = w.getBlockState(p.down());
         BlockState south = w.getBlockState(p.south());

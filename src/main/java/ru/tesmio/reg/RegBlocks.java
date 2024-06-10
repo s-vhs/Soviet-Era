@@ -53,6 +53,7 @@ import ru.tesmio.blocks.tumbler.ElectroFenceTumbler;
 import ru.tesmio.blocks.tumbler.RustyTumbler;
 import ru.tesmio.core.Core;
 
+
 import javax.annotation.Nullable;
 import java.util.function.Supplier;
 
@@ -78,13 +79,18 @@ public class RegBlocks {
     public static RegistryObject<Block> TILE_MOSAIC_1, TILE_MOSAIC_2;
     public static RegistryObject<Block> LINO_1, LINO_2, LINO_3, LINO_4, LINO_5, LINO_6, LINO_7, LINO_8;
     public static RegistryObject<Block> SMALL_BRICKS, YELLOW_BRICKS_3_BR, YELLOW_BRICKS_3, YELLOW_BRICKS_2_BR, YELLOW_BRICKS_2,YELLOW_BRICKS_1_BR, YELLOW_BRICKS_1, WHITE_BRICKS_BR, WHITE_BRICKS,RED_BRICKS_BR, RED_BRICKS, BRICKS_WITH_WHITE, BRICKS, BRICKS_BR, WALL_BRICKS,WALL_BRICKS_BR, LIGHT_BRICKS, LIGHT_BRICKS_BR, SHORT_BRICKS;
-    public static RegistryObject<Block> IRON_BEAM_THIN, IRON_BEAM_CONCRETE, IRON_BEAM;
     public static RegistryObject<Block> PANEL_CONCRETE_CORNER, PANEL_CONCRETE_SIDE, PANEL_CONCRETE, PANEL_TILE_CORNER, PANEL_TILE_SIDE, PANEL_TILE, PANEL_CONCRETE_YELLOW_CORNER, PANEL_CONCRETE_YELLOW_SIDE, PANEL_CONCRETE_YELLOW;
-    public static RegistryObject<Block> CONCRETE_RAILING_GRAY, CONCRETE_RAILING_WHITE, CONCRETE_RAILING_RED, CONCRETE_RAILING_BEIGE, CONCRETE_RAILING_BEIGE2, CONCRETE_RAILING_YELLOW, CONCRETE_RAILING_BLUE, CONCRETE_RAILING_GREEN, CONCRETE_RAILING_ORANGE;
-    public static RegistryObject<Block> CERAMIC_GLASS_BLUE, CERAMIC_GLASS_GREEN, CERAMIC_GLASS_BROWN;
-    public static RegistryObject<Block> CRUSHER, AFFINAGE_FACTORY, ENERGY_GENERATOR, DIESEL_E_GENERATOR, DIESEL_TANK;
     public static RegistryObject<Block> TRIM_TILE_1,TRIM_TILE_1_BR, TRIM_STONE_1, TRIM_STONE_2, TRIM_STONE_3, TRIM_STONE_4, PARQUET_BLOCK,PARQUET_BLOCK_DIAG,  TRIM_TILE_RED, TRIM_TILE_BLUE, CONCRETE_PLATE, CONTAINMENT_BLOCK, TRIM_METAL_1, TRIM_METAL_2, RUSTYMETAL_BLOCK, LEADCERAMIC_TILE;
-    public static RegistryObject<Block> WALLPAPER_1,WALLPAPER_2,WALLPAPER_3,WALLPAPER_4,WALLPAPER_5, WALLPAPER_6, WALLPAPER_7,WALLPAPER_8,WALLPAPER_9,WALLPAPER_10,WALLPAPER_11,WALLPAPER_12, WALLPAPER_13, WALLPAPER_14, WALLPAPER_15;
+    public static RegistryObject<Block> CERAMIC_GLASS_BLUE, CERAMIC_GLASS_GREEN, CERAMIC_GLASS_BROWN;
+    public static RegistryObject<Block> CONCRETE_STAIRS_GRAY, CONCRETE_STAIRS_GREEN, CONCRETE_STAIRS_BLUE, CONCRETE_STAIRS_BEIGE,
+            CONCRETE_STAIRS_BEIGE2, CONCRETE_STAIRS_RED, CONCRETE_STAIRS_YELLOW, CONCRETE_STAIRS_WHITE, CONCRETE_STAIRS_ORANGE;
+    public static RegistryObject<Block> CONCRETE_SLAB_GRAY, CONCRETE_SLAB_GREEN, CONCRETE_SLAB_BLUE, CONCRETE_SLAB_BEIGE,
+            CONCRETE_SLAB_BEIGE2, CONCRETE_SLAB_RED, CONCRETE_SLAB_YELLOW, CONCRETE_SLAB_WHITE, CONCRETE_SLAB_ORANGE;
+
+    public static RegistryObject<Block> IRON_BEAM_THIN, IRON_BEAM_CONCRETE, IRON_BEAM;
+    public static RegistryObject<Block> CONCRETE_RAILING_GRAY, CONCRETE_RAILING_WHITE, CONCRETE_RAILING_RED, CONCRETE_RAILING_BEIGE, CONCRETE_RAILING_BEIGE2, CONCRETE_RAILING_YELLOW, CONCRETE_RAILING_BLUE, CONCRETE_RAILING_GREEN, CONCRETE_RAILING_ORANGE;
+    public static RegistryObject<Block> CRUSHER, AFFINAGE_FACTORY, ENERGY_GENERATOR, DIESEL_E_GENERATOR, DIESEL_TANK;
+     public static RegistryObject<Block> WALLPAPER_1,WALLPAPER_2,WALLPAPER_3,WALLPAPER_4,WALLPAPER_5, WALLPAPER_6, WALLPAPER_7,WALLPAPER_8,WALLPAPER_9,WALLPAPER_10,WALLPAPER_11,WALLPAPER_12, WALLPAPER_13, WALLPAPER_14, WALLPAPER_15;
     public static RegistryObject<Block> TUBING_HORIZONTAL, TUBING_VERTICAL;
     public static RegistryObject<Block> CONTROL_PANEL_UP, CONTROL_PANEL_DOWN;
     public static RegistryObject<Block> FLUORESCENT_LAMP, BROKEN_FLUORESCENT_LAMP,FLUORESCENT_LAMP2, BROKEN_FLUORESCENT_LAMP2,FLUORESCENT_LAMP3, BROKEN_FLUORESCENT_LAMP3,INC_LAMP,RED_LAMP;
@@ -95,10 +101,6 @@ public class RegBlocks {
     public static RegistryObject<Block> RUSTY_HANDHOLD, STREET_FENCE, BALCONY_HANDHOLD, HEAT_PIPES,HEAT_PIPES_CORNER, COLD_BATTERY, TUMBLER, BIO_TUMBLER, BIO_POWER_SOCKET;
     public static RegistryObject<Block> COPPER_CIRCUIT, COPPER_CIRCUIT_EMPTY, SILVER_CIRCUIT,SILVER_CIRCUIT_EMPTY, GOLD_CIRCUIT,GOLD_CIRCUIT_EMPTY, DIAMOND_CIRCUIT, DIAMOND_CIRCUIT_EMPTY,NETHERITE_CIRCUIT, NETHERITE_CIRCUIT_EMPTY,PLATINUM_CIRCUIT, PLATINUM_CIRCUIT_EMPTY , PLATE_GOLDEN_JACKS, PLATE_GOLDEN_JACKS_EMPTY, PLATE_PLATINUM_JACKS, PLATE_PLATINUM_JACKS_EMPTY;
 
-    public static RegistryObject<Block> CONCRETE_STAIRS_GRAY, CONCRETE_STAIRS_GREEN, CONCRETE_STAIRS_BLUE, CONCRETE_STAIRS_BEIGE,
-            CONCRETE_STAIRS_BEIGE2, CONCRETE_STAIRS_RED, CONCRETE_STAIRS_YELLOW, CONCRETE_STAIRS_WHITE, CONCRETE_STAIRS_ORANGE;
-    public static RegistryObject<Block> CONCRETE_SLAB_GRAY, CONCRETE_SLAB_GREEN, CONCRETE_SLAB_BLUE, CONCRETE_SLAB_BEIGE,
-            CONCRETE_SLAB_BEIGE2, CONCRETE_SLAB_RED, CONCRETE_SLAB_YELLOW, CONCRETE_SLAB_WHITE, CONCRETE_SLAB_ORANGE;
 
     public static RegistryObject<Block> CONCRETE_FENCE, CONCRETE_FENCE_HIGH, CONCRETE_FENCE_BASE, FLOOR_GRID, CONCRETE_WALL, CONTACT_WIRE, ELECTRO_FENCE, ELECTRO_FENCE_TUMBLER, ELECTRO_FENCE_DOUBLE, SPIRAL_BARB_WIRE;
     public static RegistryObject<Block> DIG_MICROSCOPE_CALC_BLOCK, DIG_MICROSCOPE_CONTROL, DIG_MICROSCOPE, TELEGRAPH, SOLDERING_STATION, AUDIORECORDER2, AUDIORECORDER, RADIOSTATION,TRANSFORMATOR_ISOLATORS, TRANSFORMATOR_BASE, TRANSFORMATOR_COIL, CLOCK_ELECTRONICA,MOTION_SENSOR,TURNSTILE, RUSTY_TUMBLER, RUSTY_TUMBLER2,SWITCH_REDSTONE_WIRE,HORIZONTAL_REDSTONE_WIRE, REDSTONE_WIRE;
@@ -123,7 +125,9 @@ public class RegBlocks {
 
     public static RegistryObject<Block> BLOCK_MOULD,BLOCK_MOSS_FULL,BLOCK_MOSS;
     public static RegistryObject<Block> METRO_RAIL, TOXIC_AIR;
-    public static RegistryObject<Block> RASTY_FRAME, STEEL_PYLON, HORIZONTAL_STEEL_PYLON;
+    public static RegistryObject<Block> RASTY_FRAME, STEEL_PYLON, HORIZONTAL_STEEL_PYLON, ANTENN, RAILING_BLOCK;
+
+
 
     public static void init() {
         Symbols.addSymbols();
@@ -139,6 +143,8 @@ public class RegBlocks {
 
         STEEL_PYLON = registerBlockWithModel("structural/steel_pylon", () -> new PylonBlock(getP(Material.IRON, 0.4f,0.6f, null, 1, SoundType.METAL, false, true)), Core.ItemGroups.TAB_OUTER_DECO);
         HORIZONTAL_STEEL_PYLON = registerBlockWithModel("structural/steel_pylon_horizontal", () -> new PylonBlockH(getP(Material.IRON, 0.4f,0.6f, null, 1, SoundType.METAL, false, true)), Core.ItemGroups.TAB_OUTER_DECO);
+        ANTENN = registerBlockWithModel("structural/antenn", () -> new Antenn(getP(Material.IRON, 0.4f,0.6f, null, 1, SoundType.METAL, false, true)), Core.ItemGroups.TAB_OUTER_DECO);
+
 
 
         //windows
@@ -380,21 +386,21 @@ public class RegBlocks {
         DIESEL_E_GENERATOR = registerBlockWithModel("mech/diesel_electro_generator", () -> new DieselElectroGenerator(AbstractBlock.Properties.create(Material.IRON).setRequiresTool().hardnessAndResistance(3f,8f).notSolid()), Core.ItemGroups.TAB_INNER_DECO);
 
         //wallpapers
-        WALLPAPER_1 = registerBlock("wallpapers/wp1", () -> new WallpaperBlock(),Core.ItemGroups.TAB_MAIN);
-        WALLPAPER_2 = registerBlock("wallpapers/wp2", () -> new WallpaperBlock(),Core.ItemGroups.TAB_MAIN);
-        WALLPAPER_3 = registerBlock("wallpapers/wp3", () -> new WallpaperBlock(),Core.ItemGroups.TAB_MAIN);
-        WALLPAPER_4 = registerBlock("wallpapers/wp4", () -> new WallpaperBlock(),Core.ItemGroups.TAB_MAIN);
-        WALLPAPER_5 = registerBlock("wallpapers/wp5", () -> new WallpaperBlock(),Core.ItemGroups.TAB_MAIN);
-        WALLPAPER_6 = registerBlock("wallpapers/wp6", () -> new WallpaperBlock(),Core.ItemGroups.TAB_MAIN);
-        WALLPAPER_7 = registerBlock("wallpapers/wp7", () -> new WallpaperBlock(),Core.ItemGroups.TAB_MAIN);
-        WALLPAPER_8 = registerBlock("wallpapers/wp8", () -> new WallpaperBlock(),Core.ItemGroups.TAB_MAIN);
-        WALLPAPER_9 = registerBlock("wallpapers/wp9", () -> new WallpaperBlock(),Core.ItemGroups.TAB_MAIN);
-        WALLPAPER_10 = registerBlock("wallpapers/wp10", () -> new WallpaperBlock(),Core.ItemGroups.TAB_MAIN);
-        WALLPAPER_11 = registerBlock("wallpapers/wp11", () -> new WallpaperBlock(),Core.ItemGroups.TAB_MAIN);
-        WALLPAPER_12 = registerBlock("wallpapers/wp12", () -> new WallpaperBlock(),Core.ItemGroups.TAB_MAIN);
-        WALLPAPER_13 = registerBlock("wallpapers/wp13", () -> new WallpaperBlock(),Core.ItemGroups.TAB_MAIN);
-        WALLPAPER_14 = registerBlock("wallpapers/wp14", () -> new WallpaperBlock(),Core.ItemGroups.TAB_MAIN);
-        WALLPAPER_15 = registerBlock("wallpapers/wp15", () -> new WallpaperBlock(),Core.ItemGroups.TAB_MAIN);
+        WALLPAPER_1 = registerBlock("wallpapers/wp1", () -> new WallpaperBlock("wp1.info"),Core.ItemGroups.TAB_MAIN);
+        WALLPAPER_2 = registerBlock("wallpapers/wp2", () -> new WallpaperBlock("wp2.info"),Core.ItemGroups.TAB_MAIN);
+        WALLPAPER_3 = registerBlock("wallpapers/wp3", () -> new WallpaperBlock("wp3.info"),Core.ItemGroups.TAB_MAIN);
+        WALLPAPER_4 = registerBlock("wallpapers/wp4", () -> new WallpaperBlock("wp4.info"),Core.ItemGroups.TAB_MAIN);
+        WALLPAPER_5 = registerBlock("wallpapers/wp5", () -> new WallpaperBlock("wp5.info"),Core.ItemGroups.TAB_MAIN);
+        WALLPAPER_6 = registerBlock("wallpapers/wp6", () -> new WallpaperBlock("wp6.info"),Core.ItemGroups.TAB_MAIN);
+        WALLPAPER_7 = registerBlock("wallpapers/wp7", () -> new WallpaperBlock("wp7.info"),Core.ItemGroups.TAB_MAIN);
+        WALLPAPER_8 = registerBlock("wallpapers/wp8", () -> new WallpaperBlock("wp8.info"),Core.ItemGroups.TAB_MAIN);
+        WALLPAPER_9 = registerBlock("wallpapers/wp9", () -> new WallpaperBlock("wp9.info"),Core.ItemGroups.TAB_MAIN);
+        WALLPAPER_10 = registerBlock("wallpapers/wp10", () -> new WallpaperBlock("wp10.info"),Core.ItemGroups.TAB_MAIN);
+        WALLPAPER_11 = registerBlock("wallpapers/wp11", () -> new WallpaperBlock("wp11.info"),Core.ItemGroups.TAB_MAIN);
+        WALLPAPER_12 = registerBlock("wallpapers/wp12", () -> new WallpaperBlock("wp12.info"),Core.ItemGroups.TAB_MAIN);
+        WALLPAPER_13 = registerBlock("wallpapers/wp13", () -> new WallpaperBlock("wp13.info"),Core.ItemGroups.TAB_MAIN);
+        WALLPAPER_14 = registerBlock("wallpapers/wp14", () -> new WallpaperBlock("wp14.info"),Core.ItemGroups.TAB_MAIN);
+        WALLPAPER_15 = registerBlock("wallpapers/wp15", () -> new WallpaperBlock("wp15.info"),Core.ItemGroups.TAB_MAIN);
         //trim_stone
         TRIM_TILE_1 = registerBlock("structural/trim_tile_1", () -> new TilledBlock(),Core.ItemGroups.TAB_MAIN);
         TRIM_TILE_1_BR = registerBlock("structural/trim_tile_1_br", () -> new TilledBlock(),Core.ItemGroups.TAB_MAIN);
@@ -452,11 +458,12 @@ public class RegBlocks {
         CONCRETE_RAILING_BEIGE = registerBlockWithModel("structural/concrete_railing_beige", () -> new BlockRailing(CONCRETE_RAILING_PROPERTIES, "info.beige", 0.5F), Core.ItemGroups.TAB_OUTER_DECO);
         CONCRETE_RAILING_BEIGE2 = registerBlockWithModel("structural/concrete_railing_beige2", () -> new BlockRailing(CONCRETE_RAILING_PROPERTIES, "info.beige2", 0.5F), Core.ItemGroups.TAB_OUTER_DECO);
         CONCRETE_RAILING_YELLOW = registerBlockWithModel("structural/concrete_railing_yellow", () -> new BlockRailing(CONCRETE_RAILING_PROPERTIES, "info.yellow", 0.5F), Core.ItemGroups.TAB_OUTER_DECO);
+        RAILING_BLOCK = registerBlockWithModel("structural/railing", () -> new RailingBlock(getP(Material.IRON, 0.5f,0.25f,ToolType.PICKAXE, 1, SoundType.METAL, true, true), "info.railing", 0.5F), Core.ItemGroups.TAB_OUTER_DECO);
 
         //beams
-        IRON_BEAM_CONCRETE = registerBlockWithModel("structural/iron_beam_concrete", () -> new BlockRotatedAxisCustomModel(AbstractBlock.Properties.create(Material.IRON).setRequiresTool().hardnessAndResistance(3f,8f).notSolid(), 0.5F), Core.ItemGroups.TAB_MAIN);
-        IRON_BEAM = registerBlockWithModel("structural/iron_beam", () -> new BlockRotatedAxisCustomModel(AbstractBlock.Properties.create(Material.IRON).setRequiresTool().hardnessAndResistance(3f,8f).notSolid(), 0.5F), Core.ItemGroups.TAB_MAIN);
-        IRON_BEAM_THIN = registerBlockWithModel("structural/iron_beam_thin", () -> new BlockRotatedAxisCustomModel(AbstractBlock.Properties.create(Material.IRON).setRequiresTool().hardnessAndResistance(3f,8f).notSolid(), 0.5F), Core.ItemGroups.TAB_MAIN);
+        IRON_BEAM_CONCRETE = registerBlockWithModel("structural/iron_beam_concrete", () -> new BlockRotatedAxisCustomModel(AbstractBlock.Properties.create(Material.IRON).setRequiresTool().hardnessAndResistance(3f,8f).notSolid(), 0.5F), Core.ItemGroups.TAB_OUTER_DECO);
+        IRON_BEAM = registerBlockWithModel("structural/iron_beam", () -> new BlockRotatedAxisCustomModel(AbstractBlock.Properties.create(Material.IRON).setRequiresTool().hardnessAndResistance(3f,8f).notSolid(), 0.5F), Core.ItemGroups.TAB_OUTER_DECO);
+        IRON_BEAM_THIN = registerBlockWithModel("structural/iron_beam_thin", () -> new BlockRotatedAxisCustomModel(AbstractBlock.Properties.create(Material.IRON).setRequiresTool().hardnessAndResistance(3f,8f).notSolid(), 0.5F), Core.ItemGroups.TAB_OUTER_DECO);
 
         //concrete
         CONCRETE_ORANGE = registerBlock("concrete/concrete_orange", () -> new FerroconcreteBlock("info.orange"),Core.ItemGroups.TAB_MAIN);

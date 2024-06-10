@@ -3,6 +3,7 @@ package ru.tesmio.core;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import ru.tesmio.blocks.affinage_factory.AffinageScreen;
@@ -19,7 +20,7 @@ import ru.tesmio.reg.*;
 
 public class ClientProxy {
     public static void init() {
-
+        MinecraftForge.EVENT_BUS.register(new RegScreen());
         registerScreenFactories();
         registerEntityRenderers();
         registerTileEntityRenderers();

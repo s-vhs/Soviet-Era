@@ -34,8 +34,7 @@ public class RegFluids {
 
     public static final ForgeFlowingFluid.Properties TW_PROPERTIES = new ForgeFlowingFluid.Properties(
             () -> TOXIC_WATER.get(), () -> TOXIC_WATER_FLOWING.get(), FluidAttributes.builder(TOXIC_WATER_STILL_RL, TOXIC_WATER_FLOWING_RL)
-            .density(15).luminosity(2).viscosity(5).sound(SoundEvents.BLOCK_WATER_AMBIENT).overlay(TOXIC_WATER_OVERLAY_RL)
-            .color(0xdf84c74d)).slopeFindDistance(2).levelDecreasePerBlock(2)
+            .density(15).luminosity(2).viscosity(5).sound(SoundEvents.BLOCK_WATER_AMBIENT).overlay(TOXIC_WATER_OVERLAY_RL)).slopeFindDistance(2).levelDecreasePerBlock(2)
             .block(() -> RegFluids.TOXIC_WATER_BLOCK.get()).bucket(() -> RegItems.TOXIC_WATER_BUCKET.get());
 
     public static final RegistryObject<FlowingFluidBlock> TOXIC_WATER_BLOCK = RegBlocks.BLOCKS.register("toxic_water",

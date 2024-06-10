@@ -761,6 +761,7 @@ b3ab2510c9c4360cd27c68c989af85e398b94389 assets/soviet/models/item/smalltile/sma
 517cabad087b653d9ef333c4af9dcacc526d490e assets/soviet/models/item/stairs/concrete_red_stairs.json
 c27d5e18c7c5bd18a313990d427628892fdbf9de assets/soviet/models/item/stairs/concrete_white_stairs.json
 c4e3c136b661f1295b94dc1267ab692da70dc1cf assets/soviet/models/item/stairs/concrete_yellow_stairs.json
+b4b58ebb518c235251a3690efb6a5f91bc3e5b5f assets/soviet/models/item/structural/antenn.json
 7e05aed1f51078ce67deb725a258ac01d2e0d4f9 assets/soviet/models/item/structural/ceramic_glass_blue.json
 3c8dab08f82289de9f0fb6d7973589eb97b61846 assets/soviet/models/item/structural/ceramic_glass_brown.json
 3d62bdb170c696e0ef54f3e6beb226efc3846e64 assets/soviet/models/item/structural/ceramic_glass_green.json
@@ -790,6 +791,7 @@ c4b9ef53e34cf7318c895e4d76d9010d1aed8643 assets/soviet/models/item/structural/pa
 a4800a398e8e35c06f4372b7d7eea66413d9b610 assets/soviet/models/item/structural/panel_tile_side.json
 331243e4b079d01d1988e7bf2de9bb86cfb065a9 assets/soviet/models/item/structural/parquet_block.json
 9f79b0c998e8959be85a67af236e2ae8bb267d04 assets/soviet/models/item/structural/parquet_block_diagonal.json
+dd3579e4bf7a94ed0f0ca43f114d888e5cbd4c07 assets/soviet/models/item/structural/railing.json
 cb437856e6655b5f5de4f1ad4b593dd780b55f42 assets/soviet/models/item/structural/rusty_block.json
 b8432d3949e51df7cec712db8af72d1984523a74 assets/soviet/models/item/structural/steel_pylon.json
 80d0903378786994607e4bce90963ca54b0282fc assets/soviet/models/item/structural/steel_pylon_horizontal.json

@@ -49,7 +49,9 @@ public class RegTileEntitys {
     public static final RegistryObject<TileEntityType<RastyFrameTile>> FRAMEBLOCK_TILE = TILE_ENTITY_TYPES
             .register("rasty_frame_te",
                     () -> TileEntityType.Builder.create(RastyFrameTile::new, RegBlocks.RASTY_FRAME.get()).build(null));
-
+//    public static final RegistryObject<TileEntityType<TileEntityLightSource>> LIGHT_SOURCE = TILE_ENTITY_TYPES
+//            .register("light_source_se",
+//                    () -> TileEntityType.Builder.create(TileEntityLightSource::new, RegBlocks.BLOCK_LIGHT_SOURCE.get()).build(null));
 
 
     private static <T extends TileEntity> RegistryObject<TileEntityType<T>> register(String name, Supplier<T> factoryIn, Supplier<Block[]> validBlocksSupplier) {

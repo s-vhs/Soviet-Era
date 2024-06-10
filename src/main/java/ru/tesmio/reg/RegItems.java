@@ -11,6 +11,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import ru.tesmio.core.Core;
 import ru.tesmio.items.*;
+
 import ru.tesmio.items.protection_suit.Suit;
 
 import javax.annotation.Nullable;
@@ -49,7 +50,12 @@ public class RegItems {
 
     public static RegistryObject<Item> WHITE_BRICK, BROKEN_WHITE_BRICK, CRACKED_YELLOW_BRICK, BROKEN_YELLOW_BRICK, CRACKED_RED_BRICK, BROKEN_RED_BRICK;
 
+    public static RegistryObject<Item> FLASHLIGHT, FLASHLIGHT_BATTERY;
+
     public static void init() {
+
+        //flashlight
+
         //suit
         SUIT_GAS_MASK = registerItem("adc_gasmask", () -> new Suit(ArmorMaterial.DIAMOND, EquipmentSlotType.HEAD, (new Item.Properties()).group(Core.ItemGroups.TAB_ITEMS)));
         SUIT_JACKET = registerItem("adc_jacket", () -> new Suit(ArmorMaterial.DIAMOND, EquipmentSlotType.CHEST, (new Item.Properties()).group(Core.ItemGroups.TAB_ITEMS)));

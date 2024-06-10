@@ -11,26 +11,27 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
+
 public class RegScreen {
     private static ResourceLocation GASMASK_GUI = new ResourceLocation("soviet:textures/gui/gasmask_gui.png");;
     protected int scaledWidth;
     protected int scaledHeight;
-    Minecraft mc = Minecraft.getInstance();
+
     @SubscribeEvent
     public void onRenderGui(RenderGameOverlayEvent.Post e) {
         scaledWidth = e.getWindow().getScaledWidth();
         scaledHeight = e.getWindow().getScaledHeight();
-
+        Minecraft mc = Minecraft.getInstance();
         if (e.getType() == RenderGameOverlayEvent.ElementType.VIGNETTE) {
 
-            ItemStack itemstack = this.mc.player.inventory.armorItemInSlot(3);
+            ItemStack itemstack = mc.player.inventory.armorItemInSlot(3);
 
             if (!itemstack.isEmpty()) {
                 Item item = itemstack.getItem();
 
                 if (item == RegItems.SUIT_GAS_MASK.get()) {
 
-                    if (this.mc.gameSettings.getPointOfView().func_243192_a() && itemstack.getItem() == RegItems.SUIT_GAS_MASK.get()) {
+                    if (mc.gameSettings.getPointOfView().func_243192_a() && itemstack.getItem() == RegItems.SUIT_GAS_MASK.get()) {
 
                         RenderSystem.disableDepthTest();
                         RenderSystem.depthMask(false);
@@ -41,7 +42,7 @@ public class RegScreen {
                         RenderSystem.enableBlend();
                         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
                         RenderSystem.disableAlphaTest();
-                        this.mc.getTextureManager().bindTexture(GASMASK_GUI);
+                        mc.getTextureManager().bindTexture(GASMASK_GUI);
                         Tessellator tessellator = Tessellator.getInstance();
                         BufferBuilder bufferbuilder = tessellator.getBuffer();
                         bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);

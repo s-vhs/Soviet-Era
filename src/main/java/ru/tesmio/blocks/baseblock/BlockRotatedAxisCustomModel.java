@@ -22,8 +22,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import ru.tesmio.blocks.baseblock.subtype.BlockRailing;
 import ru.tesmio.blocks.decorative.props.WindProofPanel;
-import ru.tesmio.reg.RegBlocks;
-import ru.tesmio.reg.RegItems;
 
 import javax.annotation.Nullable;
 import java.util.concurrent.ThreadLocalRandom;
@@ -55,19 +53,6 @@ public class BlockRotatedAxisCustomModel extends BlockRotatedAxis {
     }
     public ThreadLocalRandom tr = ThreadLocalRandom.current();
     public ItemStack[] getItemsDrop(PlayerEntity pl) {
-
-        if(this == RegBlocks.TUBING_HORIZONTAL.get()) {
-            return new ItemStack[]{
-                    new ItemStack(RegItems.ARMATURES.get(), tr.nextInt(4,6)),
-                    new ItemStack(RegItems.RUSTY_SCRAP.get(), tr.nextInt(3,8)),
-            };
-        } else
-        if(this == RegBlocks.TUBING_VERTICAL.get()) {
-            return new ItemStack[]{
-                    new ItemStack(RegItems.ARMATURES.get(), tr.nextInt(4,6)),
-                    new ItemStack(RegItems.RUSTY_SCRAP.get(), tr.nextInt(3,8)),
-            };
-        }
         return new ItemStack[] {
                 ItemStack.EMPTY
         };

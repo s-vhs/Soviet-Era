@@ -61,11 +61,13 @@ public class RegEvents {
     //Core.DISCOVERY_BLOCK_TRIGGER.trigger(state, sPlayer,pos, ItemStack.EMPTY);
 
 
+
     public static void openTabletGUI(NetworkEvent e) {
 //        TileEntityTablet te = new TileEntityTablet();
 
 //        e.setGui(new ScreenTablet());
     }
+
     @SubscribeEvent
     public static void rightClickDismatling(PlayerInteractEvent.RightClickBlock e) {
 
@@ -97,3 +99,4 @@ public class RegEvents {
 
 
 }
+
