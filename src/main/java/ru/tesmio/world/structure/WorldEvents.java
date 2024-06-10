@@ -31,6 +31,7 @@ public class WorldEvents {
             tempMap.putIfAbsent(RegStructures.PROCEDURAL_LABORATORY.get(), DimensionStructuresSettings.field_236191_b_.get(RegStructures.PROCEDURAL_LABORATORY.get()));
             tempMap.putIfAbsent(RegStructures.ANTENN.get(), DimensionStructuresSettings.field_236191_b_.get(RegStructures.PROCEDURAL_LABORATORY.get()));
             tempMap.putIfAbsent(RegStructures.RADIOCENTER.get(), DimensionStructuresSettings.field_236191_b_.get(RegStructures.RADIOCENTER.get()));
+            tempMap.putIfAbsent(RegStructures.VAULT.get(), DimensionStructuresSettings.field_236191_b_.get(RegStructures.VAULT.get()));
             scp.func_235957_b_().field_236193_d_ = tempMap;
 
         }

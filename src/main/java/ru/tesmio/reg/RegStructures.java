@@ -14,6 +14,7 @@ import ru.tesmio.core.Core;
 import ru.tesmio.world.structure.labs.UndergroundLabsStructure;
 import ru.tesmio.world.structure.surface.antenn.AntennStructure;
 import ru.tesmio.world.structure.surface.radiocenter.RadiocenterStructure;
+import ru.tesmio.world.structure.surface.vault.VaultStructure;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,10 +27,12 @@ public class RegStructures {
     public static final RegistryObject<Structure<NoFeatureConfig>> PROCEDURAL_LABORATORY = STRUCTURES.register("proc_lab", UndergroundLabsStructure::new);
     public static final RegistryObject<Structure<NoFeatureConfig>> ANTENN = STRUCTURES.register("antenn", AntennStructure::new);
     public static final RegistryObject<Structure<NoFeatureConfig>> RADIOCENTER = STRUCTURES.register("radiocenter", RadiocenterStructure::new);
+    public static final RegistryObject<Structure<NoFeatureConfig>> VAULT = STRUCTURES.register("vault", VaultStructure::new);
     public static void setupStructures() {
-        setupMapSpacingAndLand(PROCEDURAL_LABORATORY.get(), new StructureSeparationSettings(18,7, 1234567890), true);
-        setupMapSpacingAndLand(ANTENN.get(), new StructureSeparationSettings(16,10, 223434535), true);
-        setupMapSpacingAndLand(RADIOCENTER.get(), new StructureSeparationSettings(12,5, 117663554), true);
+        setupMapSpacingAndLand(PROCEDURAL_LABORATORY.get(), new StructureSeparationSettings(14,7, 1234567890), true);
+        setupMapSpacingAndLand(ANTENN.get(), new StructureSeparationSettings(22,10, 223434535), true);
+        setupMapSpacingAndLand(RADIOCENTER.get(), new StructureSeparationSettings(18,9, 117663554), true);
+        setupMapSpacingAndLand(VAULT.get(), new StructureSeparationSettings(16,8, 994343642), true);
     }
     /*
     Добавляет предоставленную структуру в реестр и добавляет настройки разделения.

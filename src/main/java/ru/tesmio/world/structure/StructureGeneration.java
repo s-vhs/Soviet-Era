@@ -21,5 +21,6 @@ public class StructureGeneration {
         structures.add(() -> RegStructures.PROCEDURAL_LABORATORY.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
         structures.add(() -> RegStructures.ANTENN.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
         structures.add(() -> RegStructures.RADIOCENTER.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
+        structures.add(() -> RegStructures.VAULT.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
     }
 }
