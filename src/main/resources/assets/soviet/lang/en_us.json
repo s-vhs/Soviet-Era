@@ -295,7 +295,7 @@
  "block.soviet.structural.ceramic_glass_green": "Green Ceramic glass tiles",
  "block.soviet.structural.trim_tile_1": "Travertine facing tiles",
 "block.soviet.structural.trim_tile_1_br": "Weathered Travertine facing tiles",
-"block.soviet.structural.trim_stone_1": "Stone мозаика",
+"block.soviet.structural.trim_stone_1": "Stone mosaic",
 "block.soviet.structural.trim_stone_2": "Granite tiles",
 "block.soviet.structural.trim_stone_3": "Travertine tiles",
 "block.soviet.structural.trim_stone_4": "Concrete foamblocks",
@@ -667,5 +667,8 @@
   "adv.wc": "Kiss...?",
   "adv.wc.description": "Create Wirecutters",
   "adv.wip": "WiP.",
-  "adv.wip.description": "A system of achievements and rewards for the implementation of the fourth concept will be added later."
+  "adv.wip.description": "A system of achievements and rewards for the implementation of the fourth concept will be added later.",
+  "block.soviet.structural.railing": "Rusty Armature Frame Block",
+  "info.railing": "§7So rusty!",
+  "block.soviet.structural.antenn": "Antenn"
 }
