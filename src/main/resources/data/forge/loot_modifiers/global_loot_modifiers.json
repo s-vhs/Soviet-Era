@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "entries": [
+    "soviet:gas_mask_in_mineshaft",
+    "soviet:suit_jacket_in_igloo",
+    "soviet:suit_legs_in_woodland_mansion",
+    "soviet:suit_boots_in_ruined_portal"
+  ]
+}
