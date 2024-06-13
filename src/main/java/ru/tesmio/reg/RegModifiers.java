@@ -13,11 +13,12 @@ import javax.annotation.Nonnull;
 @Mod.EventBusSubscriber(modid = Core.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class RegModifiers {
     @SubscribeEvent
-    public static void registerModifierSerializers(@Nonnull final RegistryEvent.Register<GlobalLootModifierSerializer<?>>
-                                                           event) {
+    public static void registerModifierSerializers(@Nonnull final RegistryEvent.Register<GlobalLootModifierSerializer<?>> event) {
         event.getRegistry().registerAll(
-                new SovietLootStructureModifier.Serializer().setRegistryName
-                        (new ResourceLocation(Core.MODID,"suit_in_igloo"))
+                new SovietLootStructureModifier.Serializer().setRegistryName (new ResourceLocation(Core.MODID,"gas_mask_in_mineshaft")),
+                new SovietLootStructureModifier.Serializer().setRegistryName (new ResourceLocation(Core.MODID,"suit_jacket_in_igloo")),
+                new SovietLootStructureModifier.Serializer().setRegistryName (new ResourceLocation(Core.MODID,"suit_boots_in_ruined_portal")),
+                new SovietLootStructureModifier.Serializer().setRegistryName (new ResourceLocation(Core.MODID,"suit_legs_in_woodland_mansion"))
         );
     }
 }

@@ -41,6 +41,7 @@ public class Core {
         RegTileEntitys.TILE_ENTITY_TYPES.register(eventBus);
         RegSounds.SOUNDS.register(eventBus);
         RegStructures.register(eventBus);
+ //       MinecraftForge.EVENT_BUS.register(new RegModifiers());
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC, "soviet_era2_config.toml");
      //   CriteriaTriggers.register(DiscoveryBlockTrigger.INSTANCE);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onCommonSetup); //возможны проблемы переместить выше!
