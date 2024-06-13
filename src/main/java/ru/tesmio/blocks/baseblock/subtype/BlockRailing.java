@@ -4,6 +4,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.VoxelShape;
@@ -22,7 +24,11 @@ public class BlockRailing extends BlockRotatedAxisCustomModelInfo {
             e.attackEntityFrom(DamageSource.CACTUS, 1.0F);
         }
     }
-
+    public ItemStack[] getItemsDrop(PlayerEntity pl) {
+        return new ItemStack[] {
+                ItemStack.EMPTY
+        };
+    }
     @Override
     public VoxelShape getFacingShape(BlockState s) {
         return SHP2;

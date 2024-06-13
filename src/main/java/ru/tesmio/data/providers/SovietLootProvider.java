@@ -1,6 +1,7 @@
 package ru.tesmio.data.providers;
 
 import net.minecraft.data.DataGenerator;
+import net.minecraft.item.Item;
 import ru.tesmio.reg.RegBlocks;
 import ru.tesmio.reg.RegItems;
 
@@ -14,6 +15,10 @@ public class SovietLootProvider extends BaseLootProvider {
 
 
     ThreadLocalRandom rand = ThreadLocalRandom.current();
+    Item[] loot = new Item[] {RegItems.SUIT_GAS_MASK.get()};
+
+
+
     @Override
     protected void addTables() {
 
@@ -32,6 +37,7 @@ public class SovietLootProvider extends BaseLootProvider {
 //        forEachStandartBlock(RegBlocks.CHEMLAB_TABLE.get(), "stuff");
 //        forEachStandartBlock(RegBlocks.BIO_STILLAGE.get(), "stuff");
 //        lootTables.put(RegBlocks.REDSTONE_WIRE.get(), drop1x1Rand("copperscrap", RegItems.COPPER_SCRAP.get(),1));
+      //  lootChest.put(new ResourceLocation(Core.MODID, "chests/underground_lab"), genChestLoot("gas_mask_lt", RegItems.SUIT_GAS_MASK.get(),15,2,4,1,3));
         //windows
         lootTables.put(RegBlocks.ALUM_FRAMES_EMPTY.get(), drop1x1Rand("windows", RegItems.ALUMINUM_SCRAP.get(),2));
         lootTables.put(RegBlocks.ALUM_FRAMES.get(), drop1x1Rand("windows", RegItems.ALUMINUM_SCRAP.get(),2));
@@ -229,4 +235,5 @@ public class SovietLootProvider extends BaseLootProvider {
 
         lootTables.put(RegBlocks.LEADCERAMIC_TILE.get(), drop2x2Rand("leadceramic", RegItems.ARMATURES.get(),RegItems.LEADCERAMIC_TILE.get(),0,3, 6,14));
     }
+
 }

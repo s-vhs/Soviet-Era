@@ -9,6 +9,7 @@ import net.minecraft.data.IDataProvider;
 import net.minecraft.data.LootTableProvider;
 import net.minecraft.item.Item;
 import net.minecraft.loot.*;
+import net.minecraft.loot.functions.SetCount;
 import net.minecraft.util.ResourceLocation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -24,6 +25,7 @@ public abstract class BaseLootProvider extends LootTableProvider {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
 
     protected final Map<Block, LootTable.Builder> lootTables = new HashMap<>();
+    protected final Map<ResourceLocation, LootTable.Builder> lootChest = new HashMap<>();
     private final DataGenerator generator;
 
     public BaseLootProvider(DataGenerator dataGeneratorIn) {
@@ -32,6 +34,15 @@ public abstract class BaseLootProvider extends LootTableProvider {
     }
 
     protected abstract void addTables();
+
+    protected static LootTable.Builder genChestLoot(String name, Item item, int weight, float global_min, float global_max, float item_min, float item_max) {
+        LootPool.Builder builder = LootPool.builder().name(name)
+                    .rolls(RandomValueRange.of(global_min, global_max))
+                    .addEntry(ItemLootEntry.builder(item).weight(weight))
+                    .acceptFunction(SetCount.builder(RandomValueRange.of(item_min, item_max)));
+
+        return LootTable.builder().addLootPool(builder);
+    }
 
 protected static LootTable.Builder drop1x1Rand(String name, Item item, int min, int max) {
     LootPool.Builder builder = LootPool.builder().name(name).addEntry(ItemLootEntry.builder(item)).rolls(RandomValueRange.of(min, max));
@@ -60,6 +71,10 @@ protected static LootTable.Builder drop1x1Rand(String name, Item item, int min, 
         for (Map.Entry<Block, LootTable.Builder> entry : lootTables.entrySet()) {
             tables.put(entry.getKey().getLootTable(), entry.getValue().setParameterSet(LootParameterSets.BLOCK).build());
         }
+        for (Map.Entry<ResourceLocation, LootTable.Builder> entry : lootChest.entrySet()) {
+            tables.put(entry.getKey(), entry.getValue().setParameterSet(LootParameterSets.CHEST).build());
+        }
+
         writeTables(cache, tables);
     }
 

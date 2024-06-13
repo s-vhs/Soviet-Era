@@ -90,7 +90,14 @@ public class UndergroundLabsPieces {
 
 
         protected void handleDataMarker(String function, BlockPos pos, IServerWorld worldIn, Random rand, MutableBoundingBox sbb) {
-
+//            if ("chest".equals(function)) {
+//                worldIn.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
+//                TileEntity tileentity = worldIn.getTileEntity(pos.down());
+//                if (tileentity instanceof ChestTileEntity) {
+//                    ((ChestTileEntity)tileentity).setLootTable(LootTables.CHESTS_IGLOO_CHEST, rand.nextLong());
+//                }
+//
+//            }
         }
 
         public boolean func_230383_a_(ISeedReader sr, StructureManager sm, ChunkGenerator cg, Random r, MutableBoundingBox mbb, ChunkPos cp, BlockPos bp) {

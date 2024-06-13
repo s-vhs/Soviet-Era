@@ -6,7 +6,7 @@ issueTrackerURL="https://github.com/MaxLegend/Soviet-Era-2/issues" #optional
 
 [[mods]]
 modId = "soviet" #mandatory
-version = "build"
+version = "Release"
 # A display name for the mod
 displayName = "Soviet Era 2" #mandatory
 updateJSONURL="https://github.com/MaxLegend/Soviet-Era-2/blob/1.16.5-dev/update.json"

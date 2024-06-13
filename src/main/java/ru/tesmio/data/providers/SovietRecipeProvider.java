@@ -263,19 +263,21 @@ public class SovietRecipeProvider extends ForgeRecipeProvider {
         CookingRecipeBuilder.blastingRecipe(Ingredient.fromItems(RegItems.ALUMINUM_DUST.get()), RegItems.ALUMINUM_INGOT.get(), 0.7f, 600)
                 .addCriterion("has_item", hasItem(RegItems.ALUMINUM_DUST.get()))
                 .build(consumer, modId("aluminum_dust"));
+
         CookingRecipeBuilder.blastingRecipe(Ingredient.fromItems(RegItems.ALUMINUM_SCRAP.get()), RegItems.ALUMINUM_INGOT.get(), 0.7f, 600)
                 .addCriterion("has_item", hasItem(RegItems.ALUMINUM_SCRAP.get()))
+
                 .build(consumer, modId("aluminum_scrap"));
         CookingRecipeBuilder.blastingRecipe(Ingredient.fromItems(RegItems.LEAD_DUST.get()), RegItems.LEAD_INGOT.get(), 0.7f, 600)
                 .addCriterion("has_item", hasItem(RegItems.LEAD_DUST.get()))
                 .build(consumer, modId("lead_dust2"));
-        CookingRecipeBuilder.blastingRecipe(Ingredient.fromItems(RegItems.RUSTY_SCRAP.get()), Items.IRON_INGOT, 0.2f, 350)
+        CookingRecipeBuilder.blastingRecipe(Ingredient.fromItems(RegItems.RUSTY_SCRAP.get()), Items.IRON_INGOT, 0.2f, 1000)
                 .addCriterion("has_item", hasItem(RegItems.RUSTY_SCRAP.get()))
                 .build(consumer, modId("rusty_scrap"));
-        CookingRecipeBuilder.blastingRecipe(Ingredient.fromItems(RegItems.PALLADIUM_DUST.get()), RegItems.PALLADIUM_INGOT.get(), 3.5f, 800)
+        CookingRecipeBuilder.blastingRecipe(Ingredient.fromItems(RegItems.PALLADIUM_DUST.get()), RegItems.PALLADIUM_INGOT.get(), 3.5f, 1600)
                 .addCriterion("has_item", hasItem(RegItems.PALLADIUM_DUST.get()))
                 .build(consumer, modId("palladium_ingot"));
-        CookingRecipeBuilder.blastingRecipe(Ingredient.fromItems(RegItems.NETHERITE_DUST.get()), Items.NETHERITE_INGOT, 0.9f, 600)
+        CookingRecipeBuilder.blastingRecipe(Ingredient.fromItems(RegItems.NETHERITE_DUST.get()), Items.NETHERITE_INGOT, 0.9f, 1500)
                 .addCriterion("has_item", hasItem(RegItems.NETHERITE_DUST.get()))
                 .build(consumer, modId("netherite_ingot"));
 

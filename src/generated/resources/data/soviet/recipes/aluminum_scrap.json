@@ -1,8 +1,19 @@
 {
   "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "soviet:aluminum_scrap"
-  },
+  "ingredient": [
+    {
+      "item": "soviet:aluminum_scrap"
+    },
+    {
+      "item": "soviet:aluminum_scrap"
+    },
+    {
+      "item": "soviet:aluminum_scrap"
+    },
+    {
+      "item": "soviet:aluminum_scrap"
+    }
+  ],
   "result": "soviet:aluminum_ingot",
   "experience": 0.7,
   "cookingtime": 600
