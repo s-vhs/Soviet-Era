@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "color=empty":  { "model": "soviet:block/placeable/dye_bucket"},
+    "color=water":  { "model": "soviet:block/placeable/dye_bucket_water"},
+    "color=beige":  { "model": "soviet:block/placeable/dye_bucket_beige"},
+    "color=beige2":  { "model": "soviet:block/placeable/dye_bucket_beige2"}
+  }
+}
