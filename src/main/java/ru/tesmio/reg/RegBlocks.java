@@ -42,6 +42,7 @@ import ru.tesmio.blocks.diesel_generator.DieselGenerator;
 import ru.tesmio.blocks.diesel_generator.DieselTank;
 import ru.tesmio.blocks.doors.*;
 import ru.tesmio.blocks.fences.*;
+import ru.tesmio.blocks.placeable.BucketDye;
 import ru.tesmio.blocks.rasty_frame.RastyFrameBlock;
 import ru.tesmio.blocks.storage.desc_drawers.LinearTableDrawers;
 import ru.tesmio.blocks.storage.dsp_tump.DspTumbBlock;
@@ -127,7 +128,7 @@ public class RegBlocks {
     public static RegistryObject<Block> METRO_RAIL, TOXIC_AIR;
     public static RegistryObject<Block> RASTY_FRAME, STEEL_PYLON, HORIZONTAL_STEEL_PYLON, ANTENN, RAILING_BLOCK;
 
-
+    public static RegistryObject<Block> DYE_BUCKET;
 
     public static void init() {
         Symbols.addSymbols();
@@ -140,6 +141,7 @@ public class RegBlocks {
         TOXIC_AIR = registerBlock("toxic_air", () -> new ToxicAir(getP(Material.AIR, 0f,0f, null, 0, SoundType.WOOD, false, true)), null);
 
         RASTY_FRAME = registerBlockWithModel("rasty_frames", () -> new RastyFrameBlock(getP(Material.IRON, 0.4f,0.6f, null, 1, SoundType.METAL, false, true)), Core.ItemGroups.TAB_OUTER_DECO);
+        DYE_BUCKET = registerBlockWithModel("placeable/dye_bucket", () -> new BucketDye(getP(Material.IRON, 0.4f,0.6f, null, 1, SoundType.METAL, false, true), 1F), Core.ItemGroups.TAB_OUTER_DECO);
 
         STEEL_PYLON = registerBlockWithModel("structural/steel_pylon", () -> new PylonBlock(getP(Material.IRON, 0.4f,0.6f, null, 1, SoundType.METAL, false, true)), Core.ItemGroups.TAB_OUTER_DECO);
         HORIZONTAL_STEEL_PYLON = registerBlockWithModel("structural/steel_pylon_horizontal", () -> new PylonBlockH(getP(Material.IRON, 0.4f,0.6f, null, 1, SoundType.METAL, false, true)), Core.ItemGroups.TAB_OUTER_DECO);

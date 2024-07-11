@@ -15,6 +15,7 @@ public class RegModifiers {
     @SubscribeEvent
     public static void registerModifierSerializers(@Nonnull final RegistryEvent.Register<GlobalLootModifierSerializer<?>> event) {
         event.getRegistry().registerAll(
+                new SovietLootStructureModifier.Serializer().setRegistryName (new ResourceLocation(Core.MODID,"fuel_canister_in_pillager_outpost")),
                 new SovietLootStructureModifier.Serializer().setRegistryName (new ResourceLocation(Core.MODID,"gas_mask_in_mineshaft")),
                 new SovietLootStructureModifier.Serializer().setRegistryName (new ResourceLocation(Core.MODID,"suit_jacket_in_igloo")),
                 new SovietLootStructureModifier.Serializer().setRegistryName (new ResourceLocation(Core.MODID,"suit_boots_in_ruined_portal")),

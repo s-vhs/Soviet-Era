@@ -232,6 +232,20 @@ public class SovietRecipeProvider extends ForgeRecipeProvider {
                 .addCriterion("has_item", hasItem(SETags.Items.TAG_BROKEN_BRICK))
                 .build(consumer, modId("vanilla_gravel"));
 
+        ShapelessRecipeBuilder2.shapelessRecipe(RegItems.BEIGE_DYE.get())
+                .addIngredient(Items.WHITE_DYE, 1)
+                .addIngredient(Items.BROWN_DYE, 1)
+                .addIngredient(Items.YELLOW_DYE, 1)
+                .addCriterion("has_item", hasItem(Items.YELLOW_DYE))
+                .addCriterion("has_item2", hasItem(Items.BROWN_DYE))
+                .addCriterion("has_item3", hasItem(Items.WHITE_DYE))
+                .build(consumer, modId("beige_dye"));
+        ShapelessRecipeBuilder2.shapelessRecipe(RegItems.BEIGE2_DYE.get())
+                .addIngredient(Items.WHITE_DYE, 1)
+                .addIngredient(Items.BROWN_DYE, 1)
+                .addCriterion("has_item", hasItem(Items.BROWN_DYE))
+                .addCriterion("has_item2", hasItem(Items.WHITE_DYE))
+                .build(consumer, modId("beige2_dye"));
         //blasting recipe
         CookingRecipeBuilder.blastingRecipe(Ingredient.fromItems(RegItems.PLATOL_DUST.get()), RegItems.PLATOL_INGOT.get(), 5f, 100)
                 .addCriterion("has_item", hasItem(RegItems.PLATOL_DUST.get()))

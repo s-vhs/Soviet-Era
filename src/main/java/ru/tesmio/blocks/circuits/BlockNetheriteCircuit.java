@@ -33,8 +33,12 @@ public class BlockNetheriteCircuit extends BlockCircuit {
         this.SHAPE = shape;
         this.setDefaultState(this.stateContainer.getBaseState().with(DISSECTION, 0).with(WATERLOGGED, Boolean.FALSE));
     }
-    public IItemProvider getDrop() {
-        return this;
+    public IItemProvider getDrop(BlockState s, BlockPos p) {
+        if(s.get(DISSECTION) != 0) {
+            return RegBlocks.NETHERITE_CIRCUIT_EMPTY.get();
+        } else {
+            return RegBlocks.NETHERITE_CIRCUIT.get();
+        }
     }
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         return SHAPE;

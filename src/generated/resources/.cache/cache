@@ -339,6 +339,8 @@ f830b6e689e8974679d9fbe466ca43394daadc2c assets/soviet/models/item/aluminum_ingo
 7b72d806c9282d6b311b114e864da669a67c9829 assets/soviet/models/item/aluminum_scrap.json
 9207b5137f8743c4540efcc6c8614b22d3c4bc9c assets/soviet/models/item/armature.json
 d6034271398835c4ca3e7311d853143d36f9b754 assets/soviet/models/item/armatures.json
+c6ffc2aa926ac673c71f5f5a07a05616f3a66b56 assets/soviet/models/item/beige2_dye.json
+b7fd165b2b146a0f8bcbad1c0cd9ea5b2539d66c assets/soviet/models/item/beige_dye.json
 e6d6fb403b27597c5dfff029f3fcae3fd1584221 assets/soviet/models/item/big_tile.json
 18c3ceacfc8fd1b68fb873f4da2fb19efa7fe8ad assets/soviet/models/item/big_tile_new.json
 e5b445cdaf53219828da62cf3cbff55e112e39a3 assets/soviet/models/item/brick/light_bricks.json
@@ -423,6 +425,8 @@ b6fd339a43a60cd68bbd56c02efbcce7f464dcd7 assets/soviet/models/item/detail_scrap/
 03336a4b9f334a8ae3946a7d83274a761294b7de assets/soviet/models/item/detail_scrap/yellow_condenser_dust.json
 dd701e776562eeebdb72c7f91b03e2501fc4ecd9 assets/soviet/models/item/detail_scrap/yellow_jack_dust.json
 8a884bc6ca3e7b64d7d3382b459cc07975a1bb5d assets/soviet/models/item/diamond_dust.json
+e73bc2e07c2fb3eef9fd2f17bd22d9ef4c087c62 assets/soviet/models/item/dye_brush.json
+0e906cdd534d2790c5623c4bc55da24b838ca62e assets/soviet/models/item/dye_scrapper.json
 b2336dfc40f5282cde796526b287115860179197 assets/soviet/models/item/fluolamp.json
 78eb3f82f9580c2b774ffe6c48a66cd225fb08a0 assets/soviet/models/item/fuel_canister.json
 ef6c56d63549cdc283f939520e8ff93800c5f3ca assets/soviet/models/item/gold_dust.json
@@ -675,6 +679,7 @@ a7de7d1111c31c37b0cac052e551f1db4cab9fc3 assets/soviet/models/item/outerdeco/sym
 451e65a3fbd7bc2dbc478d252801de6c833e5a0a assets/soviet/models/item/palladium_dust.json
 ad8f829d964740b2c531e0c5c1ec7718a269e712 assets/soviet/models/item/palladium_ingot.json
 d98b02c41ed5643d228f47ffa204b3205018d277 assets/soviet/models/item/pestle.json
+3a81879c7f2fd255f806558f40fd518552df3782 assets/soviet/models/item/placeable/dye_bucket.json
 5f1692928e5f2c14f17d82d4aa494461da689743 assets/soviet/models/item/platinum_axe.json
 c129dade0ff48eec3ed14c6c0ebe5a2f564cfec2 assets/soviet/models/item/platinum_dust.json
 b370baf30d3d21f88bbabe0baf7ebe1245676a9e assets/soviet/models/item/platinum_hoe.json
@@ -998,7 +1003,9 @@ e36f3f4f6b519e57854fb335b67fab0d07de2be3 data/soviet/loot_tables/blocks/structur
 af44d903c6aa42cd072d5abe6e14b689a1b33173 data/soviet/loot_tables/blocks/structural/trim_tile_blue.json
 af44d903c6aa42cd072d5abe6e14b689a1b33173 data/soviet/loot_tables/blocks/structural/trim_tile_red.json
 b7441dca3409fb2f50544ca2387486d6ed45ab20 data/soviet/recipes/aluminum_dust.json
-c980b0dfe25bc97e5d0a934f5cc3786ea30ee877 data/soviet/recipes/aluminum_scrap.json
+0e644a3cde2c6feb7b6a426afd4682c8a14d9817 data/soviet/recipes/aluminum_scrap.json
+8b91fb4dc042e9873ebaa24dddcfa84184e25bea data/soviet/recipes/beige2_dye.json
+73cddbc022d42362ae840a7f97f6b8abc348f527 data/soviet/recipes/beige_dye.json
 2c1c9a69c277321cb98934979b1e12bd0242d6ad data/soviet/recipes/ceramic_dust1.json
 e93ab3be61cff6ed06e3126b0edfcfe4c0a1405e data/soviet/recipes/ceramic_dust2.json
 ebb286ba8033e4ba89e6f0b59529fa6b26b8ba71 data/soviet/recipes/ceramic_dust3.json

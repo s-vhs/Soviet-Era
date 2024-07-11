@@ -23,7 +23,7 @@ public class BlockCircuit extends BlockCustomModel {
         super(p,vs,shadingInside);
 
     }
-    public IItemProvider getDrop() {
+    public IItemProvider getDrop(BlockState s, BlockPos p) {
         if(this == RegBlocks.COPPER_CIRCUIT_EMPTY.get()) {
             return RegBlocks.COPPER_CIRCUIT_EMPTY.get();
         }
@@ -53,6 +53,6 @@ public class BlockCircuit extends BlockCustomModel {
     public void harvestBlock(World worldIn, PlayerEntity player, BlockPos pos, BlockState state, @Nullable TileEntity te, ItemStack stack) {
         player.addStat(Stats.BLOCK_MINED.get(this));
         player.addExhaustion(0.005F);
-        state.getBlock().spawnAsEntity(worldIn, pos, new ItemStack(getDrop(), 1));
+        state.getBlock().spawnAsEntity(worldIn, pos, new ItemStack(getDrop(state, pos), 1));
     }
 }

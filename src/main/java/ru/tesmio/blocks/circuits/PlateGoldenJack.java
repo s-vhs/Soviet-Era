@@ -35,6 +35,7 @@ public class PlateGoldenJack extends BlockCircuit {
     }
 
     public IItemProvider getDrop() {
+
         return this;
     }
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {

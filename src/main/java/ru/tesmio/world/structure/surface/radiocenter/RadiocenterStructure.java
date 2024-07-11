@@ -6,7 +6,6 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.util.registry.DynamicRegistries;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.GenerationStage;
@@ -43,14 +42,15 @@ public class RadiocenterStructure extends Structure<NoFeatureConfig> {
         }
 
         public void generatePieces(DynamicRegistries drm, ChunkGenerator cg, TemplateManager tm, int chunkX, int chunkZ, Biome b, NoFeatureConfig cfg) {
-            if(cg.getBiomeProvider().getNoiseBiome(chunkX, 0, chunkZ).getRegistryName().equals(Biomes.SWAMP.getLocation()) ||
-                    cg.getBiomeProvider().getNoiseBiome(chunkX, 0, chunkZ).getRegistryName().equals(Biomes.SWAMP_HILLS.getLocation()) ) {
+       //     if(cg.getBiomeProvider().getNoiseBiome(chunkX, 0, chunkZ).getRegistryName().equals(Biomes.SWAMP.getLocation()) ||
+      //              cg.getBiomeProvider().getNoiseBiome(chunkX, 0, chunkZ).getRegistryName().equals(Biomes.SWAMP_HILLS.getLocation()) ) {
+            if(b.getCategory() != Biome.Category.OCEAN) {
                 int x = chunkX * 16;
                 int z = chunkZ * 16;
                 BlockPos blockpos = new BlockPos(x, 0, z);
                 RadiocenterPieces.addPieces(tm, blockpos, this.components);
                 this.recalculateStructureSize();
-            }
+           }
     }
         }
 }

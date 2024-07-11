@@ -50,11 +50,15 @@ public class RegItems {
 
     public static RegistryObject<Item> WHITE_BRICK, BROKEN_WHITE_BRICK, CRACKED_YELLOW_BRICK, BROKEN_YELLOW_BRICK, CRACKED_RED_BRICK, BROKEN_RED_BRICK;
 
-    public static RegistryObject<Item> FLASHLIGHT, FLASHLIGHT_BATTERY;
+    public static RegistryObject<Item> DYE_SCRAPPER, DYE_BRUSH, BEIGE_DYE, BEIGE2_DYE;
 
     public static void init() {
 
-        //flashlight
+        BEIGE_DYE = registerItem("beige_dye", () -> new Item(new Item.Properties().group(Core.ItemGroups.TAB_ITEMS)));
+        BEIGE2_DYE = registerItem("beige2_dye", () -> new Item(new Item.Properties().group(Core.ItemGroups.TAB_ITEMS)));
+
+        DYE_SCRAPPER = registerItem("dye_scrapper", () -> new DyeScrapper("info.dye_scrapper"));
+        DYE_BRUSH = registerItem("dye_brush", () -> new DyeBrush(new Item.Properties().group(Core.ItemGroups.TAB_ITEMS), "info.dye_brush"));
 
         //suit
         SUIT_GAS_MASK = registerItem("adc_gasmask", () -> new Suit(ArmorMaterial.DIAMOND, EquipmentSlotType.HEAD, (new Item.Properties()).group(Core.ItemGroups.TAB_ITEMS)));

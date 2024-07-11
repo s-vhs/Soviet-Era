@@ -1,0 +1,10 @@
+public VoxelShape makeShape(){
+	VoxelShape shape = VoxelShapes.empty();
+	shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.375, 0, 0.375, 0.625, 0.125, 0.625);
+	shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.375, 0.25, 0.375, 0.625, 0.4375, 0.4375);
+	shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.375, 0.25, 0.5625, 0.625, 0.4375, 0.625);
+	shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.4375, 0.125, 0.4375, 0.5625, 0.625, 0.5625);
+	shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.46875, 0.625, 0.46875, 0.53125, 1.125, 0.53125);
+
+	return shape;
+}
